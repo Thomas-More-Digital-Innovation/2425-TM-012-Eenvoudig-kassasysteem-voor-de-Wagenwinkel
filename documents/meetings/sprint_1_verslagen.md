@@ -1,4 +1,4 @@
-# Scrum meeting verslag
+# Sprint 1 :scrum meeting verslagen
 
 ## Scrum meeting: 23/09/2024 10:00 [Wesley & César]
 
@@ -53,7 +53,7 @@
 - Yme: Figma verder gemaakt
 - Jaro: Use case feedback geïnplementeerd
 - Senne: contact gehad met Vince en gezorgd voor een
- crash course PHP laravel
+  crash course PHP laravel
 
 **TO DO tegen 26/09/2024:**
 
@@ -109,7 +109,7 @@
 
 - Jaro: backlog verfijnt en php cursus verder bekeken
 - Wout: Hosting en hardware verder bekeken (2 goede devicess gevonden) & laravel
-    cursus verder bekeken
+  cursus verder bekeken
 - Yme: Figma afgewerkt en laravel cursus bekeken
 - Maxim: Hardware verder opgezocht
 - Senne: cursus bekeken
