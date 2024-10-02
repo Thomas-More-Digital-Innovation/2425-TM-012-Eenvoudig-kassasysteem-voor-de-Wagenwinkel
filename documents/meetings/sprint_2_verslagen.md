@@ -17,4 +17,4 @@ Verslag:
 
 #### ! belangrijk !
 
-Er moet een vraag gestuurd worden naar de klant over de qr-codes, moeten deze functioneel zijn? of moet de applicatie een afbeelding van een qr code tonen zodat de begeleider een qr code aan kan maken.
+Er moet een vraag gestuurd worden naar de klant over de qr-codes, moeten deze functioneel zijn? of moet de applicatie een afbeelding van een qr code tonen zodat de verkoper weet dat hij aan de begeleider moet vragen om een qr code aan kan maken.
