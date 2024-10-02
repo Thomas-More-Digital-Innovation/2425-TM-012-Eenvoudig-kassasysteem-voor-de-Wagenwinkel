@@ -10,3 +10,11 @@
 - Het toekennen van de bovenste tickets aan mensen.
 
 Verslag:
+
+- De backlog is geordend volgens prioriteit.
+- "Als verkoper/admin/begeleider kan ik een product verkopen." is opgesplitst in "Als verkoper kan ik een item in mijn winkelmand toevoegen, verwijderen, winkelmand tonen,..." zodat als iemand bezig is met een ticket, weet wat die moet doen.
+- De database moet nog opgezet worden, dus zullen er in het begin nog veel statische schermen ontwikkeld worden.
+
+#### ! belangrijk !
+
+Er moet een vraag gestuurd worden naar de klant over de qr-codes, moeten deze functioneel zijn? of Moet de applicatie een afbeelding van een qr code tonen zodat de begeleider een qr code aan kan maken.
