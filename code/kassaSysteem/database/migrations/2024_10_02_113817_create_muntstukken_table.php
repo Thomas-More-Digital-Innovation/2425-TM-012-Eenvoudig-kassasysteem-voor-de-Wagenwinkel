@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('muntstukken', function (Blueprint $table) {
             $table->id('muntstuk_id');
-            /*$table->timestamps();*/
             $table->float('soort');
         });
     }

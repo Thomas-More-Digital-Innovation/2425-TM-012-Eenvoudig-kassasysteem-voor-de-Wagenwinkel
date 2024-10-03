@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('instelling');
             $table->boolean('status')->default(false);
             $table->foreignId('organisatie_id');
-            /*$table->timestamps();*/
         });
     }
 

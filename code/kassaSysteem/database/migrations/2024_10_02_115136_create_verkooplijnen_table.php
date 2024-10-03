@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('verkooplijnen', function (Blueprint $table) {
             $table->id('verkooplijn_id');
-            /*$table->timestamps();*/
             $table->integer('hoeveelheid');
             $table->float('verkoopprijs');
             $table->foreignId('verkoop_id');

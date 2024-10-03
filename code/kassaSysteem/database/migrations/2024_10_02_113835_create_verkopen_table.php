@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('verkopen', function (Blueprint $table) {
             $table->id('verkoop_id');
-            /*$table->timestamps();*/
             $table->dateTime('datum_tijd');
             $table->foreignId('organisatie_id');
         });

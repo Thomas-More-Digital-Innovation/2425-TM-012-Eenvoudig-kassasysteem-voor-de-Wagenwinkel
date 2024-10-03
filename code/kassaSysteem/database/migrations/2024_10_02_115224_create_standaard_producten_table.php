@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('standaard_producten', function (Blueprint $table) {
             $table->id('standaard_id');
-            /*$table->timestamps();*/
             $table->string('naam');
             $table->string('afbeelding');
             $table->float('standaardprijs');

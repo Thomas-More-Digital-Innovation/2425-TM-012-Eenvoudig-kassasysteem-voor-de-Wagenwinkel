@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('user_ids', function (Blueprint $table) {
             $table->id('user_id');
-            /*$table->timestamps();*/
             $table->string('naam');
             $table->integer('password');
             $table->foreignId('rol_id');

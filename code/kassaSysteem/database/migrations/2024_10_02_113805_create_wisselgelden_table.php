@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('wisselgelden', function (Blueprint $table) {
             $table->id('wisselgeld_id');
-            /*$table->timestamps();*/
             $table->date('datum');
             $table->integer('hoeveelheid');
             $table->foreignId('organisatie_id');
