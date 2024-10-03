@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('success', function() {
+    return view('success');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
