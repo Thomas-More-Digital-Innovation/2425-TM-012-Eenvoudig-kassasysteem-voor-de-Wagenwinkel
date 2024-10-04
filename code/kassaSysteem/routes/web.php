@@ -14,6 +14,11 @@ Route::get('/', function (){
     ]);
 });
 
+Route::get('success', function() {
+    return view('success');
+});
+
+  
 Route::post('submit', [OrganizationController::class, 'submit'])->name('submit');
 
 Route::get('/foodSelect', function () {
