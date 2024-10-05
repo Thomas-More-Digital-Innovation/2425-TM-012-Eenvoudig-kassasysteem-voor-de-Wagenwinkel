@@ -29,10 +29,6 @@ class Shopping_cart
     {
         session()->forget('cart');
     }
-    public function __construct()
-    {
-        //
-    }
 }
 
 Shopping_cart::init();
