@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function (){
     $organistaties = [
@@ -16,7 +17,14 @@ Route::get('/', function (){
 
 Route::get('success', function() {
     return view('success');
-});
+})->name('success');
+
+Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
+
+
+Route::get('payconic', function() {
+    return view('Payconic');
+})->name('payconic');
 
 Route::get('wisselgeldBeheer', function() {
     $money = [
@@ -78,7 +86,6 @@ Route::get('wisselgeldBeheer', function() {
     ]);
 });
 
-
 Route::post('submit', [OrganizationController::class, 'submit'])->name('submit');
 
 Route::get('/foodSelect', function () {
@@ -117,6 +124,17 @@ Route::get('/nonFoodSelect', function () {
     ]);
 });
 
+
 Route::get('/settings', function () {
     return view('settings');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

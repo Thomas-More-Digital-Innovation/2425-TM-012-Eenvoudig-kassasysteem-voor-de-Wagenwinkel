@@ -7,6 +7,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Success</title>
+    <script>
+        setTimeout(function() {
+            window.location.href = "{{ route('payconic') }}"; // nog aanpassen naar categorie scherm
+        }, 1500);
+    </script>
 </head>
 <body>
 {{ $slot }}
