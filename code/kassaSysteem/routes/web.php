@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Verkoop\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CartController;
@@ -124,6 +125,7 @@ Route::get('/nonFoodSelect', function () {
     ]);
 });
 
+Route::get('product/{id?}', Product::class)->name('product');
 
 Route::get('/settings', function () {
     return view('settings');
