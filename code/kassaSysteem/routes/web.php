@@ -108,7 +108,7 @@ Route::get('/foodSelect', function () {
     return view('itemsOverzicht', [
         'items' => $items,
     ]);
-});
+})->name('food');
 
 Route::get('/nonFoodSelect', function () {
     $items = [
@@ -123,7 +123,11 @@ Route::get('/nonFoodSelect', function () {
     return view('itemsOverzicht', [
         'items' => $items,
     ]);
-});
+})->name('noFood');
+
+Route::get('category', function () {
+    return view('category');
+})->name('category');
 
 Route::get('product/{id?}', Product::class)->name('product');
 
