@@ -27,6 +27,64 @@ Route::get('payconic', function() {
     return view('Payconic');
 })->name('payconic');
 
+Route::get('winkelmand', function() {
+    $items = [
+        [
+            'id' => 1,
+            'name' => 'Appel',
+            'imagePath' => asset('assets/images/items/appel.png'),
+            'position' => 1,
+        ],
+        [
+            'id' => 2,
+            'name' => 'Appel',
+            'imagePath' => asset('assets/images/items/appel.png'),
+            'position' => 2,
+        ],
+        [
+            'id' => 3,
+            'name' => 'Appel',
+            'imagePath' => asset('assets/images/items/appel.png'),
+            'position' => 3,
+        ],
+        [
+            'id' => 4,
+            'name' => 'Kaartje',
+            'imagePath' => asset('assets/images/items/kaartje.png'),
+            'position' => 4,
+        ],
+        [
+            'id' => 5,
+            'name' => 'Kaartje',
+            'imagePath' => asset('assets/images/items/kaartje.png'),
+            'position' => 5,
+        ],
+        [
+            'id' => 6,
+            'name' => 'Kaartje',
+            'imagePath' => asset('assets/images/items/kaartje.png'),
+            'position' => 6,
+        ],
+        [
+            'id' => 7,
+            'name' => 'Kaartje',
+            'imagePath' => asset('assets/images/items/kaartje.png'),
+            'position' => 7,
+        ],
+        [
+            'id' => 8,
+            'name' => 'Kaartje',
+            'imagePath' => asset('assets/images/items/kaartje.png'),
+            'position' => 8,
+        ],
+
+    ];
+
+    return view('winkelmand', [
+        'items' => $items,
+    ]);
+})->name('winkelmand');
+
 Route::get('wisselgeldBeheer', function() {
     $money = [
         [

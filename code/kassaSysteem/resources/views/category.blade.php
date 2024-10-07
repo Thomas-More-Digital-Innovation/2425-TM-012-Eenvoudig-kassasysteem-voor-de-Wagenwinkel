@@ -17,7 +17,7 @@
         <img src="{{asset("assets/nofood.png")}}" alt="No Food" class="w-[60%] h-[60%]">
     </a>
 
-    <a href="" class="bg-orange-200 w-[100%] h-[29%] mt-[0.5vw] flex justify-evenly items-center rounded-lg cursor-pointer">
+    <a href="{{route('winkelmand')}}" class="bg-orange-200 w-[100%] h-[29%] mt-[0.5vw] flex justify-evenly items-center rounded-lg cursor-pointer">
         <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
         <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
         <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
