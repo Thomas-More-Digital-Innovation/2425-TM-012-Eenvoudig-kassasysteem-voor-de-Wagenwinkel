@@ -26,6 +26,7 @@ Route::get('payconic', function() {
     return view('Payconic');
 })->name('payconic');
 
+//Jaro
 Route::get('wisselgeldBeheer', function() {
     $money = [
         [
