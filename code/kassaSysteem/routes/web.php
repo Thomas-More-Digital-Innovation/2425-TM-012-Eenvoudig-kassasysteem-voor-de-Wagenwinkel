@@ -93,7 +93,7 @@ Route::get('wisselgeldBeheer', function() {
     ]);
 });
 
-Route::post('submit', [OrganizationController::class, 'submit'])->name('submit');
+Route::post('category', [OrganizationController::class, 'submit'])->name('submit');
 
 Route::get('/foodSelect', function () {
     $items = [
@@ -141,12 +141,57 @@ Route::get('/settings', function () {
     return view('settings');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('calculate-change', function() {
+    $totalCost = 8.5;
+    $amountGiven = 20.00;
+
+    $denominations = [
+        ['name' => '50', 'value' => 50, 'count' => 99],
+        ['name' => '20', 'value' => 20, 'count' => 99],
+        ['name' => '10', 'value' => 10, 'count' => 99],
+        ['name' => '5', 'value' => 5, 'count' => 99],
+        ['name' => '2', 'value' => 2, 'count' => 99],
+        ['name' => '1', 'value' => 1, 'count' => 99],
+        ['name' => '_50', 'value' => 0.50, 'count' => 99],
+        ['name' => '_20', 'value' => 0.20, 'count' => 99],
+        ['name' => '_10', 'value' => 0.10, 'count' => 99],
+        ['name' => '_5', 'value' => 0.05, 'count' => 99],
+    ];
+
+    $change = $amountGiven - $totalCost;
+    $result = [];
+
+    foreach ($denominations as &$denom) {
+        if ($change >= $denom['value'] && $denom['count'] > 0) {
+            $quantity = min(floor($change / $denom['value']), $denom['count']);
+            if ($quantity > 0) {
+                $result[] = ['name' => $denom['name'], 'quantity' => $quantity];
+                $change -= $quantity * $denom['value'];
+                $change = round($change, 2);
+            }
+        }
+    }
+
+    if ($change > 0) {
+        foreach ($denominations as &$denom) {
+            if ($denom['count'] == 0) {
+                continue;
+            }
+            while ($change > 0 && $denom['count'] > 0) {
+                if ($denom['value'] > $change) {
+                    continue;
+                }
+                $denom['count']--;
+                $result[] = ['name' => $denom['name'], 'quantity' => 1];
+                $change -= $denom['value'];
+                $change = round($change, 2);
+            }
+        }
+    }
+
+    return view('calculateChange', [
+        'result' => $result,
+        'total_cost' => $totalCost,
+        'amount_given' => $amountGiven,
+    ]);
 });

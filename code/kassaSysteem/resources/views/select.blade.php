@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selecteer Organisatie</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-blue-400 h-screen flex items-center justify-center relative">
+<x-header header="Select Organisatie">
+    <div class="bg-white p-4 rounded-lg shadow-lg relative">
+        <form method="POST" action="{{ route('submit') }}">
+            @csrf
+            <x-layout.dropDown
+                title="Organisaties"
+                :group="$organistaties"
+            />
+            <x-layout.greenArrow></x-layout.greenArrow>
+        </form>
+    </div>
 
-<div class="bg-white p-4 rounded-lg shadow-lg">
-    <form method="POST" action="{{ route('submit') }}">
-        @csrf
-        <x-layout.dropDown
-            title="Organisaties"
-            :group="$organistaties"
-        />
-        <x-layout.greenArrow></x-layout.greenArrow>
-    </form>
-</div>
-
-<div class="absolute top-6 right-6">
-    <img src="{{ asset('assets/images/gear.png') }}" alt="Instellingen" class="h-16 w-auto">
-</div>
-
-</body>
-</html>
+    <div class="absolute top-6 right-6">
+        <img src="{{ asset('assets/images/gear.png') }}" alt="Instellingen" class="h-16 w-auto">
+    </div>
+</x-header>
