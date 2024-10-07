@@ -125,6 +125,10 @@ Route::get('/nonFoodSelect', function () {
 });
 
 
+Route::get('/settings', function () {
+    return view('settings');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
