@@ -18,7 +18,7 @@ Route::get('success', function() {
     return view('success');
 });
 
-  
+
 Route::post('submit', [OrganizationController::class, 'submit'])->name('submit');
 
 Route::get('/foodSelect', function () {
@@ -57,3 +57,6 @@ Route::get('/nonFoodSelect', function () {
     ]);
 });
 
+Route::get('/settings', function () {
+    return view('settings');
+});
