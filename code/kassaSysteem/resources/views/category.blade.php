@@ -24,7 +24,7 @@
     </a>
 </div>
 <a href="{{route('settings')}}">
-    <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw]" src="{{asset("assets/instellingen.png")}}" alt="Instellingen">
+    <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw]" src="{{asset("assets/instellingen.png")}}" alt="Settings">
 </a>
 </body>
 </html>
