@@ -33,7 +33,9 @@
     </div>
 
     <div class="pt-3">
-        <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
+        <a href="{{route('category')}}">
+            <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
+        </a>
     </div>
 </div>
 
