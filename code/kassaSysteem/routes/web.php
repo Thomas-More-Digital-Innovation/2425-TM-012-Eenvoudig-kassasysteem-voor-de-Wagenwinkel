@@ -133,7 +133,7 @@ Route::get('product/{id?}', Product::class)->name('product');
 
 Route::get('/settings', function () {
     return view('settings');
-});
+})->name('settings');
 
 Route::get('calculate-change', function() {
     $totalCost = 8.5;

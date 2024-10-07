@@ -18,7 +18,9 @@
         </div>
     </div>
     <div class="flex gap-2 mt-4">
-        <x-layout.redArrow class="flex-grow" width="w-2/4" />
+        <a href="{{route('category')}}">
+            <x-layout.redArrow class="flex-grow" width="w-2/4" />
+        </a>
         <div class="w-2/4 bg-gray-200 rounded-lg shadow-lg text-center text-2xl font-bold p-4 flex-grow flex items-center justify-center">
             logout
         </div>

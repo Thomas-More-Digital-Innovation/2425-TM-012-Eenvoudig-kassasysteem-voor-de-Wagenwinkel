@@ -16,7 +16,7 @@
         </div>
         <div class="flex justify-between items-center mb-7 w-full">
             <div class="mx-4">
-                <form {{--action="{{ route('') }}"--}} method="GET"> {{--route naar vorige pagina nog aanpassen--}}
+                <form action="{{ route('category') }}" method="GET">
                     @csrf
                     <x-layout.redArrow width="w-80"></x-layout.redArrow>
                 </form>

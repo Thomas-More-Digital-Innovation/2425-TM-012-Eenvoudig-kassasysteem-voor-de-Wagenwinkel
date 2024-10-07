@@ -23,8 +23,8 @@
         <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
     </a>
 </div>
-
-<img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw]" src="{{asset("assets/instellingen.png")}}" alt="Instellingen">
-
+<a href="{{route('settings')}}">
+    <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw]" src="{{asset("assets/instellingen.png")}}" alt="Instellingen">
+</a>
 </body>
 </html>
