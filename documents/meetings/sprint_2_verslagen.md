@@ -40,3 +40,35 @@ Er moet een vraag gestuurd worden naar de klant over de qr-codes, moeten deze fu
 
 **Vraag over de QR-code:**  
 Het is niet nodig om een werkende QR-code te maken, alleen een indicatieve code, zodat de verkoper weet dat hij de begeleider moet vragen om een QR-code aan te maken.
+
+## Scrum Meeting: 04/10/2024 11:45 [Nathan & Tom]
+
+**Aanwezig:** Iedereen
+
+### Wat hebben jullie gisteren gedaan?
+Het overzicht van de producten kan getoond worden. Het selecteren van de organisatie is gemaakt.
+Database staat op, de visuele bevestiging is gecodeerd.
+
+### Wat ga je vandaag doen?
+Authenticatie wordt nu ontwikkeld. De productcategorieën, als verkoper kan ik geld ingeven, het berekenen van het wisselgeld,...
+
+## Scrum Meeting: 07/10/2024 09:00 [Nathan & Tom]
+
+**Aanwezig:** Iedereen behalve Maxim
+**Afwezig:** Maxim (dokter)
+
+### Wat hebben jullie vrijdag en dit weekend gedaan?
+- **Yme:** Cursus database bekeken.
+- **Jaro:** Het maken van de PayConiq pagina kreeg hij een error, dus die pull request is voorlopig geclosed.
+- **Wout:** Het categoriescherm afgemaakt. De figma voor de demo verder gemaakt. Heeft problemen met github, dit moet verder bekeken worden.
+- **Senne:** Gesukkeld met github en het project, begonnen aan het settings scherm.
+
+  ### Wat ga je vandaag doen?
+- **Yme:** Cursus database bekijken en het wisselgeld verder maken.
+- **Jaro:** Verder werken aan kaartjes rond de winkelmand.
+- **Wout:** Figma afmaken, werken aan het verwijderen uit de winkelmand.
+- **Senne:** Afmaken van het settings scherm.
+
+  ### Sonarcloud
+  De security issues zijn er door een Vite import en het manueel aanmaken van het wisselgeld, deze zitten nog niet in de database.
+  
