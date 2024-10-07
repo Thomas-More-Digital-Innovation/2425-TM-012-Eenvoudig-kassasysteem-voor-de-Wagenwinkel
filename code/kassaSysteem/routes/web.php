@@ -1,9 +1,10 @@
 <?php
 
-use App\Livewire\Verkoop\Product;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\ProductController;
+use App\Livewire\Product;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (){
     $organistaties = [
@@ -20,8 +21,13 @@ Route::get('success', function() {
     return view('success');
 })->name('success');
 
+Route::get('product/{id}', [ProductController::class, 'show']);
+
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
+Route::post('addProduct', [CartController::class, 'addProduct'])->name('cart.product-add');
+
+Route::get('winkelwagen', \App\Livewire\Winkelkar::class)->name('winkelkar');
 
 Route::get('payconic', function() {
     return view('Payconic');
@@ -94,13 +100,13 @@ Route::get('/foodSelect', function () {
         [
             'id' => 1,
             'name' => 'Appel',
-            'imagePath' => asset('assets/images/items/appel.png'),
+            'imagePath' => 'assets/images/items/appel.png',
             'position' => 1,
         ],
         [
-            'id' => 2,
+            'id' => 3,
             'name' => 'Koekje',
-            'imagePath' => asset('assets/images/items/koekje.png'),
+            'imagePath' => 'assets/images/items/koekje.png',
             'position' => 2,
         ],
 
@@ -113,7 +119,7 @@ Route::get('/foodSelect', function () {
 Route::get('/nonFoodSelect', function () {
     $items = [
         [
-            'id' => 1,
+            'id' => 2,
             'name' => 'Kaartje',
             'imagePath' => asset('assets/images/items/kaartje.png'),
             'position' => 1,

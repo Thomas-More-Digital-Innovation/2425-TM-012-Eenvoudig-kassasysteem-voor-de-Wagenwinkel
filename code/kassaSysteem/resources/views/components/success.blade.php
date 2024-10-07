@@ -9,7 +9,7 @@
     <title>Success</title>
     <script>
         setTimeout(function() {
-            window.location.href = "{{ route('payconic') }}"; // nog aanpassen naar categorie scherm
+            window.location.href = "{{ route('category') }}"; // nog aanpassen naar categorie scherm
         }, 1500);
     </script>
 </head>
