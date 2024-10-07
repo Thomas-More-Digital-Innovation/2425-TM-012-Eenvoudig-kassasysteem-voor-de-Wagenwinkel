@@ -188,4 +188,48 @@ Route::get('calculate-change', function() {
         'total_cost' => $totalCost,
         'amount_given' => $amountGiven,
     ]);
+
+
+});
+
+
+Route::get('begeleiderLogin', function () {
+    return view('begeleiderLogin');
+})->name('begeleiderLoginForm');
+
+
+Route::post('begeleiderLogin', function () {
+
+    $logins = [
+        ['naam' => 'maxim', 'wachtwoord' => '123']
+    ];
+
+    $naam = request('name');
+    $wachtwoord = request('password');
+
+
+    $is_valid = false;
+    foreach ($logins as $login) {
+        if ($login['naam'] === $naam && $login['wachtwoord'] === $wachtwoord) {
+            $is_valid = true;
+            break;
+        }
+    }
+
+
+    if ($is_valid) {
+        return view('settings', ['naam' => $naam]);
+    } else {
+        return back()->withErrors(['error' => 'Ongeldige naam of wachtwoord.']);
+    }
+})->name('begeleiderLogin');
+
+
+Route::get('betaalmethode', function () {
+    return view('betaalmethode');
+});
+
+
+Route::get('cashBetalen', function () {
+    return view('cashBetalen');
 });
