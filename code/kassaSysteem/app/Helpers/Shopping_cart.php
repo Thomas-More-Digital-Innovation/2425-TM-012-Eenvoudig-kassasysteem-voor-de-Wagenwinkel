@@ -20,6 +20,11 @@ class Shopping_cart
         self::$cart = session()->get('cart') ?? self::$cart;
     }
 
+    public static function addProduct(): void
+    {
+
+    }
+
     public static function getPrice(): float
     {
         return self::$cart['totalPrice'];
