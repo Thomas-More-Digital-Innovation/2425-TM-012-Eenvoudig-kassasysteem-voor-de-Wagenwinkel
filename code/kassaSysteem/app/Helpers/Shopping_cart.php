@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Illuminate\Http\Request;
 use Storage;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class Shopping_cart
 {
@@ -30,6 +31,7 @@ class Shopping_cart
                 'naam' => $product->naam,
                 'afbeelding' => $product->afbeelding,
                 'actuele_prijs' => $product->actuele_prijs,
+                'verkoop_id' => 2, /*navragen wat verkoop tabel is/doet*/
                 'aantal' => $amount
             ];
         }
@@ -56,6 +58,16 @@ class Shopping_cart
 
     public static function emptySession(): void
     {
+        $products = self::$cart['products'];
+
+        foreach ($products as $product) {
+           DB::insert('insert into verkooplijnen (hoeveelheid, verkoopprijs, verkoop_id, product_id) values (?, ?, ?, ?)', [
+                $product['aantal'],
+                $product['actuele_prijs'],
+                $product['verkoop_id'],
+                $product['id']
+            ]);
+        }
         session()->forget('cart');
     }
 
