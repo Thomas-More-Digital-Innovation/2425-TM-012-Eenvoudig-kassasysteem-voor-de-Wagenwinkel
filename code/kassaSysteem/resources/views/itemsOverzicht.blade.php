@@ -11,20 +11,32 @@
                 $gridItems[$item['position'] - 1] = $item;
             }
 
+            foreach ($items as $item) {
+                $gridItems[$item['position'] - 1] = $item;
+            }
+
             foreach ($gridItems as $gridItem): ?>
-            <div class="w-48 h-48 flex items-center justify-center">
-                    <?php if ($gridItem): ?>
-                <img src="{{ $gridItem['imagePath'] }}" alt="Image {{ $gridItem['name'] }}" class="object-cover w-full h-full">
+                <?php if ($gridItem): ?>
+            <form action="product/{{ $gridItem['id'] }}" method="GET">
                 <?php else: ?>
-                <div class="bg-white flex items-center justify-center">
-                </div>
-                <?php endif; ?>
-            </div>
+
+                <form action="product/3" method="GET">
+                    <?php endif; ?>
+
+                    <button type="submit" class="w-48 h-48 flex items-center justify-center">
+                            <?php if ($gridItem): ?>
+                        <img src="{{ $gridItem['imagePath'] }}" alt="Image {{ $gridItem['name'] }}" class="object-cover w-full h-full">
+                        <?php else: ?>
+                        <div class="bg-white flex items-center justify-center">
+                        </div>
+                        <?php endif; ?>
+                    </button>
+                </form>
             <?php endforeach; ?>
         </div>
 
         <div class="pt-3">
-            <a href="{{route('category')}}">
+            <a href="{{ route('category') }}">
                 <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
             </a>
         </div>
