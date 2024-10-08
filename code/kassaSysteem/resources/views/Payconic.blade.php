@@ -7,14 +7,14 @@
             <div class="">
                 <form {{--action="{{ route('') }}"--}} method="GET"> {{--route naar vorige pagina nog aanpassen--}}
                     @csrf
-                    <x-layout.redArrow width="w-[233px]"></x-layout.redArrow>
+                    <x-layout.redArrow width="w-80"></x-layout.redArrow>
                 </form>
             </div>
             <p class=" w-full text-center total-font-size inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice()}} €</p>
             <div class="">
                 <form action="{{ route('empty.cart') }}" method="POST">
                     @csrf
-                    <x-layout.greenArrow width="w-[233px]"></x-layout.greenArrow>
+                    <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
                 </form>
             </div>
         </div>
