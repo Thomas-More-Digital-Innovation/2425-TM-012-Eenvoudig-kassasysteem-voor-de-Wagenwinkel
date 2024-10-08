@@ -11,4 +11,6 @@ class OrganizationController extends Controller
 
         return view('category', compact('selectedOrganization'));
     }
+
+
 }

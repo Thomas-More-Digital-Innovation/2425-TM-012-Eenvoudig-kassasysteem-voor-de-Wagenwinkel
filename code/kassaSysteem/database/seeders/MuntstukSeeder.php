@@ -16,14 +16,45 @@ class MuntstukSeeder extends Seeder
         DB::table('muntstukken')->insert(
             [
                 [
-                    'soort' => 0.20
+                    'naam' => '50',
+                    'waarde' => 50.00
                 ],
                 [
-                    'soort' => 0.10
+                    'naam' => '20',
+                    'waarde' => 20.00
                 ],
                 [
-                    'soort' => 10
-                ]
+                    'naam' => '10',
+                    'waarde' => 10.00
+                ],
+                [
+                    'naam' => '5',
+                    'waarde' => 5.00
+                ],
+                [
+                    'naam' => '2',
+                    'waarde' => 2.00
+                ],
+                [
+                    'naam' => '1',
+                    'waarde' => 1.00
+                ],
+                [
+                    'naam' => '_50',
+                    'waarde' => 0.50
+                ],
+                [
+                    'naam' => '_20',
+                    'waarde' => 0.20
+                ],
+                [
+                    'naam' => '_10',
+                    'waarde' => 0.10
+                ],
+                [
+                    'naam' => '_5',
+                    'waarde' => 0.05
+                ],
             ]
         );
     }

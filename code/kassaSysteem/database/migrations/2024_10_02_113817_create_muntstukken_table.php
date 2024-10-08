@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('muntstukken', function (Blueprint $table) {
             $table->id('muntstuk_id');
-            $table->float('soort');
+            $table->string('naam');
+            $table->float('waarde');
         });
     }
 

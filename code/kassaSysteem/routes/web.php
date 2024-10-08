@@ -20,6 +20,18 @@ Route::get('success', function() {
     return view('success');
 })->name('success');
 
+Route::get('/organisatieBeheer', function (){
+    $organistaties = [
+        'Buso',
+        'test',
+    ];
+
+    return view('organisatieBeheer', [
+        'organistaties' => $organistaties
+    ]);
+});
+
+
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
 
@@ -88,6 +100,7 @@ Route::get('wisselgeldBeheer', function() {
 });
 
 Route::post('category', [OrganizationController::class, 'submit'])->name('submit');
+
 
 Route::get('/foodSelect', function () {
     $items = [
