@@ -15,17 +15,25 @@ class ProductSeeder extends Seeder
         DB::table('producten')->insert(
             [
                 [
-                    'naam' => 'product 1',
+                    'naam' => 'appel',
                     'actuele_prijs' => 16.5,
-                    'afbeeldingen' => 'test.png',
+                    'afbeeldingen' => 'assets/images/items/appel.png',
                     'organisatie_id' => 1,
                     'categorie_id' => 2,
                     'standaard_id' => 1
                 ],
                 [
-                    'naam' => 'product 2',
+                    'naam' => 'kaartje',
                     'actuele_prijs' => 5.5,
-                    'afbeeldingen' => 'test2.png',
+                    'afbeeldingen' => 'assets/images/items/kaartje.png',
+                    'organisatie_id' => 3,
+                    'categorie_id' => 1,
+                    'standaard_id' => 1
+                ],
+                [
+                    'naam' => 'Koek',
+                    'actuele_prijs' => 5.5,
+                    'afbeeldingen' => 'assets/images/items/koekje.png',
                     'organisatie_id' => 3,
                     'categorie_id' => 1,
                     'standaard_id' => 1

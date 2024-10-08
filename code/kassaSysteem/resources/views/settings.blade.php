@@ -17,7 +17,6 @@
             <img src="{{ asset('assets/images/settings.svg') }}" alt="Instellingen" class="w-[50%] h-[50%] object-contain">
         </div>
     </div>
-
     <div class="flex gap-2 mt-4 h-full">
         <a href="{{route('category')}}" class="flex-grow h-full w-2/4">
             <x-layout.redArrow height="h-full" />
