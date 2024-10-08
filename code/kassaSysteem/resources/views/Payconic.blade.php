@@ -3,9 +3,10 @@
         <div class="bg-gray-200 h-[500px] rounded-lg w-11/12  mt-4 flex justify-center items-center">
             <img src="{{ asset('assets/images/qr-code.png') }}" alt="qr code">
         </div>
-        <div class="flex justify-between items-center mb-7 w-11/12">
-            <div class="">
-                <form {{--action="{{ route('') }}"--}} method="GET"> {{--route naar vorige pagina nog aanpassen--}}
+        <div class="flex justify-between items-center mb-7 w-full">
+            <div class="mx-4">
+                <form action="{{ route('category') }}" method="GET">
+
                     @csrf
                     <x-layout.redArrow width="w-80"></x-layout.redArrow>
                 </form>
