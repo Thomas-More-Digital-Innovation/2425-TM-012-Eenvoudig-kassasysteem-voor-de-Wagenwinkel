@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (){
     $organistaties = [
-        'Buso',
-        'test',
+        'Buso Oosterlo',
+        'MPI',
     ];
 
     return view('select', [
@@ -23,14 +23,16 @@ Route::get('success', function() {
 
 Route::get('/organisatieBeheer', function (){
     $organistaties = [
-        'Buso',
-        'test',
+        'Buso Oosterlo',
+        'MPI',
     ];
 
     return view('organisatieBeheer', [
         'organistaties' => $organistaties
     ]);
 });
+
+Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 
 Route::get('product/{id}', [ProductController::class, 'show']);
 
@@ -212,7 +214,7 @@ Route::get('/settings', function () {
 })->name('settings');
 
 Route::get('calculate-change', function() {
-    $totalCost = 8.5;
+    $totalCost = 5;
     $amountGiven = 20.00;
 
     $denominations = [

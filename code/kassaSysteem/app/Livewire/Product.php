@@ -28,6 +28,11 @@ class Product extends Component
         }
     }
 
+    public function getRoute()
+    {
+        return $this->product;
+    }
+
 
     public function render($id = null)
     {

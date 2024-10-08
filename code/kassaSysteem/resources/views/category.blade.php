@@ -10,17 +10,17 @@
 
 <div class="bg-white w-3/5 h-[90vh] flex flex-wrap justify-between p-[1vw] rounded-lg">
     <a href="{{route('food')}}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/food.png")}}" alt="Food" class="w-[45%] h-[50%]">
+        <img src="{{asset("assets/food.svg")}}" alt="Food" class="w-[45%] h-[50%]">
     </a>
 
     <a href="{{route('noFood')}}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/nofood.png")}}" alt="No Food" class="w-[60%] h-[60%]">
+        <img src="{{asset("assets/nofood.svg")}}" alt="No Food" class="w-[60%] h-[60%]">
     </a>
 
     <a href="{{route('winkelmand')}}" class="bg-orange-200 w-[100%] h-[29%] mt-[0.5vw] flex justify-evenly items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
-        <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
-        <img src="{{asset("assets/winkelmand.png")}}" alt="Winkelmand" class="w-[14%] h-[70%]">
+        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
+        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
+        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
     </a>
 </div>
 <a href="{{route('settings')}}">
