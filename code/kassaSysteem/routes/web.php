@@ -14,7 +14,7 @@ Route::get('/', function (){
     return view('select', [
         'organistaties' => $organistaties
     ]);
-})->name('select');
+});
 
 Route::get('success', function() {
     return view('success');

@@ -1,5 +1,0 @@
-{
-    "require": {
-        "laravel/fortify": "^1.24"
-    }
-}
