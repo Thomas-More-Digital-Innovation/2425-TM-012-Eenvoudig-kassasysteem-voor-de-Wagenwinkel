@@ -5,7 +5,7 @@
         </div>
         <div class="flex justify-between items-center mb-7 w-full">
             <div class="mx-4">
-                <form action="{{ route('category') }}" method="GET">
+                <form action="{{ route('soortBetalen') }}" method="GET">
 
                     @csrf
                     <x-layout.redArrow width="w-80"></x-layout.redArrow>

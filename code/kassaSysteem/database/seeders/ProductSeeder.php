@@ -16,23 +16,23 @@ class ProductSeeder extends Seeder
             [
                 [
                     'naam' => 'appel',
-                    'actuele_prijs' => 16.5,
+                    'actuele_prijs' => 0.5,
                     'afbeeldingen' => 'assets/images/items/appel.png',
                     'organisatie_id' => 1,
-                    'categorie_id' => 2,
-                    'standaard_id' => 1
-                ],
-                [
-                    'naam' => 'kaartje',
-                    'actuele_prijs' => 5.5,
-                    'afbeeldingen' => 'assets/images/items/kaartje.png',
-                    'organisatie_id' => 3,
                     'categorie_id' => 1,
                     'standaard_id' => 1
                 ],
                 [
+                    'naam' => 'kaartje',
+                    'actuele_prijs' => 1.5,
+                    'afbeeldingen' => 'assets/images/items/kaartje.png',
+                    'organisatie_id' => 3,
+                    'categorie_id' => 2,
+                    'standaard_id' => 1
+                ],
+                [
                     'naam' => 'Koek',
-                    'actuele_prijs' => 5.5,
+                    'actuele_prijs' => 1,
                     'afbeeldingen' => 'assets/images/items/koekje.png',
                     'organisatie_id' => 3,
                     'categorie_id' => 1,

@@ -40,6 +40,7 @@
                 $totalItems = 48;
                 $itemCount = count($items);
 
+
                 $gridItems = array_fill(0, $totalItems, null);
 
                 foreach ($items as $item) {
