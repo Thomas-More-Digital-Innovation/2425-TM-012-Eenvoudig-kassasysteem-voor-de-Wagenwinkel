@@ -2,35 +2,29 @@
 <div class="bg-white p-4 rounded-lg mb-3">
     <div id="count" class="mb-7 flex h-[40px]"> {{--max 12 blokjes--}} </div>
 
-    <div class="flex justify-between items-center mb-2 w-11/12">
-        <div class="mx-4">
+    <div class="flex justify-between items-center mb-1 w-11/12">
+        <div class="">
             <button onclick="removeSquare()" class="bg-gray-200 rounded-lg w-[233px] h-[207px] flex justify-center items-center">
-                <img src="{{ asset('assets/images/bin.png') }}" alt="vuilnisbak" class=" w-[50%] h-[50%]">
+                <img src="{{ asset('assets/images/bin.png') }}" alt="vuilnisbak" class=" w-[50%]">
             </button>
         </div>
-        <div class="mx-4">
-        <button onclick="showSquare()" class="bg-red-400 w-[233px] h-[207px] rounded-lg">
-            @foreach ($producten as $product)
-                <img src="{{ asset($product->afbeeldingen) }}" alt="{{ $product->naam }}" class="object-cover h-full w-full rounded-lg border-8 border-emerald-400"/>
-            @endforeach
+        <div class="mx-2">
+        <button onclick="showSquare()" class="bg-red-400 w-[233px] h-[207px] mt-1 rounded-lg">
+            <img src="{{ asset($product->afbeeldingen) }}" alt="{{ $product->naam }}" class="object-cover h-full w-full rounded-lg border-8 border-emerald-400"/>
         </button>
         </div>
     </div>
 
     <div class="flex justify-between items-center mb-2 w-11/12">
-        <div class="mx-4">
-            <form action="{{ route('category') }}" method="GET">
-                @csrf
+        <div class="">
+            <form action="{{ route('products', ['categoryId' => $product->categorie_id] ) }}" method="GET">
                 <x-layout.redArrow width="w-[233px]"></x-layout.redArrow>
             </form>
         </div>
 
-        <div class="mx-4">
+        <div class="mx-2">
             <form action="{{ route('cart.product-add') }}" method="POST">
-                @csrf
-                @foreach ($producten as $product)
-                    <input type="number" id="productId" name="productId" value="{{ $product->product_id }}" hidden>
-                @endforeach
+                <input type="number" id="productId" name="productId" value="{{ $product->product_id }}" hidden>
                 <input type="number" id="amount" name="amount" value="1" min="1" hidden>
                 <x-layout.greenArrow width="w-[233px]"></x-layout.greenArrow>
             </form>
@@ -62,7 +56,7 @@
     }
 
     function removeSquare() {
-        counter--;
+        counter = 0;
         let i = 0;
         let content = '';
 

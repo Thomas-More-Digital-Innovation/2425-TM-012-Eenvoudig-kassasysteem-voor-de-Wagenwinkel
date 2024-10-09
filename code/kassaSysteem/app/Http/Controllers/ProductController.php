@@ -15,5 +15,21 @@ class ProductController extends Controller
         $producten = Product::where('product_id', $id)->get();
         return view('Product', compact('producten'));
     }
+
+    public function ProductAll($categoryId = null)
+    {
+
+
+        if ($categoryId == 1) {
+            $producten = Product::where('categorie_id', '1')->get();
+        } elseif ($categoryId == 2) {
+            $producten = Product::where('categorie_id', '2')->get();
+        } else {
+            $producten = Product::all();
+        }
+
+        return view('itemsOverzicht', compact('producten'));
+    }
+
 }
 

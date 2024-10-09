@@ -1,22 +1,23 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Organisaties;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
 
-Route::get('/', function (){
-    $organistaties = [
-        'Buso',
-        'test',
-    ];
+// VIEW
+Route::view('category', 'category')->name('category');
 
-    return view('select', [
-        'organistaties' => $organistaties
-    ]);
-})->name('select');
+Route::view('/', 'category')->name('category');
+
+Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
+
+
+
+// GET
 
 Route::get('success', function() {
     return view('success');
@@ -24,8 +25,8 @@ Route::get('success', function() {
 
 Route::get('/organisatieBeheer', function (){
     $organistaties = [
-        'Buso',
-        'test',
+        'Buso Oosterlo',
+        'MPI',
     ];
 
     return view('organisatieBeheer', [
@@ -34,10 +35,6 @@ Route::get('/organisatieBeheer', function (){
 });
 
 Route::get('product/{id}', [ProductController::class, 'show']);
-
-Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
-
-Route::post('addProduct', [CartController::class, 'addProduct'])->name('cart.product-add');
 
 Route::get('winkelwagen', \App\Livewire\Winkelkar::class)->name('winkelkar');
 
@@ -163,9 +160,6 @@ Route::get('wisselgeldBeheer', function() {
     ]);
 });
 
-Route::post('category', [OrganizationController::class, 'submit'])->name('submit');
-
-
 Route::get('/foodSelect', function () {
     $items = [
         [
@@ -187,6 +181,10 @@ Route::get('/foodSelect', function () {
     ]);
 })->name('food');
 
+
+Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
+
+
 Route::get('/nonFoodSelect', function () {
     $items = [
         [
@@ -206,20 +204,20 @@ Route::get('category', function () {
     return view('category');
 })->name('category');
 
-Route::get('product/{id?}', Product::class)->name('product');
+Route::get('item-select/product/{id?}', Product::class)->name('product');
 
 Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
 
 Route::get('calculate-change', function() {
-    $totalCost = 8.5;
+    $totalCost = 12.50;
     $amountGiven = 20.00;
 
     $denominations = [
         ['name' => '50', 'value' => 50, 'count' => 99],
         ['name' => '20', 'value' => 20, 'count' => 99],
-        ['name' => '10', 'value' => 10, 'count' => 99],
+        ['name' => '10', 'value' => 10, 'count' => 0],
         ['name' => '5', 'value' => 5, 'count' => 99],
         ['name' => '2', 'value' => 2, 'count' => 99],
         ['name' => '1', 'value' => 1, 'count' => 99],
@@ -269,11 +267,23 @@ Route::get('calculate-change', function() {
 
 });
 
-
 Route::get('begeleiderLogin', function () {
     return view('begeleiderLogin');
 })->name('begeleiderLoginForm');
 
+Route::get('betaalmethode', function () {
+    return view('betaalmethode');
+});
+
+Route::get('cashBetalen', function () {
+    return view('cashBetalen');
+});
+
+
+// POST
+Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
+
+Route::post('addProduct', [CartController::class, 'addProduct'])->name('cart.product-add');
 
 Route::post('begeleiderLogin', function () {
 
@@ -300,7 +310,6 @@ Route::post('begeleiderLogin', function () {
         return back()->withErrors(['error' => 'Ongeldige naam of wachtwoord.']);
     }
 })->name('begeleiderLogin');
-
 
 Route::get('betaalmethode', function () {
     return view('betaalmethode');

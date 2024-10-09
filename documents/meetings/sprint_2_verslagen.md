@@ -71,3 +71,61 @@ Authenticatie wordt nu ontwikkeld. De productcategorieën, als verkoper kan ik g
 
   ### Sonarcloud
   De security issues zijn er door een Vite import en het manueel aanmaken van het wisselgeld, deze zitten nog niet in de database.
+
+# Retrospective (9/10) [Nathan & Tom]
+
+## Wat ging minder goed? (Slecht)
+
+1. **Beschrijving van taken:** Sommige taken waren niet duidelijk genoeg omschreven, waardoor twee personen aan hetzelfde onderdeel hebben gewerkt. Dit leidde tot dubbel werk. In de toekomst is het belangrijk om de beschrijvingen van de Jira-kaarten duidelijker en specifieker te maken, zodat taken niet onbedoeld dubbel worden uitgevoerd.
+   
+2. **Github-problemen:** Er waren veel problemen met Github, waardoor de scrum masters vaak moesten helpen. Het is misschien handig om een tech talk of uitleg te organiseren voor de tweedejaars studenten, zodat ze beter begrijpen hoe Github werkt.
+
+3. **Onduidelijke database:** Niet iedereen weet precies hoe de database in elkaar zit. Het is belangrijk dat het hele team begrijpt hoe de database werkt. Dit punt vereist extra aandacht.
+
+4. **Niet overal uniform design:** Het volgen van het design vanuit Figma naar de code was niet altijd consistent. Bijvoorbeeld, pijlen werden soms als tekst ingevoerd en dit was niet uniform doorgevoerd in het hele project.
+
+5. **Figma-problemen vlak voor de demo:** Figma werkte net voor de demo even niet mee, wat voor wat vertraging zorgde. Dit werd echter snel opgelost en had geen langdurige impact.
+
+6. **Last-minute database fix:** Er was een last-minute fix voor de database. Dit moet in de toekomst vermeden worden door eerder met de database te beginnen.
+
+7. **Wachten op elkaar:** Soms moest het team wachten op elkaar voor kleine taken. Hoewel dit geen groot probleem was, zorgde het wel voor wat vertraging.
+
+8. **Winkelmand implementatie:** De implementatie van de winkelmand met sessies was niet heel duidelijk, maar uiteindelijk is het wel gelukt. Deze moet nog wel gerefactored worden.
+
+9. **Betere planning en communicatie:** Er moet beter gecommuniceerd en gepland worden tussen teamleden. Mogelijk kan Discord gebruikt worden om te communiceren welke schermen gemaakt worden, of om meer duidelijkheid te geven in de Jira-borden met benamingen van kaarten en een duidelijke 'definition of done'.
+
+---
+
+## Wat ging goed? (Goed)
+
+1. **Communicatie tijdens meetings:** De communicatie in de meetings verliep soepel, wat de samenwerking verbeterde.
+
+2. **Hulp binnen het team:** Teamleden hielpen elkaar veel en dit werd gewaardeerd. Er waren veel 'stickertjes' voor hulp.
+
+3. **Video's van Vince:** De video's van Vince bleken handiger te zijn dan de officiële schoolcursus. Dit was een waardevolle bron van informatie voor het team.
+
+4. **Goede inzichten:** Teamleden brachten goede inzichten naar voren en durfden hun mening te geven, wat de kwaliteit van het werk verbeterde.
+
+5. **Elkaars werk controleren:** Het team bekeek elkaars code en pagina’s grondig, wat de kwaliteit ten goede kwam.
+
+6. **Snelle oplevering van schermen:** De schermen werden snel afgerond en visueel goed uitgewerkt, wat zorgde voor een vlotte voortgang.
+
+7. **Voorzichtig communiceren naar klant:** In plaats van meteen tegen de klant te zeggen dat iets toegevoegd kan worden, werd er goed gehandeld door te zeggen dat het bekeken zou worden. Dit helpt om geen onrealistische verwachtingen te scheppen.
+
+---
+
+## Focus voor de komende week
+
+1. **Focus op verkoop:** De focus ligt op de verkoopfunctionaliteiten en dan de beheer en admin.
+
+2. **Database afronden:** Twee teamleden gaan zich richten op het afronden van de database, en zorgen dat iedereen op de hoogte is van de video's van Vince.
+
+3. **Betere planning en communicatie:** Verbeter de onderlinge communicatie en planning, eventueel via Discord, om duidelijk te maken wie waar aan werkt en om het Jira-bord beter te beheren met duidelijke benamingen en definities van klaar-criteria.
+
+## Demo met karl:
+- We vroegen: "verkoop ons een appel", Karl drukte eerst op het winkelmandje, niet op 'food'. Na een woordje uitleg maakte hij deze fout niet meer.
+- Voor 3 appels toe te voegen aan het winkelmandje, drukte hij meteen op de groene pijl, niet 3 keer op de appel.
+- Het verwijderen van een kaartje was niet meteen duidelijk, maar hij had het snel zelf door dat hij 2 keer op een item moest drukken.
+- Het ingeven van het wisselgeld ging moeizaam. Ik hield het 5 euro briefje naast de tablet en dan snapte hij dat hij op de 5 euro moest duwen.
+
+  Voor de rest ging alles vlot.
