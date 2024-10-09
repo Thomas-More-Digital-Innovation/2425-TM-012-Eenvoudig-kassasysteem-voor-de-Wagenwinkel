@@ -3,38 +3,32 @@
         <div class="grid grid-cols-4 gap-2">
             <?php
             $totalItems = 12;
-            $itemCount = count($items);
+            $itemCount = count($producten);
 
             $gridItems = array_fill(0, $totalItems, null);
 
-            foreach ($items as $item) {
-                $gridItems[$item['position'] - 1] = $item;
+
+            foreach ($producten as $item) {
+               $gridItems[$item['product_id']] = $item;
             }
 
-            foreach ($items as $item) {
-                $gridItems[$item['position'] - 1] = $item;
-            }
+
+
+
 
             foreach ($gridItems as $gridItem): ?>
                 <?php if ($gridItem): ?>
-            <form action="product/{{ $gridItem['id'] }}" method="GET">
-                <?php else: ?>
-
-                <form action="product/3" method="GET">
-                    <?php endif; ?>
-
-                    <button type="submit" class="w-48 h-48 flex items-center justify-center">
-                            <?php if ($gridItem): ?>
-                        <img src="{{ $gridItem['imagePath'] }}" alt="Image {{ $gridItem['name'] }}" class="object-cover w-full h-full">
+                    <form action="product/{{ $gridItem['product_id'] }}" method="GET">
+                        <button type="submit" class="w-48 h-48 flex items-center justify-center">
+                            <img src="{{ asset($gridItem['afbeeldingen']) }}" alt="Image {{ $gridItem['naam'] }}" class="object-cover w-full h-full">
+                        </button>
+                    </form>
                         <?php else: ?>
-                        <div class="bg-white flex items-center justify-center">
-                        </div>
+                            <div class="bg-white w-48 h-48 flex items-center justify-center"></div>
                         <?php endif; ?>
-                    </button>
-                </form>
+
             <?php endforeach; ?>
         </div>
-
         <div class="pt-3">
             <a href="{{ route('category') }}">
                 <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>

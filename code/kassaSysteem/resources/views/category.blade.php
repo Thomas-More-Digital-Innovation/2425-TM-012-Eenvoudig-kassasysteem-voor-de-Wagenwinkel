@@ -9,11 +9,11 @@
 <body class="m-0 p-0 bg-blue-400 flex justify-center items-center h-screen">
 
 <div class="bg-white w-3/5 h-[90vh] flex flex-wrap justify-between p-[1vw] rounded-lg">
-    <a href="{{route('food')}}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
+    <a href="{{ route('products', ['categoryId' => 1]) }}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
         <img src="{{asset("assets/food.svg")}}" alt="Food" class="w-[45%] h-[50%]">
     </a>
 
-    <a href="{{route('noFood')}}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
+    <a href="{{ route('products', ['categoryId' => 2]) }}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
         <img src="{{asset("assets/nofood.svg")}}" alt="No Food" class="w-[60%] h-[60%]">
     </a>
 

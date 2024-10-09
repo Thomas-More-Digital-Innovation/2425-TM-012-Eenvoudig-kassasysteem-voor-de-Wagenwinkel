@@ -1,13 +1,13 @@
 <x-header header="Select Organisatie">
     <div class="bg-white p-4 rounded-lg shadow-lg relative">
-        <form method="POST" action="{{ route('submit') }}">
+        <form  action="{{ route('category') }}" method="GET">
             @csrf
             <div class="bg-gray-200 p-3 rounded-lg mb-3">
                 <x-layout.dropDown
                     name="Organisaties"
                     title="Organisaties"
-                    :group="$organistaties"
-                    
+                    :group="$organisaties"
+
                 />
             </div>
             <x-layout.greenArrow></x-layout.greenArrow>

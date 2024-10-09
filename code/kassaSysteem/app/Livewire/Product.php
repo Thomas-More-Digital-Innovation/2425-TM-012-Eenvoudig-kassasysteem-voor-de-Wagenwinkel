@@ -37,7 +37,7 @@ class Product extends Component
     public function render($id = null)
     {
        /* if ($id) {*/
-            $products = \App\Models\Product::where('product_id', $id)
+            $product = \App\Models\Product::where('product_id', $id)
                 ->get();
        /* } else {
             // If no ID is provided, get all records
@@ -45,6 +45,6 @@ class Product extends Component
                 ->orderBy($this->sortColumn, $this->sortOrder)
                 ->get();
         }*/
-        return view('livewire.verkoop.product', compact('products'));
+        return view('Product', compact('product'));
     }
 }
