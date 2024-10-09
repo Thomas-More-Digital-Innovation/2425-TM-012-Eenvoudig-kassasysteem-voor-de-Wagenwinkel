@@ -18,6 +18,7 @@
     <div class="flex justify-between items-center mb-2 w-11/12">
         <div class="">
             <form action="{{ route('products', ['categoryId' => $product->categorie_id] ) }}" method="GET">
+                @csrf
                 <x-layout.redArrow width="w-[233px]"></x-layout.redArrow>
             </form>
         </div>
@@ -26,6 +27,7 @@
             <form action="{{ route('cart.product-add') }}" method="POST">
                 <input type="number" id="productId" name="productId" value="{{ $product->product_id }}" hidden>
                 <input type="number" id="amount" name="amount" value="1" min="1" hidden>
+                @csrf
                 <x-layout.greenArrow width="w-[233px]"></x-layout.greenArrow>
             </form>
             {{--<button wire:click="addToBasket({{ $product->product_id }})"
@@ -43,13 +45,18 @@
         counter++;
         let i = 0;
         let content = '';
-        if (counter > 12) {
-            counter = 12
+        if (counter > 10) {
+            counter = 10
         }
-        while (i < counter) {
-            content += '<div class=" m-1 w-[35px] h-[35px] bg-purple-900 rounded-lg"></div>';
-            console.log(counter);
-            i++;
+        for (let i = 0; i < counter; i++)  {
+            if (i === counter - 1) {
+                // Only the last box shows the counter value
+                content += `<div class="numberedField m-1 w-[40px] h-[40px] bg-purple-900 rounded-lg text-white flex justify-center items-center font-bold text-xl">${counter}</div>`;
+            } else {
+                // Other boxes are empty
+                content += `<div class="m-1 w-[40px] h-[40px] bg-purple-900 rounded-lg text-white flex justify-center items-center"></div>`;
+            }
+
         }
         document.getElementById('amount').value = counter
         document.getElementById('count').innerHTML = content;

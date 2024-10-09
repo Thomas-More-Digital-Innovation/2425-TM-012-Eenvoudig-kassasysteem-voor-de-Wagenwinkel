@@ -31,6 +31,9 @@ Route::get('product/{id}', [ProductController::class, 'show']);
 
 Route::get('winkelwagen', \App\Livewire\Winkelkar::class)->name('winkelkar');
 
+/*moet nog weg*/
+Route::get('userSession', \App\Livewire\UserSession::class)->name('userSession');
+
 Route::get('payconic', function() {
     return view('Payconic');
 })->name('payconic');
@@ -238,7 +241,7 @@ Route::get('cashBetalen', function () {
 // POST
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
-Route::post('addProduct', [CartController::class, 'addProduct'])->name('cart.product-add');
+Route::post('addProduct/{id}', [CartController::class, 'addProduct'])->name('cart.product-add');
 
 Route::post('begeleiderLogin', function () {
 
