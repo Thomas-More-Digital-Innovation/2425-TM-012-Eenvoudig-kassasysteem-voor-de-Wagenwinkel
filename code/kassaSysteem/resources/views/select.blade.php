@@ -11,7 +11,7 @@
                 />
             </div>
             <x-layout.greenArrow></x-layout.greenArrow>
-        </form>
+
     </div>
 
     <div class="absolute top-6 right-6">

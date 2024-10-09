@@ -20,7 +20,9 @@ class ProductSeeder extends Seeder
                     'afbeeldingen' => 'assets/images/items/appel.png',
                     'organisatie_id' => 1,
                     'categorie_id' => 1,
-                    'standaard_id' => 1,
+
+                    'standaard_id' => null,
+
                     'positie' => 1,
                     'voorraad' => 20,
                     'voorraadAanvullen' => true
@@ -31,8 +33,10 @@ class ProductSeeder extends Seeder
                     'afbeeldingen' => 'assets/images/items/kaartje.png',
                     'organisatie_id' => 2,
                     'categorie_id' => 2,
-                    'standaard_id' => 1,
-                    'positie' => 2,
+
+                    'standaard_id' => null,
+                    'positie' => 1,
+
                     'voorraad' => 5,
                     'voorraadAanvullen' => false
                 ],
@@ -42,8 +46,8 @@ class ProductSeeder extends Seeder
                     'afbeeldingen' => 'assets/images/items/koekje.png',
                     'organisatie_id' => 2,
                     'categorie_id' => 1,
-                    'standaard_id' => 1,
-                    'positie' => 3,
+                    'standaard_id' => null,
+                    'positie' => 2,
                     'voorraad' => 25,
                     'voorraadAanvullen' => true
                 ]

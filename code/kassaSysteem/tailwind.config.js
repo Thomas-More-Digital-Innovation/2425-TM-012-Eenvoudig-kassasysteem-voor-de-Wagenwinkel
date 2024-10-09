@@ -10,7 +10,14 @@ export default {
       './resources/**/*.vue',
   ],
   theme: {
-    extend: {},
+    extend: {
+        height: {
+            '400': '400px',
+        },
+        width: {
+            '400': '400px',
+        },
+    },
   },
     plugins: [forms, typography],
 };
