@@ -9,7 +9,7 @@
 
 
             foreach ($producten as $item) {
-               $gridItems[$item['product_id']] = $item;
+               $gridItems[$item['positie'] - 1] = $item;
             }
 
 

@@ -46,22 +46,22 @@ class MuntstukSeeder extends Seeder
                     'afbeelding' => 'assets/images/money/1.png'
                 ],
                 [
-                    'naam' => '50',
+                    'naam' => '_50',
                     'waarde' => 0.50,
                     'afbeelding' => 'assets/images/money/_50.png'
                 ],
                 [
-                    'naam' => '20',
+                    'naam' => '_20',
                     'waarde' => 0.20,
                     'afbeelding' => 'assets/images/money/_20.png'
                 ],
                 [
-                    'naam' => '10',
+                    'naam' => '_10',
                     'waarde' => 0.10,
                     'afbeelding' => 'assets/images/money/_10.png'
                 ],
                 [
-                    'naam' => '5',
+                    'naam' => '_5',
                     'waarde' => 0.05,
                     'afbeelding' => 'assets/images/money/_5.png'
                 ],

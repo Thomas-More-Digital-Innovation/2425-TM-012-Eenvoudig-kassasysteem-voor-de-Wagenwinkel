@@ -18,8 +18,6 @@ class ProductController extends Controller
 
     public function ProductAll($categoryId = null)
     {
-
-
         if ($categoryId == 1) {
             $producten = Product::where('categorie_id', '1')->get();
         } elseif ($categoryId == 2) {
