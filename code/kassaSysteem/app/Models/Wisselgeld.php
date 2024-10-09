@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wisselgeld extends Model
 {
     use HasFactory;
-
+    protected $table = 'wisselgelden';
     protected $guarded = ['wisselgeld'];
 
     public function muntstuk()

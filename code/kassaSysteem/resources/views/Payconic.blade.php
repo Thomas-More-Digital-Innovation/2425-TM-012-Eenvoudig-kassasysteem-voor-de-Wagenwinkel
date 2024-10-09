@@ -3,8 +3,8 @@
         <div class="bg-gray-200 h-[500px] rounded-lg w-11/12  mt-4 flex justify-center items-center">
             <img src="{{ asset('assets/images/qr-code.png') }}" alt="qr code">
         </div>
-        <div class="flex justify-between items-center mb-7 w-full">
-            <div class="mx-4">
+        <div class="flex justify-between items-center mb-7 w-11/12">
+            <div class="">
                 <form action="{{ route('soortBetalen') }}" method="GET">
 
                     @csrf

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Verkooplijn extends Model
 {
     use HasFactory;
-
+    protected $table = 'verkooplijnen';
     protected $fillable = ['hoeveelheid', 'verkoopprijs', 'verkoop_id', 'product_id'];
 
     public function verkoop()

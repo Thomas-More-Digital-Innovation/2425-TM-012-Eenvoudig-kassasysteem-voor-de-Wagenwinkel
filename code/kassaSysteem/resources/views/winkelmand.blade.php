@@ -68,7 +68,7 @@
             </div>
             <p class="w-full text-center text-lg sm:text-xl md:text-2xl lg:text-3xl">Totaal: {{ \App\Helpers\Shopping_cart::getPrice() }} €</p>
             <div class="mx-4">
-                <form action="{{ route('empty.cart') }}" method="POST">
+                <form action="{{ route('soortBetalen') }}" method="GET">
                     @csrf
                     <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
                 </form>
