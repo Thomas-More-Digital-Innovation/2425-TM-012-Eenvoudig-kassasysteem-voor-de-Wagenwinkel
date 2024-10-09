@@ -2,37 +2,30 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Organisaties;
-use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
 
 // VIEW
-Route::view('category', 'category')->name('category');
+Route::view('newCategory', 'newCategory')->name('category');
 
-Route::view('/', 'category')->name('category');
+Route::view('/', 'newCategory')->name('category');
+
+Route::view('/', 'newCategory')->name('select');
 
 Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 
 
 
+
 // GET
+
+Route::get('organisatieBeheer', [Organisaties::class, 'beheer'])->name('organisatieBeheer');
 
 Route::get('success', function() {
     return view('success');
 })->name('success');
-
-Route::get('/organisatieBeheer', function (){
-    $organistaties = [
-        'Buso Oosterlo',
-        'MPI',
-    ];
-
-    return view('organisatieBeheer', [
-        'organistaties' => $organistaties
-    ]);
-});
 
 Route::get('product/{id}', [ProductController::class, 'show']);
 
@@ -160,47 +153,9 @@ Route::get('wisselgeldBeheer', function() {
     ]);
 });
 
-Route::get('/foodSelect', function () {
-    $items = [
-        [
-            'id' => 1,
-            'name' => 'Appel',
-            'imagePath' => 'assets/images/items/appel.png',
-            'position' => 1,
-        ],
-        [
-            'id' => 3,
-            'name' => 'Koekje',
-            'imagePath' => 'assets/images/items/koekje.png',
-            'position' => 2,
-        ],
-
-    ];
-    return view('itemsOverzicht', [
-        'items' => $items,
-    ]);
-})->name('food');
-
-
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
 
-
-Route::get('/nonFoodSelect', function () {
-    $items = [
-        [
-            'id' => 2,
-            'name' => 'Kaartje',
-            'imagePath' => asset('assets/images/items/kaartje.png'),
-            'position' => 1,
-        ],
-
-    ];
-    return view('itemsOverzicht', [
-        'items' => $items,
-    ]);
-})->name('noFood');
-
-Route::get('category', function () {
+Route::get('newCategory', function () {
     return view('category');
 })->name('category');
 

@@ -31,12 +31,14 @@
                         width="w-[472px]"
                     />
                     <div class="flex items-start">
+                        <form  action="{{ route('organisatieBeheer') }}" method="GET">
                         <x-layout.dropDown
                             name=""
                             title="Organisatie"
-                            :group="$organistaties"
+                            :group="$organisaties"
                             width="w-[350px]"
                         />
+                        </form>
                         <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-[52px] w-[112px] mt-1 ms-2" type="button">
                             <img src="{{ asset('assets/images/plusMark.svg') }}" alt="Toevoegen" class="h-6">
                         </button>
@@ -46,9 +48,9 @@
 
             <div class="bg-gray-200 p-3 rounded-lg w-[500px] h-[500px]">
                     <?php
-                    foreach ($organistaties as $item) {
+                    foreach ($organisaties as $item) {
                         echo '<div class="bg-white p-4 rounded-lg shadow-lg flex items-center justify-between mb-3">';
-                            echo '<span class="font-bold text-3xl">' . $item . '</span>';
+                            echo '<span class="font-bold text-3xl">' . $item['naam'] . '</span>';
                             echo '<img src="' . asset('assets/images/gear.svg') . '" alt="Instellingen" class="h-12 pe-10 w-auto">';
                         echo '</div>';
                     }
