@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('muntstuk_id');
             $table->string('naam');
             $table->float('waarde');
+            $table->string('afbeelding');
         });
     }
 

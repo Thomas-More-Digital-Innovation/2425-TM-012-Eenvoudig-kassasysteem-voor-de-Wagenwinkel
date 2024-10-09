@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('verkopen', function (Blueprint $table) {
             $table->id('verkoop_id');
             $table->dateTime('datum_tijd');
-            $table->foreignId('organisatie_id');
+            $table->foreignId('organisatie_id')->constrained('organisaties', 'organisatie_id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

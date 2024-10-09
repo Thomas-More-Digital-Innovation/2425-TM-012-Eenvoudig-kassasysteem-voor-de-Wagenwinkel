@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('naam');
             $table->float('actuele_prijs')->nullable();
             $table->string('afbeeldingen')->nullable();
-            $table->foreignId('organisatie_id');
-            $table->foreignId('categorie_id');
-            $table->foreignId('standaard_id');
+            $table->foreignId('organisatie_id')->constrained('organisaties', 'organisatie_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('categorie_id')->constrained('categories', 'categorie_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('standaard_id')->nullable()->constrained('standaard_producten', 'standaard_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('positie');
+            $table->integer('voorraad')->nullable();
+            $table->boolean('voorraadAanvullen');
         });
     }
 

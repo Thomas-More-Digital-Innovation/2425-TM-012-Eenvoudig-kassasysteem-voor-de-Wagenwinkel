@@ -6,6 +6,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\DatabaseTesting;
 
 // VIEW
 Route::view('category', 'category')->name('category');
@@ -309,3 +310,14 @@ Route::post('begeleiderLogin', function () {
         return back()->withErrors(['error' => 'Ongeldige naam of wachtwoord.']);
     }
 })->name('begeleiderLogin');
+
+Route::get('betaalmethode', function () {
+    return view('betaalmethode');
+});
+
+
+Route::get('cashBetalen', function () {
+    return view('cashBetalen');
+});
+
+Route::get('products', DatabaseTesting::class)->name('producten');

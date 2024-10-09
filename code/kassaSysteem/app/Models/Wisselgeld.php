@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Wisselgeld extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['wisselgeld'];
+
+    public function muntstuk()
+    {
+        return $this->belongsTo(Muntstuk::class, 'muntstuk_id', 'muntstuk_id')->withDefault();
+    }
+
+    public function organisatie()
+    {
+        return $this->belongsTo(Organisatie::class, 'organisatie_id', 'organisatie_id')->withDefault();
+    }
 }

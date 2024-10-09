@@ -16,15 +16,15 @@ class StandaardProductSeeder extends Seeder
         DB::table('standaard_producten')->insert(
             [
                 [
-                    'naam' => 'Koekje',
-                    'afbeelding' => 'koekje.png',
-                    'standaardprijs' => 10.5,
+                    'naam' => 'Koek',
+                    'afbeelding' => 'assets/images/items/koekje.png',
+                    'standaardprijs' => 1.5,
                     'categorie_id' => 1
                 ],
                 [
-                    'naam' => 'Snoepje',
-                    'afbeelding' => 'Snoepje.png',
-                    'standaardprijs' => 5.0,
+                    'naam' => 'Appel',
+                    'afbeelding' => 'assets/images/items/appel.png',
+                    'standaardprijs' => 0.5,
                     'categorie_id' => 1
                 ]
             ]);

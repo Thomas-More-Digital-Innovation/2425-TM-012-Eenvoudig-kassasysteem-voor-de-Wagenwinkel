@@ -19,24 +19,33 @@ class ProductSeeder extends Seeder
                     'actuele_prijs' => 0.5,
                     'afbeeldingen' => 'assets/images/items/appel.png',
                     'organisatie_id' => 1,
-                    'categorie_id' => 1,
-                    'standaard_id' => 1
+                    'categorie_id' => 2,
+                    'standaard_id' => 1,
+                    'positie' => 1,
+                    'voorraad' => 20,
+                    'voorraadAanvullen' => true
                 ],
                 [
                     'naam' => 'kaartje',
-                    'actuele_prijs' => 1.5,
+                    'actuele_prijs' => 1,
                     'afbeeldingen' => 'assets/images/items/kaartje.png',
-                    'organisatie_id' => 3,
-                    'categorie_id' => 2,
-                    'standaard_id' => 1
+                    'organisatie_id' => 2,
+                    'categorie_id' => 1,
+                    'standaard_id' => 1,
+                    'positie' => 2,
+                    'voorraad' => 5,
+                    'voorraadAanvullen' => false
                 ],
                 [
                     'naam' => 'Koek',
-                    'actuele_prijs' => 1,
+                    'actuele_prijs' => 1.5,
                     'afbeeldingen' => 'assets/images/items/koekje.png',
-                    'organisatie_id' => 3,
+                    'organisatie_id' => 2,
                     'categorie_id' => 1,
-                    'standaard_id' => 1
+                    'standaard_id' => 1,
+                    'positie' => 3,
+                    'voorraad' => 25,
+                    'voorraadAanvullen' => true
                 ]
             ]
         );

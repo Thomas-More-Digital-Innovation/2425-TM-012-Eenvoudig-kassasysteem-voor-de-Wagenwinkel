@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('verkooplijn_id');
             $table->integer('hoeveelheid');
             $table->float('verkoopprijs');
-            $table->foreignId('verkoop_id');
-            $table->foreignId('product_id');
+            $table->foreignId('verkoop_id')->constrained('verkopen', 'verkoop_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('product_id')->constrained('producten', 'product_id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

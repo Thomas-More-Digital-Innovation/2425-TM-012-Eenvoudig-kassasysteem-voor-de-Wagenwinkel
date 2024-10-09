@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('wisselgeld_id');
             $table->date('datum');
             $table->integer('hoeveelheid');
-            $table->foreignId('organisatie_id');
-            $table->foreignId('muntstuk_id');
+            $table->foreignId('organisatie_id')->constrained('organisaties', 'organisatie_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('muntstuk_id')->constrained('muntstukken', 'muntstuk_id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

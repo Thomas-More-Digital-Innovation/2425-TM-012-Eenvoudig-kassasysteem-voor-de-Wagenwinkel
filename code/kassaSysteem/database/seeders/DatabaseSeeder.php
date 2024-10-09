@@ -21,20 +21,19 @@ class DatabaseSeeder extends Seeder
             OrganisatieSeeder::class,
             RolSeeder::class,
             /*1 FK*/
-            InstellingSeeder::class,
             VerkoopSeeder::class,
             StandaardProductSeeder::class,
             /*2 FK*/
             VerkooplijnSeeder::class,
-            UserIdSeeder::class,
+            UserSeeder::class,
             WisselgeldSeeder::class,
             /*3 FK*/
             ProductSeeder::class
         ]);
-
+/*
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-        ]);
+        ]);*/
     }
 }

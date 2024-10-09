@@ -15,13 +15,21 @@ class OrganisatieSeeder extends Seeder
         DB::table('organisaties')->insert(
             [
                 [
-                    'naam' => 'organisatie 1'
+                    'naam' => 'Buso Oosterlo',
+                    'actiesMetSpraak' => true,
+                    'kleurenBlind' => true,
+                    'voorraadAangeven' => true,
+                    'wisselgeldAangeven' => true,
+                    'trillenBijActies' => true
+
                 ],
                 [
-                    'naam' => 'organisatie 2'
-                ],
-                [
-                    'naam' => 'organisatie 3'
+                    'naam' => 'MPI',
+                    'actiesMetSpraak' => false,
+                    'kleurenBlind' => false,
+                    'voorraadAangeven' => false,
+                    'wisselgeldAangeven' => false,
+                    'trillenBijActies' => false
                 ]
             ]
         );

@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('naam');
             $table->string('afbeelding');
             $table->float('standaardprijs');
-            $table->unsignedBigInteger('categorie_id');
-
-            $table->foreign('categorie_id')->references('categorie_id')->on('categories');
+            $table->foreignId('categorie_id')->constrained('categories', 'categorie_id')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
