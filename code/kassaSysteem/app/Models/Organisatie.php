@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Organisatie extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['naam', 'actiesMetSpraak', 'kleurenBlind', 'voorraadAangeven', 'wisselgeldAangeven', 'trillenBijActies'];
+
+    public function wisselgelden()
+    {
+        return $this->hasMany(Wisselgeld::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function verkopen()
+    {
+        return $this->hasMany(Verkoop::class);
+    }
+
+    public function producten()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

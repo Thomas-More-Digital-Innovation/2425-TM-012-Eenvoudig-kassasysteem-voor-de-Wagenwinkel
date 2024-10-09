@@ -24,9 +24,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'naam',
+        'wachtwoord',
+        'rol_id',
+        'organisatie_id',
+        'wachtwoordWijzigen'
     ];
 
     /**
@@ -61,5 +63,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function rol()
+    {
+        return $this->belongTo(Rol::class, 'rol_id', 'rol_id')->withDefualt();
+    }
+
+    public function organisatie()
+    {
+        return $this->belongsTo(Organisatie::class, 'organisatie_id', 'organisatie_id')->withDefault();
     }
 }

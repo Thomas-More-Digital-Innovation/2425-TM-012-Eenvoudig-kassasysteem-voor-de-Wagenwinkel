@@ -20,9 +20,6 @@ class RolSeeder extends Seeder
                 ],
                 [
                     'naam' => 'begeleider'
-                ],
-                [
-                    'naam' => 'verkoper'
                 ]
             ]);
     }

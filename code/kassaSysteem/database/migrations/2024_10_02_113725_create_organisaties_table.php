@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('organisaties', function (Blueprint $table) {
             $table->id('organisatie_id');
             $table->string('naam');
+            $table->boolean('actiesMetSpraak');
+            $table->boolean('kleurenBlind');
+            $table->boolean('voorraadAangeven');
+            $table->boolean('wisselgeldAangeven');
+            $table->boolean('trillenBijActies');
         });
     }
 

@@ -16,12 +16,10 @@ class CategorieSeeder extends Seeder
         DB::table('categories')->insert(
         [
             [
-                'naam'=>"Food",
-                'pictogram' => 'food-icon'
+                'naam'=>"Food"
             ],
             [
-                'naam'=>"No food",
-                'pictogram' => 'no-food-icon'
+                'naam'=>"No food"
             ]
         ]);
     }

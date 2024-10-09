@@ -5,6 +5,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\DatabaseTesting;
 
 Route::get('/', function (){
     $organistaties = [
@@ -309,3 +310,5 @@ Route::get('betaalmethode', function () {
 Route::get('cashBetalen', function () {
     return view('cashBetalen');
 });
+
+Route::get('products', DatabaseTesting::class)->name('producten');
