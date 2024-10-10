@@ -18,6 +18,7 @@ class CartController extends Controller
     public function addProduct(Request $request)
     {
         $amount = $request->input('amount');
+        $productid = $request->input('productId');
         $product = Product::where('product_id', $productid)->first();
 
         Shopping_cart::addProduct($product, $amount);
