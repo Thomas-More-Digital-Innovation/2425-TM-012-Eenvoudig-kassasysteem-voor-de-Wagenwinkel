@@ -241,7 +241,7 @@ Route::get('cashBetalen', function () {
 // POST
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
-Route::post('addProduct/{id}', [CartController::class, 'addProduct'])->name('cart.product-add');
+Route::post('item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
 
 Route::post('begeleiderLogin', function () {
 

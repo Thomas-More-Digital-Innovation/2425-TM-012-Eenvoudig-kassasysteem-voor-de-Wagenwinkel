@@ -55,11 +55,6 @@ class Shopping_cart
         session()->put('cart', self::$cart);
     }
 
-    public static function getPrice(): float
-    {
-        return self::$cart['totalPrice'];
-    }
-
     public static function emptySession(): void
     {
         $products = self::$cart['products'];
@@ -86,6 +81,11 @@ class Shopping_cart
     public static function getRecords(): array
     {
         return self::$cart['products'];
+    }
+
+    public static function getPrice(): float
+    {
+        return self::$cart['totalPrice'];
     }
 }
 
