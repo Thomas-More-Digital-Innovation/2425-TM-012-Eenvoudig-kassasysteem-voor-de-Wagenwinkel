@@ -12,7 +12,7 @@ class CartController extends Controller
     public function emptyCart(Request $request)
     {
         Shopping_cart::emptySession();
-        return redirect()->route('success');
+        return redirect()->route('category');
     }
 
     public function addProduct(Request $request)
@@ -23,5 +23,12 @@ class CartController extends Controller
 
         Shopping_cart::addProduct($product, $amount);
         return redirect()->route('category');
+    }
+
+    public function showCart()
+    {
+        $items = Shopping_cart::getRecords();
+
+        return view('winkelmand', compact('items'));
     }
 }
