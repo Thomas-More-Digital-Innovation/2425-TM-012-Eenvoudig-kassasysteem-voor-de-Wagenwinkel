@@ -13,7 +13,7 @@
             </div>
             <p class=" w-full text-center total-font-size inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice()}} €</p>
             <div class="">
-                <form action="{{ route('empty.cart') }}" method="POST">
+                <form action="{{ route('success') }}" method="get">
                     @csrf
                     <x-layout.greenArrow width="w-[391px]"></x-layout.greenArrow>
                 </form>

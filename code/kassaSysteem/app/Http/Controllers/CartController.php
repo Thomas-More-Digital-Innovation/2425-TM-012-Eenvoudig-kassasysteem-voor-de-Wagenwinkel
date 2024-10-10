@@ -12,7 +12,7 @@ class CartController extends Controller
     public function emptyCart(Request $request)
     {
         Shopping_cart::emptySession();
-        return redirect()->route('success');
+        return redirect()->route('category');
     }
 
     public function addProduct(Request $request, $id = null)

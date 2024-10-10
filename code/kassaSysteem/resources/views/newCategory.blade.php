@@ -1,11 +1,11 @@
 <x-layout.exampleLayout
     header="Tester"
     routeLeft="{{ route('products', ['categoryId' => 1]) }}"
-    imageLeft="assets/food.svg"
-    altLeft="food"
+    imageLeft="assets/images/eten.svg"
+    altLeft="eten"
     routeRight="{{ route('products', ['categoryId' =>2]) }}"
-    imageRight="assets/nofood.svg"
-    altRight="nofood"
+    imageRight="assets/images/nietEten.svg"
+    altRight="nietEten"
 >
     <a href="{{route('winkelmand')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
         <?php for ($i = 0; $i < 3; $i++): ?>
