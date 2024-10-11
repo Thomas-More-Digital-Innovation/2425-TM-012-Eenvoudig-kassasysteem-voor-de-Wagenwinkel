@@ -12,19 +12,19 @@
                 @endphp
 
                 @foreach ($products as $product)
-                        @if (!empty($product) && isset($product['aantal']) && $product['aantal'] > 0)
-                            @for ($i = 0; $i < $product['aantal']; $i++)
+                    @if (!empty($product) && isset($product['aantal']) && $product['aantal'] > 0)
+                        @for ($i = 0; $i < $product['aantal']; $i++)
                             <div class="w-full aspect-square flex items-center justify-center item">
                                 <button class="w-full h-full mt-1 rounded-lg"  data-product-id="{{ $product['id'] }}" >
                                     <img src="{{ asset($product['afbeelding']) }}" id="{{ $i }}" alt="{{ $product['naam'] }}" class="object-cover h-full w-full rounded-lg"/>
                                 </button>
                             </div>
-                            @endfor
-                        @else
+                        @endfor
+                    @else
                         <div class="w-full aspect-square flex items-center justify-center item">
                             <div class="w-full h-full flex items-center justify-center empty-item">No Image Available</div>
                         </div>
-                        @endif
+                    @endif
 
                 @endforeach
 

@@ -34,4 +34,10 @@ class CartController extends Controller
         Shopping_cart::delete($product);
         return redirect()->route('winkelmand');
     }
+
+    public function showCart()
+    {
+        $items = Shopping_cart::getRecords();
+        return view('winkelmand', compact('items'));
+    }
 }
