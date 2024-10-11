@@ -8,17 +8,13 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
 
 // VIEW
-Route::view('newCategory', 'newCategory')->name('category');
+Route::view('/', 'loginSystem')->name('loginSystem');
 
-Route::view('/', 'newCategory')->name('category');
-
-Route::view('/', 'newCategory')->name('select');
+Route::view('/category', 'category')->name('category');
 
 Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 
-
-
-
+Route::view('loginSystem', 'loginSystem')->name('loginSystem');
 // GET
 
 Route::get('organisatieBeheer', [Organisaties::class, 'beheer'])->name('organisatieBeheer');
@@ -102,10 +98,6 @@ Route::get('wisselgeldBeheer', function() {
 });
 
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
-
-Route::get('newCategory', function () {
-    return view('category');
-})->name('category');
 
 Route::get('item-select/product/{id?}', Product::class)->name('product');
 

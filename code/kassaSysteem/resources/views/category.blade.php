@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Startscherm Verkoop</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="m-0 p-0 bg-blue-400 flex justify-center items-center h-screen">
-
-<div class="bg-white w-3/5 h-[90vh] flex flex-wrap justify-between p-[1vw] rounded-lg">
-    <a href="{{ route('products', ['categoryId' => 1]) }}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/images/eten.svg")}}" alt="Food" class="w-[85%] h-[85%]">
+<x-layout.exampleLayout
+    header="Select Categorie"
+    routeLeft="{{ route('products', ['categoryId' => 1]) }}"
+    imageLeft="assets/images/eten.svg"
+    altLeft="eten"
+    routeRight="{{ route('products', ['categoryId' =>2]) }}"
+    imageRight="assets/images/nietEten.svg"
+    altRight="nietEten"
+>
+    <a href="{{route('winkelmand')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
+        <?php for ($i = 0; $i < 3; $i++): ?>
+            <img src="{{ asset('assets/winkelmand.svg') }}" alt="Winkel Wagen" class="w-[16%]">
+        <?php endfor; ?>
     </a>
 
-    <a href="{{ route('products', ['categoryId' => 2]) }}" class="bg-gray-300 w-[49.5%] h-[70%] flex justify-center items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/images/nietEten.svg")}}" alt="No Food" class="w-[60%] h-[60%]">
-    </a>
+</x-layout.exampleLayout>
 
-    <a href="{{route('winkelmand')}}" class="bg-orange-200 w-[100%] h-[29%] mt-[0.5vw] flex justify-evenly items-center rounded-lg cursor-pointer">
-        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
-        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
-        <img src="{{asset("assets/winkelmand.svg")}}" alt="Winkelmand" class="w-[18%] ">
-    </a>
-</div>
 <a href="{{route('settings')}}">
-    <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw]" src="{{asset("assets/instellingen.png")}}" alt="Settings">
+    <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw] filter brightness-0 invert" src="{{ asset('assets/images/gear.svg') }}" alt="Settings">
 </a>
-</body>
-</html>
