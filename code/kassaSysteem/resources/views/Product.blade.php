@@ -3,13 +3,13 @@
         <div id="count" class="mb-7 flex h-[108px]"> {{--max 12 blokjes--}}</div>
         <div class="flex space-x-3 pb-3">
             <button onclick="removeSquare()">
-                <div class="bg-gray-300 rounded-lg text-center p-20 flex items-center justify-center">
-                    <img src="{{ asset('assets/images/bin.png') }}" alt="bin" class="h-400 w-400 object-contain aspect-square">
+                <div class="bg-gray-300 rounded-lg text-center p-[70px] flex items-center justify-center">
+                    <img src="{{ asset('assets/images/bin.png') }}" alt="bin" class="h-[300px] w-[300px] object-contain aspect-square">
                 </div>
             </button>
             <button onclick="showSquare()">
-                <div class="bg-green-300 rounded-lg text-center p-5 flex items-center justify-center ">
-                    <img src="{{ asset($product->afbeeldingen)}}" alt="{{ $product->naam }}" class="h-[520px] w-[520px] object-contain aspect-square">
+                <div class="bg-purple-800 rounded-lg text-center p-5 flex items-center justify-center ">
+                    <img src="{{ asset($product->afbeeldingen)}}" alt="{{ $product->naam }}" class="h-400 w-400 object-contain aspect-square">
                 </div>
             </button>
         </div>
