@@ -1,9 +1,9 @@
 <x-header header="Payconic">
     <div class="bg-white w-4/5 h-[85vh] rounded-lg flex flex-col justify-between items-center">
-        <div class="bg-gray-200 h-[600px] rounded-lg w-11/12  mt-4 flex justify-center items-center">
+        <div class="bg-gray-200 h-[630px] p-4 rounded-lg w-[1471px] mb-4  mt-4 flex justify-center items-center">
             <img src="{{ asset('assets/images/qr-code.png') }}" alt="qr code">
         </div>
-        <div class="flex justify-between items-center mb-7 w-11/12">
+        <div class="flex justify-between items-center mb-4 w-[1471px]">
             <div class="">
                 <form action="{{ route('soortBetalen') }}" method="GET">
 

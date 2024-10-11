@@ -1,7 +1,7 @@
 <x-header header="Winkelmand">
     <div class="bg-white w-4/5 h-[85vh] rounded-lg flex flex-col justify-between items-center">
         <!-- Grid containing items from the session -->
-        <div class="bg-gray-200 h-[600px] rounded-lg w-11/12 mt-4 p-4">
+        <div class="bg-gray-200 h-[600px] rounded-lg m-4 p-4">
             <div class="grid grid-cols-12 gap-2 w-full sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12">
                 @php
                     $totalItems = 48;
@@ -15,7 +15,7 @@
                     @if (!empty($product) && isset($product['aantal']) && $product['aantal'] > 0)
                         @for ($i = 0; $i < $product['aantal']; $i++)
                             <div class="w-full aspect-square flex items-center justify-center item">
-                                <button class="w-full h-full mt-1 rounded-lg"  data-product-id="{{ $product['id'] }}" >
+                                <button class="w-full h-full rounded-lg"  data-product-id="{{ $product['id'] }}" >
                                     <img src="{{ asset($product['afbeelding']) }}" id="{{ $i }}" alt="{{ $product['naam'] }}" class="object-cover h-full w-full rounded-lg"/>
                                 </button>
                             </div>
@@ -32,7 +32,7 @@
         </div>
 
         <!-- Footer with buttons and total price -->
-        <div class="flex justify-between items-center mb-7 w-11/12">
+        <div class="flex justify-between items-center mb-4 w-[1500px]">
             <div>
                 <form action="{{ route('category') }}" method="GET">
                     @csrf

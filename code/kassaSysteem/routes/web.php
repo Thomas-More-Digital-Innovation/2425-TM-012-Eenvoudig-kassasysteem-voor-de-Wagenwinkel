@@ -12,6 +12,8 @@ Route::view('/', 'loginSystem')->name('loginSystem');
 
 Route::view('/category', 'category')->name('category');
 
+Route::view('/organisatie-beheer', 'organisatie-beheer')->name('organisatie-beheer');
+
 Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 
 Route::view('loginSystem', 'loginSystem')->name('loginSystem');
