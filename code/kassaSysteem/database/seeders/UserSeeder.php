@@ -14,27 +14,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user_ids')->insert(
+        DB::table('users')->insert(
             [
                 [
                     'naam' => 'Jef',
-                    'password' => 'Jef',
+                    'wachtwoord' => Hash::make('Jef'),
                     'rol_id' => 2,
-                    'organisatie_id' => 2
-
+                    'organisatie_id' => 2,
+                    'wachtwoordWijzigen' => 0
                 ],
                 [
                     'naam' => 'Jan',
-                    'password' => Hash::make('Jan'),
+                    'wachtwoord' => Hash::make('Jan'),
                     'rol_id' => 2,
-                    'organisatie_id' => 1
-
+                    'organisatie_id' => 1,
+                    'wachtwoordWijzigen' => 1
                 ],
                 [
                     'naam' => 'Peter',
-                    'password' => Hash::make('Peter'),
+                    'wachtwoord' => Hash::make('Peter'),
                     'rol_id' => 1,
-                    'organisatie_id' => 2
+                    'organisatie_id' => 2,
+                    'wachtwoordWijzigen' => 0
                 ]
             ]);
     }
