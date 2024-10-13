@@ -2,53 +2,50 @@
 
     <style>
         .geld-item, .geld-item-munt {
-            width: auto; /* Adjust to your preferred width */
-            height: 112px; /* Adjust to your preferred height */
+            width: auto;
+            height: 112px;
             display: inline-block;
-            border-radius: 8px; /* Optional: adds rounded corners */
-            overflow: hidden; /* Ensures content doesn't overflow */
-            position: relative; /* To position the cross */
-            cursor: pointer; /* Indicates clickable */
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
         }
 
         .geld-item-munt {
-            width: auto; /* For smaller coins, adjust width */
-            height: 112px; /* For smaller coins, adjust height */
+            width: auto;
+            height: 112px;
         }
 
-        /* Ensure images retain their aspect ratio */
         .geld-item img, .geld-item-munt img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Keeps the aspect ratio */
-            border-radius: 8px; /* Optional: adds rounded corners */
+            object-fit: contain;
+            border-radius: 8px;
         }
 
-        /* New style for total text */
         #total {
-            font-size: 2rem; /* Change to your preferred size */
-            font-weight: bold; /* Makes the text bold */
-            color: #000; /* Change color if needed */
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000;
         }
 
-        /* Style for the cross icon */
         .cross-icon {
             position: absolute;
             top: 0;
-            left: 0; /* Positioning the cross to the top left */
-            width: 100%; /* Cover the whole item */
-            height: 100%; /* Cover the whole item */
-            background: rgba(255, 0, 0, 0.5); /* Semi-transparent red */
-            display: none; /* Hidden by default */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.5);
+            display: none;
             justify-content: center;
             align-items: center;
-            cursor: pointer; /* Indicates clickable */
+            cursor: pointer;
         }
 
         .cross-icon span {
-            color: white; /* Cross color */
-            font-size: 2rem; /* Size of the cross */
-            line-height: 1; /* Adjust for centering */
+            color: white;
+            font-size: 2rem;
+            line-height: 1;
         }
     </style>
 
@@ -105,22 +102,18 @@
             </a>
         </div>
 
-        <div class="mt-4 flex justify-center">
-            <!-- Reset button removed -->
-        </div>
+
     </div>
 
     <script>
         let total = 0;
 
         function addAmount(amount, imgSrc) {
-            // Update the total
             total += amount;
             document.getElementById('total').innerText = 'Totaal: €' + total.toFixed(2);
 
-            // Create a container for the new money item
             let imgContainer = document.createElement('div');
-            imgContainer.className = amount >= 1 ? 'geld-item' : 'geld-item-munt'; // Determine class
+            imgContainer.className = amount >= 1 ? 'geld-item' : 'geld-item-munt';
             imgContainer.style.width = 'auto';
             imgContainer.style.height = '112px';
 
@@ -130,26 +123,23 @@
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'contain';
-            img.style.borderRadius = '8px'; // Match rounded corners
+            img.style.borderRadius = '8px';
 
-            // Create a cross icon
             let crossIcon = document.createElement('div');
             crossIcon.className = 'cross-icon';
-            crossIcon.innerHTML = '<span>&times;</span>'; // Cross symbol
+            crossIcon.innerHTML = '<span>&times;</span>';
             crossIcon.onclick = function (event) {
-                event.stopPropagation(); // Prevent triggering parent click
-                imgContainer.remove(); // Remove this money item
-                total -= amount; // Update total
+                event.stopPropagation();
+                imgContainer.remove();
+                total -= amount;
                 document.getElementById('total').innerText = 'Totaal: €' + total.toFixed(2);
             };
 
-            // Append the image and cross icon to the container
             imgContainer.appendChild(img);
             imgContainer.appendChild(crossIcon);
 
-            // Append the container to the display area
             imgContainer.onclick = function () {
-                crossIcon.style.display = crossIcon.style.display === 'flex' ? 'none' : 'flex'; // Toggle visibility
+                crossIcon.style.display = crossIcon.style.display === 'flex' ? 'none' : 'flex';
             };
 
             document.getElementById('display').appendChild(imgContainer);
@@ -158,7 +148,7 @@
         function reset() {
             total = 0;
             document.getElementById('total').innerText = 'Totaal: €0.00';
-            document.getElementById('display').innerHTML = ''; // Clear the display area
+            document.getElementById('display').innerHTML = '';
         }
 
         function next() {
