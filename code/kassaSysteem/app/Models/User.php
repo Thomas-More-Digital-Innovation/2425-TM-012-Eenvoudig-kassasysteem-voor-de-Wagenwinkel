@@ -14,7 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
     // Specify the table name explicitly
-    protected $table = 'user_ids'; // Add this line
+    protected $table = 'users'; // Add this line
 
     /**
      * The attributes that are mass assignable.
