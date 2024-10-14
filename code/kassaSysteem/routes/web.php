@@ -42,6 +42,10 @@ Route::get('payconic', function() {
     return view('Payconic');
 })->name('payconic');
 
+Route::get('cash', function() {
+    return view('cash');
+})->name('cash');
+
 Route::get('winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
 
 
@@ -113,7 +117,9 @@ Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
 
+
 Route::get('/calculate-change', [calculateChangeController::class, 'calculateChange'])->name('calculate-change');
+
 
 Route::get('begeleiderLogin', function () {
     return view('begeleiderLogin');
@@ -121,11 +127,9 @@ Route::get('begeleiderLogin', function () {
 
 Route::get('betaalmethode', function () {
     return view('betaalmethode');
-});
+})->name('soortBetalen');
 
-Route::get('cashBetalen', function () {
-    return view('cashBetalen');
-});
+
 
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
@@ -163,8 +167,12 @@ Route::get('betaalmethode', function () {
 });
 
 
-Route::get('cashBetalen', function () {
-    return view('cashBetalen');
-});
 
 Route::get('products', DatabaseTesting::class)->name('producten');
+
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+

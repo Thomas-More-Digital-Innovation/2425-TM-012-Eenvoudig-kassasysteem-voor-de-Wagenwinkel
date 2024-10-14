@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,11 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
+
+    // Specify the table name explicitly
+    protected $table = 'user_ids'; // Add this line
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +23,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'naam',
-        'wachtwoord',
+        'wachtwoord', // Ensure this matches your column name in the database
         'rol_id',
         'organisatie_id',
         'wachtwoordWijzigen'
@@ -37,7 +35,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'wachtwoord', // Change 'password' to 'wachtwoord'
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
@@ -61,13 +59,13 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'wachtwoord' => 'hashed', // Change 'password' to 'wachtwoord'
         ];
     }
 
     public function rol()
     {
-        return $this->belongTo(Rol::class, 'rol_id', 'rol_id')->withDefualt();
+        return $this->belongsTo(Rol::class, 'rol_id', 'rol_id')->withDefault();
     }
 
     public function organisatie()
