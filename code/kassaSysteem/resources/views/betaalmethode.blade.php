@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Begeleider instellingen</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-</head>
-<body class="bg-blue-400 h-screen flex items-center justify-center relative">
-
+<x-header header="Begeleider instellingen">
 <div class="bg-white p-4 rounded-lg shadow-lg w-full max-w-3xl">
     <div class="flex gap-2">
         <button type="button" class="bg-gray-200 rounded-lg shadow-lg text-center text-2xl font-bold p-4 flex-grow aspect-square flex items-center justify-center">
@@ -24,6 +14,4 @@
         </button>
     </div>
 </div>
-
-</body>
-</html>
+</x-header>

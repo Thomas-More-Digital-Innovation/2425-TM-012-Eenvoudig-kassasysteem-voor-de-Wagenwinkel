@@ -7,12 +7,6 @@ use Livewire\Component;
 
 class OrganisatieBeheer extends Component
 {
-    public function render()
-    {
-        $organisaties = Organisatie::all();
-        return view('livewire.organisatie-beheer', compact('organisaties'));
-    }
-
     public function goMemberPage($organisatie_id)
     {
         return redirect()->route('membersBeheer', ['organisatie_id' => $organisatie_id]);
@@ -32,6 +26,7 @@ class OrganisatieBeheer extends Component
     }
 
     public function addOrganisatie() {
+        try {
             $this->validate([
                 'organisatieNaam' => 'required|string|max:255',
             ]);
@@ -43,5 +38,19 @@ class OrganisatieBeheer extends Component
             $this->organisatieNaam = '';
 
             $this->organisaties = Organisatie::all();
+
+
+            return redirect()->to('organisatie-beheer');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->to('organisatie-beheer');
+        }
+    }
+
+
+    public function render()
+    {
+        $organisaties = Organisatie::all();
+        return view('livewire.organisatie-beheer', compact('organisaties'));
     }
 }

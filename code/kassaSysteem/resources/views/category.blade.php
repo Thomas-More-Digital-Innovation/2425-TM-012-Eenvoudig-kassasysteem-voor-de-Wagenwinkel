@@ -3,16 +3,27 @@
     routeLeft="{{ route('products', ['categoryId' => 1]) }}"
     imageLeft="assets/images/eten.png"
     altLeft="eten"
-    volumeLeft="600px"
-    paddingLeft="p-7"
     routeRight="{{ route('products', ['categoryId' =>2]) }}"
     imageRight="assets/images/nietEten.png"
     altRight="nietEten"
 >
+    <?php
+    $products = \App\Helpers\Shopping_cart::getRecords();
+    $totaalItems = 0;
+
+    foreach ($products as $product) {
+        $totaalItems += $product['aantal'];
+    }
+    ?>
+
     <a href="{{route('winkelmand')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
-        <?php for ($i = 0; $i < 3; $i++): ?>
-            <img src="{{ asset('assets/winkelmand.svg') }}" alt="Winkel Wagen" class="w-[16%]">
-        <?php endfor; ?>
+        <img src="{{ asset('assets/winkelmand.svg') }}" alt="Winkel Wagen" class="w-[16%]">
+        <div class="flex flex-col text-center text-2xl">
+            <span>In winkelmand</span>
+
+            <span class="font-bold">{{ $totaalItems }} </span>
+        </div>
+
     </a>
 
 </x-layout.exampleLayout>
