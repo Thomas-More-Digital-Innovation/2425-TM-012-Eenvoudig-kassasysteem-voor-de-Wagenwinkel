@@ -36,6 +36,10 @@ Route::get('payconic', function() {
     return view('Payconic');
 })->name('payconic');
 
+Route::get('cash', function() {
+    return view('cash');
+})->name('cash');
+
 Route::get('winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
 
 
@@ -162,7 +166,7 @@ Route::get('calculate-change', function() {
     ]);
 
 
-});
+})->name('calculateChange');
 
 Route::get('begeleiderLogin', function () {
     return view('begeleiderLogin');
@@ -170,11 +174,9 @@ Route::get('begeleiderLogin', function () {
 
 Route::get('betaalmethode', function () {
     return view('betaalmethode');
-});
+})->name('soortBetalen');
 
-Route::get('cashBetalen', function () {
-    return view('cashBetalen');
-});
+
 
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
@@ -212,9 +214,6 @@ Route::get('betaalmethode', function () {
 });
 
 
-Route::get('cashBetalen', function () {
-    return view('cashBetalen');
-});
 
 Route::get('products', DatabaseTesting::class)->name('producten');
 
