@@ -20,7 +20,9 @@ class OrganisatieSeeder extends Seeder
                     'kleurenBlind' => true,
                     'voorraadAangeven' => true,
                     'wisselgeldAangeven' => true,
-                    'trillenBijActies' => true
+                    'trillenBijActies' => true,
+                    'created_at' => now(),
+                    'updated_at' => now()
 
                 ],
                 [
@@ -29,7 +31,9 @@ class OrganisatieSeeder extends Seeder
                     'kleurenBlind' => false,
                     'voorraadAangeven' => false,
                     'wisselgeldAangeven' => false,
-                    'trillenBijActies' => false
+                    'trillenBijActies' => false,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]
             ]
         );

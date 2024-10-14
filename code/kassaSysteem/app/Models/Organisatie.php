@@ -9,7 +9,8 @@ class Organisatie extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['naam', 'actiesMetSpraak', 'kleurenBlind', 'voorraadAangeven', 'wisselgeldAangeven', 'trillenBijActies'];
+    protected $primaryKey = 'organisatie_id';
+    protected $fillable = ['naam'];
 
     public function wisselgelden()
     {

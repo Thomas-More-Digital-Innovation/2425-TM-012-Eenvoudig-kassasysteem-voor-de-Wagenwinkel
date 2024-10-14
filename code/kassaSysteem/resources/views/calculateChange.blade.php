@@ -27,9 +27,10 @@
             </div>
 
             <div class="flex justify-between items-center space-x-8">
-                <a href="{{ route('cash') }}">
-                <x-layout.redArrow width="w-80"></x-layout.redArrow>
+                <a href="{{ route('cashIngeven') }}">
+                    <x-layout.redArrow width="w-80"></x-layout.redArrow>
                 </a>
+
                 <p class="text-center mb-4 text-4xl font-bold">
                     €{{ number_format($amount_given - $total_cost, 2) }}
                 </p>

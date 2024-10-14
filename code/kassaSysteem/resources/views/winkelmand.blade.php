@@ -1,55 +1,49 @@
 <x-header header="Winkelmand">
-    <div class="bg-white w-4/5 h-[85vh] rounded-lg flex flex-col justify-between items-center">
-        <!-- Grid containing items from the session -->
-        <div class="bg-gray-200 h-[600px] rounded-lg m-4 p-4">
-            <div class="grid grid-cols-12 gap-2 w-full sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12">
-                @php
-                    $totalItems = 48;
-                    $gridItems = array_fill(0, $totalItems, null);
+    <div class="bg-white w-11/12 md:w-4/5 px-4 h-auto min-h-[85vh] rounded-lg flex flex-col justify-between items-center">
+        <div class="bg-gray-200 w-full h-[400px] md:h-[600px] rounded-lg m-4 p-4">
+            @php
+                $products = \App\Helpers\Shopping_cart::getRecords();
+            @endphp
 
-
-                    $products =  \App\Helpers\Shopping_cart::getRecords();
-                @endphp
-
-                @foreach ($products as $product)
-                    @if (!empty($product) && isset($product['aantal']) && $product['aantal'] > 0)
+            @if ($products != [])
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2 w-full">
+                    @foreach ($products as $product)
                         @for ($i = 0; $i < $product['aantal']; $i++)
                             <div class="w-full aspect-square flex items-center justify-center item">
-                                <button class="w-full h-full rounded-lg"  data-product-id="{{ $product['id'] }}" >
+                                <button class="w-full h-full rounded-lg" data-product-id="{{ $product['id'] }}">
                                     <img src="{{ asset($product['afbeelding']) }}" id="{{ $i }}" alt="{{ $product['naam'] }}" class="object-cover h-full w-full rounded-lg"/>
                                 </button>
                             </div>
                         @endfor
-                    @else
-                        <div class="w-full aspect-square flex items-center justify-center item">
-                            <div class="w-full h-full flex items-center justify-center empty-item">No Image Available</div>
-                        </div>
-                    @endif
-
-                @endforeach
-
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex items-center justify-center w-full h-full">
+                    <span class="text-center text-xl font-bold">Winkelmand is leeg!</span>
+                </div>
+            @endif
         </div>
 
-        <!-- Footer with buttons and total price -->
-        <div class="flex justify-between items-center mb-4 w-[1500px]">
+        <div class="flex flex-row justify-between items-center mb-4 w-full">
             <div>
                 <form action="{{ route('category') }}" method="GET">
                     @csrf
-                    <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
+                    <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
             <p class="w-full text-center total-font-size inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice() }} €</p>
             <div>
                 <form action="{{ route('soortBetalen') }}" method="GET">
                     @csrf
-                    <x-layout.greenArrow width="w-[391px]"></x-layout.greenArrow>
+                    <x-layout.greenArrow width="w-[250px] md:w-[391px]"></x-layout.greenArrow>
                 </form>
             </div>
         </div>
 
     </div>
 </x-header>
+
+
 
 @stack('script')
 
