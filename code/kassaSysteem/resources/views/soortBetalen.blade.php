@@ -3,7 +3,7 @@
     routeLeft="{{ route('payconic') }}"
     imageLeft="assets/images/payconiq.svg"
     altLeft="payconiq"
-    routeRight=""
+    routeRight="{{ route('cashIngeven') }}"
     imageRight="assets/images/cash.svg"
     altRight="cash"
 >

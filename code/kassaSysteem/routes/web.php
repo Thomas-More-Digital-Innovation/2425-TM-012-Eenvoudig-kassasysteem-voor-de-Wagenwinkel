@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\calculateChangeController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\Organisaties;
+use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
+use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
@@ -12,14 +14,18 @@ Route::view('/', 'loginSystem')->name('loginSystem');
 
 Route::view('/category', 'category')->name('category');
 
-Route::view('/organisatie-beheer', 'organisatie-beheer')->name('organisatie-beheer');
+Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
+
 
 Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 
 Route::view('loginSystem', 'loginSystem')->name('loginSystem');
-// GET
 
-Route::get('organisatieBeheer', [Organisaties::class, 'beheer'])->name('organisatieBeheer');
+
+// GET
+Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
+
+Route::get('/organisatie-beheer', OrganisatieBeheer::class)->name('organisatie-beheer');
 
 Route::get('success', function() {
     return view('success');
@@ -107,62 +113,7 @@ Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
 
-Route::get('calculate-change', function() {
-    $totalCost = 12.50;
-    $amountGiven = 20.00;
-
-    $denominations = [
-        ['name' => '50', 'value' => 50, 'count' => 99],
-        ['name' => '20', 'value' => 20, 'count' => 99],
-        ['name' => '10', 'value' => 10, 'count' => 0],
-        ['name' => '5', 'value' => 5, 'count' => 99],
-        ['name' => '2', 'value' => 2, 'count' => 99],
-        ['name' => '1', 'value' => 1, 'count' => 99],
-        ['name' => '_50', 'value' => 0.50, 'count' => 99],
-        ['name' => '_20', 'value' => 0.20, 'count' => 99],
-        ['name' => '_10', 'value' => 0.10, 'count' => 99],
-        ['name' => '_5', 'value' => 0.05, 'count' => 99],
-    ];
-
-    $change = $amountGiven - $totalCost;
-    $result = [];
-
-    foreach ($denominations as &$denom) {
-        if ($change >= $denom['value'] && $denom['count'] > 0) {
-            $quantity = min(floor($change / $denom['value']), $denom['count']);
-            if ($quantity > 0) {
-                $result[] = ['name' => $denom['name'], 'quantity' => $quantity];
-                $change -= $quantity * $denom['value'];
-                $change = round($change, 2);
-            }
-        }
-    }
-
-    if ($change > 0) {
-        foreach ($denominations as &$denom) {
-            if ($denom['count'] == 0) {
-                continue;
-            }
-            while ($change > 0 && $denom['count'] > 0) {
-                if ($denom['value'] > $change) {
-                    continue;
-                }
-                $denom['count']--;
-                $result[] = ['name' => $denom['name'], 'quantity' => 1];
-                $change -= $denom['value'];
-                $change = round($change, 2);
-            }
-        }
-    }
-
-    return view('calculateChange', [
-        'result' => $result,
-        'total_cost' => $totalCost,
-        'amount_given' => $amountGiven,
-    ]);
-
-
-});
+Route::get('/calculate-change', [calculateChangeController::class, 'calculateChange'])->name('calculate-change');
 
 Route::get('begeleiderLogin', function () {
     return view('begeleiderLogin');

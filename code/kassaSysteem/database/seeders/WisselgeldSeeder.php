@@ -17,21 +17,63 @@ class WisselgeldSeeder extends Seeder
             [
                 [
                     'datum' => date("Y-m-d"),
-                    'hoeveelheid' => 20,
+                    'hoeveelheid' => 99,
                     'organisatie_id' => 1,
                     'muntstuk_id' => 1
                 ],
                 [
                     'datum' => date("Y-m-d"),
-                    'hoeveelheid' => 35,
-                    'organisatie_id' => 2,
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
                     'muntstuk_id' => 2
                 ],
                 [
                     'datum' => date("Y-m-d"),
-                    'hoeveelheid' => 10,
-                    'organisatie_id' => 2,
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
                     'muntstuk_id' => 3
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 4
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 5
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 6
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 7
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 8
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 9
+                ],
+                [
+                    'datum' => date("Y-m-d"),
+                    'hoeveelheid' => 99,
+                    'organisatie_id' => 1,
+                    'muntstuk_id' => 10
                 ]
             ]);
     }

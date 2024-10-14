@@ -1,10 +1,12 @@
 <x-layout.exampleLayout
     header="Select Categorie"
     routeLeft="{{ route('products', ['categoryId' => 1]) }}"
-    imageLeft="assets/images/eten.svg"
+    imageLeft="assets/images/eten.png"
     altLeft="eten"
+    volumeLeft="600px"
+    paddingLeft="p-7"
     routeRight="{{ route('products', ['categoryId' =>2]) }}"
-    imageRight="assets/images/nietEten.svg"
+    imageRight="assets/images/nietEten.png"
     altRight="nietEten"
 >
     <a href="{{route('winkelmand')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">

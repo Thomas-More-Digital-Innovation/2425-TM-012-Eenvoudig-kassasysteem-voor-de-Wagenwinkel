@@ -9,7 +9,7 @@ class Login
      */
     private static array $userInfo = [
             "user_id" => 2,
-            "organisatie_id" => 2
+            "organisatie_id" => 1
     ];
 
     public static function init(): void

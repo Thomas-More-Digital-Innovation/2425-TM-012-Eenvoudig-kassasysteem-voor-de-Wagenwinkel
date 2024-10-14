@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('organisaties', function (Blueprint $table) {
             $table->id('organisatie_id');
             $table->string('naam');
-            $table->boolean('actiesMetSpraak');
-            $table->boolean('kleurenBlind');
-            $table->boolean('voorraadAangeven');
-            $table->boolean('wisselgeldAangeven');
-            $table->boolean('trillenBijActies');
+            $table->boolean('actiesMetSpraak')->default(false);
+            $table->boolean('kleurenBlind')->default(false);
+            $table->boolean('voorraadAangeven')->default(false);
+            $table->boolean('wisselgeldAangeven')->default(false);
+            $table->boolean('trillenBijActies')->default(false);
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
         });
     }
 

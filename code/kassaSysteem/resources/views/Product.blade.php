@@ -26,43 +26,45 @@
         </div>
     </div>
     <script>
-        let counter = 0;
+        let counter = 0; // This keeps track of the total count
 
         function showSquare() {
+            // Increment the counter
             counter++;
-            let i = 0;
+
+            // Create content based on the counter
             let content = '';
-            if (counter > 10) {
-                counter = 10
-            }
-            for (let i = 0; i < counter; i++)  {
-                if (i === counter - 1) {
+
+            // Calculate how many blocks to show (max 8)
+            let displayedCount = Math.min(counter, 8);
+
+            // Generate the blocks
+            for (let i = 0; i < displayedCount; i++) {
+                if (i === displayedCount - 1) {
                     // Only the last box shows the counter value
-                    content += `<div class="numberedField m-[9.1px] w-[95px] h-[95px] bg-purple-900 rounded-lg text-white flex justify-center items-center font-bold text-4xl">${counter}</div>`;
+                    content += `<div class="numberedField m-[9.1px] w-[93px] h-[93px] bg-purple-900 rounded-lg text-white flex justify-center items-center font-bold text-4xl">${counter}</div>`;
                 } else {
                     // Other boxes are empty
-                    content += `<div class="m-[9.1px] w-[95px] h-[95px] bg-purple-900 rounded-lg text-white flex justify-center items-center"></div>`;
+                    content += `<div class="m-[9.1px] w-[93px] h-[93px] bg-purple-900 rounded-lg text-white flex justify-center items-center"></div>`;
                 }
-
             }
-            document.getElementById('amount').value = counter
+
+            // Update the amount input and the displayed blocks
+            document.getElementById('amount').value = counter;
             document.getElementById('count').innerHTML = content;
         }
 
         function removeSquare() {
+            // Reset the counter and clear the displayed squares
             counter = 0;
-            let i = 0;
             let content = '';
 
-            while (i < counter) {
-                content += '<div class="m-1 w-[35px] h-[35px] bg-purple-900 rounded-lg"></div>';
-                console.log(counter);
-                i++;
-            }
-            document.getElementById('amount').value = counter
+            // No blocks are displayed after removal
+            document.getElementById('amount').value = counter;
             document.getElementById('count').innerHTML = content;
         }
     </script>
+
 </x-header>
 
 
