@@ -11,6 +11,8 @@ class Wisselgeld extends Model
     protected $table = 'wisselgelden';
     protected $guarded = ['wisselgeld'];
 
+    public $timestamps = false;
+
     public function muntstuk()
     {
         return $this->belongsTo(Muntstuk::class, 'muntstuk_id', 'muntstuk_id')->withDefault();

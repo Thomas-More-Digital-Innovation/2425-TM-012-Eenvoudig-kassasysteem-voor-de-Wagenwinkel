@@ -1,16 +1,4 @@
 <x-header header="Organisatie Beheer">
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session()->get('message') }}
-        </div>
-    @endif
-
-    @if (session()->has('error'))
-        <div class="alert alert-danger">
-            {{ session()->get('error') }}
-        </div>
-    @endif
-
     <div class="bg-white p-4 rounded-lg shadow-lg">
         <div class="flex justify-end mb-1">
             <span class="font-bold text-3xl text-gray-400 pe-[212px] ">Naam</span>
@@ -30,33 +18,36 @@
                     </button>
                 </div>
                 <div>
-                    <x-layout.fillIn
-                        name="Members aanmaken"
-                        title="Members aanmaken"
-                        placeholder="Naam"
-                        width="w-[472px]"
-                    />
-                    <x-layout.fillIn
-                        name=""
-                        title="Wachtwoord"
-                        placeholder="Wachtwoord"
-                        width="w-[472px]"
-                    />
+                    <div>
+                        <label for="Members aanmaken" class="pl-1 block text-3xl text-black font-bold">Members aanmaken</label>
+                        <div class="relative flex items-center">
+                            <input type="text" wire:model="memberNaam" name="Members aanmaken" class="w-[472px] h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Naam" required />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Wachtwoord" class="pl-1 block text-3xl text-black font-bold"></label>
+                        <div class="relative flex items-center">
+                            <input type="text" wire:model="memberWachtwoord" name="Wachtwoord" class="w-[472px] h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Wachtwoord" required />
+                        </div>
+                    </div>
                     <div class="flex items-start">
-                        <x-layout.dropDown
-                            name=""
-                            title="Organisatie"
-                            :group="$organisaties"
-                            width="w-[350px]"
-                        />
-                        <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-[52px] w-[112px] mt-1 ms-2" type="button">
+                        <label for="organization" class="block text-3xl text-black font-bold"></label>
+                        <div class="relative">
+                            <select name="Organisatie" wire:model="organisatieKeuze" class="w-[350px] text-gray-500 appearance-none mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                                <option value="none" selected="selected" hidden >Kies Organisatie</option> <!-- Optional placeholder -->
+                                @foreach ($organisaties as $organisatie)
+                                    <option value="{{ $organisatie['organisatie_id'] }}">{{ $organisatie['naam'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-[52px] w-[112px] mt-1 ms-2" type="button" wire:click="addMember">
                             <img src="{{ asset('assets/images/plusMark.svg') }}" alt="Toevoegen" class="h-6">
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-gray-200 p-3 rounded-lg w-[500px] h-[500px]">
+            <div class="bg-gray-200 p-3 rounded-lg w-[500px] h-[500px] overflow-y-auto">
                 @foreach ($organisaties as $organisatie)
                     <div class="bg-white p-4 rounded-lg flex items-center justify-between mb-3">
                         <span class="font-bold text-3xl">{{ $organisatie->naam }}</span>
@@ -66,6 +57,7 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
         <div class="">
             <x-layout.redArrow
