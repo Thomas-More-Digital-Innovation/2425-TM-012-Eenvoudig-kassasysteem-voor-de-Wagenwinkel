@@ -20,9 +20,7 @@ class ProductSeeder extends Seeder
                     'afbeeldingen' => 'assets/images/items/appel.png',
                     'organisatie_id' => 1,
                     'categorie_id' => 1,
-
                     'standaard_id' => null,
-
                     'positie' => 1,
                     'voorraad' => 20,
                     'voorraadAanvullen' => true
@@ -31,12 +29,10 @@ class ProductSeeder extends Seeder
                     'naam' => 'Kaartje',
                     'actuele_prijs' => 1,
                     'afbeeldingen' => 'assets/images/items/kaartje.png',
-                    'organisatie_id' => 2,
+                    'organisatie_id' => 1,
                     'categorie_id' => 2,
-
                     'standaard_id' => null,
                     'positie' => 1,
-
                     'voorraad' => 5,
                     'voorraadAanvullen' => false
                 ],
@@ -44,7 +40,7 @@ class ProductSeeder extends Seeder
                     'naam' => 'Koek',
                     'actuele_prijs' => 1.5,
                     'afbeeldingen' => 'assets/images/items/koekje.png',
-                    'organisatie_id' => 2,
+                    'organisatie_id' => 1,
                     'categorie_id' => 1,
                     'standaard_id' => null,
                     'positie' => 2,

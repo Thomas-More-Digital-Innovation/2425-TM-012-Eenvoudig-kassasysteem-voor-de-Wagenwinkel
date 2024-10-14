@@ -17,10 +17,6 @@ class VerkoopSeeder extends Seeder
             [
                 [
                     'datum_tijd' => now(),
-                    'organisatie_id' => 2
-                ],
-                [
-                    'datum_tijd' => now(),
                     'organisatie_id' => 1
                 ]
             ]);
