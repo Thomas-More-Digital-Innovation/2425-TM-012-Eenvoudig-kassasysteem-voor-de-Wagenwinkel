@@ -23,21 +23,21 @@ class LoginController extends Controller
     {
         // Validate the incoming request
         $this->validate($request, [
-            'name' => 'required|string',
-            'password' => 'required|string',
+            'naam' => 'required|string',
+            'wachtwoord' => 'required|string',
         ]);
 
         // Attempt to find the user by the 'naam'
-        $user = User::where('naam', $request->name)->first();
+        $user = User::where('naam', $request->naam)->first();
 
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
             Auth::login($user);
             return redirect()->intended('/category');
         }
 
 
         throw ValidationException::withMessages([
-            'password' => 'The provided credentials are incorrect.',
+            'wachtwoord' => 'The provided credentials are incorrect.',
         ]);
     }
 
