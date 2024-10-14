@@ -129,8 +129,6 @@ Route::get('betaalmethode', function () {
     return view('betaalmethode');
 })->name('soortBetalen');
 
-
-
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
 Route::post('item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
@@ -174,5 +172,5 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/loginSystem', [LoginController::class, 'logout'])->name('logout');
 
