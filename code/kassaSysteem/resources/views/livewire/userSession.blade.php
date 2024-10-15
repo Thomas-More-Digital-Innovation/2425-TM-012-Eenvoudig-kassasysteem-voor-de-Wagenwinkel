@@ -1,11 +1,11 @@
 <div>
     <h1>Cart</h1>
 
-    @if ( \App\Helpers\Login::getCart()['organisatie_id'])
+    @if ( \App\Helpers\Login::getUser()['organisatie_id'])
 
         <ul>
             <li>
-                {{ \App\Helpers\Login::getCart()['organisatie_id'] }}
+                {{ \App\Helpers\Login::getUser()['organisatie_id'] }}
             </li>
         </ul>
 

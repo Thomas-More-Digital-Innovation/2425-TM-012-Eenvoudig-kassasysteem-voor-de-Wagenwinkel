@@ -13,7 +13,7 @@ class calculateChangeController extends Controller
         $totalCost = \App\Helpers\Shopping_cart::getPrice();
         $amountGiven = $totalGeld;
 
-        $organisation = \App\Helpers\Login::getCart()['organisatie_id'];
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $wisselgeldRecords = Wisselgeld::with('muntstuk')
             ->where('organisatie_id', $organisation)
             ->get();

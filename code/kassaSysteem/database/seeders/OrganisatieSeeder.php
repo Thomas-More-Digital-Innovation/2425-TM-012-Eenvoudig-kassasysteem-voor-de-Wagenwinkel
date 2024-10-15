@@ -23,6 +23,16 @@ class OrganisatieSeeder extends Seeder
                     'trillenBijActies' => false,
                     'created_at' => now(),
                     'updated_at' => now()
+                ],
+                [
+                    'naam' => 'Buso',
+                    'actiesMetSpraak' => false,
+                    'kleurenBlind' => false,
+                    'voorraadAangeven' => false,
+                    'wisselgeldAangeven' => false,
+                    'trillenBijActies' => false,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]
             ]
         );
