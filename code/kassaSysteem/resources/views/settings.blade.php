@@ -2,10 +2,10 @@
     header="Settings"
     routeLeft=""
     imageLeft="assets/images/menu.svg"
-    altLeft="eten"
-    routeRight=""
+    altLeft="menu"
+    routeRight="{{route('begeleiderSettings')}}"
     imageRight="assets/images/settings.svg"
-    altRight="nietEten"
+    altRight="Begeleiders Settings"
 >
 
     <a href="{{route('category')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
