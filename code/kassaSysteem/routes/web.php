@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use App\Livewire\WisselgeldBeheer;
+use App\Livewire\Verkooplijst;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
 use App\Http\Controllers\Auth\LoginController;
@@ -27,6 +28,8 @@ Route::view('loginSystem', 'loginSystem')->name('loginSystem');
 
 
 // GET
+Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
+
 Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
 
 Route::get('/organisatie-beheer', OrganisatieBeheer::class)->name('organisatie-beheer');

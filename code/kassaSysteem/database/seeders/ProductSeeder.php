@@ -26,6 +26,17 @@ class ProductSeeder extends Seeder
                     'voorraadAanvullen' => true
                 ],
                 [
+                    'naam' => 'Appel',
+                    'actuele_prijs' => 0.5,
+                    'afbeeldingen' => 'assets/images/items/appel.png',
+                    'organisatie_id' => 2,
+                    'categorie_id' => 1,
+                    'standaard_id' => null,
+                    'positie' => 1,
+                    'voorraad' => 20,
+                    'voorraadAanvullen' => true
+                ],
+                [
                     'naam' => 'Kaartje',
                     'actuele_prijs' => 1,
                     'afbeeldingen' => 'assets/images/items/kaartje.png',

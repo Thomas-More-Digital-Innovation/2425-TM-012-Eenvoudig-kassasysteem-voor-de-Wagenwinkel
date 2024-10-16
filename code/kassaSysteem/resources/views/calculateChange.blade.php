@@ -31,7 +31,7 @@
                     <x-layout.redArrow width="w-80"></x-layout.redArrow>
                 </a>
 
-                <p class="text-center mb-4 text-4xl font-bold">
+                <p class="text-center mb-4 text-5xl font-bold">
                     €{{ number_format($amount_given - $total_cost, 2) }}
                 </p>
 

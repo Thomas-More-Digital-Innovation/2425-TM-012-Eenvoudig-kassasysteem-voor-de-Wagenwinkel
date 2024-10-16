@@ -8,6 +8,7 @@
     altRight="nietEten"
 >
     <?php
+    $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
     $products = \App\Helpers\Shopping_cart::getRecords();
     $totaalItems = 0;
 
@@ -18,7 +19,7 @@
 
     <a href="{{route('winkelmand')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
         <img src="{{ asset('assets/winkelmand.svg') }}" alt="Winkel Wagen" class="w-[16%]">
-        <div class="flex flex-col text-center text-2xl">
+        <div class="flex flex-col text-center text-5xl">
             <span>In winkelmand</span>
 
             <span class="font-bold">{{ $totaalItems }} </span>

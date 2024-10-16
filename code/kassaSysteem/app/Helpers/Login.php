@@ -16,7 +16,7 @@ class Login
     {
         self::$userInfo = session()->get("userInfo") ?? self::$userInfo;
     }
-    public static function getCart(): array
+    public static function getUser(): array
     {
         return self::$userInfo;
     }
