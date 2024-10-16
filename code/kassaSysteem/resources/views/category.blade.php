@@ -29,6 +29,6 @@
 
 </x-layout.exampleLayout>
 
-<a href="{{route('settings')}}">
+<a href="{{route('loginSettingsAdminBegeleider')}}">
     <img class="absolute top-[2vw] right-[2vw] cursor-pointer w-[4vw] filter brightness-0 invert" src="{{ asset('assets/images/gear.svg') }}" alt="Settings">
 </a>

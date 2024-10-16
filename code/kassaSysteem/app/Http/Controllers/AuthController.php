@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\User; // Ensure this model points to your User model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     use ValidatesRequests;
 
     // Show the login form
     public function showLoginForm()
     {
-        return view('auth.loginSystem'); // Adjust to your actual login view name
+        return view('loginSystemAdminBegeleider'); // Adjust to your actual login view name
     }
 
-    // Handle the login request
+    // Handle login request for Admin and Begeleider
     public function login(Request $request)
     {
         // Validate the incoming request
@@ -34,7 +33,13 @@ class LoginController extends Controller
 
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
             Auth::login($user); // Log in the user
-            return redirect()->intended('/category'); // Redirect to intended page after login
+
+            // Check the rol_id to determine the redirect
+            if ($user->rol_id == 1) {
+                return redirect()->intended('/begeleiderSettings'); // Adjust this route for Admins
+            } elseif ($user->rol_id == 2) {
+                return redirect()->intended('/settings'); // Adjust this route for Begeleiders
+            }
         }
 
         throw ValidationException::withMessages([

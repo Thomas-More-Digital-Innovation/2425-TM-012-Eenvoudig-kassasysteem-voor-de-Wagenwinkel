@@ -1,13 +1,11 @@
 <x-header header="Login">
-    <a href="{{ route('loginAdminBegeleider') }}">
-        <img class="fixed top-[2vw] right-[2vw] cursor-pointer w-[4vw] filter brightness-0 invert z-10" src="{{ asset('assets/images/gear.svg') }}" alt="Settings">
-    </a>
+
 
     <div class="flex flex-col items-center justify-evenly min-h-screen pb-20 relative">
         <div class="bg-white p-5 shadow-lg rounded-lg relative flex flex-col items-center space-y-5 z-0">
             <img src="{{ asset('assets/images/thomasmore.svg') }}" alt="test" class="w-[60%] mb-5">
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('loginAdminBegeleider') }}">
                 @csrf
 
                 <div class="flex space-x-3 pb-3">
@@ -37,10 +35,14 @@
                 </div>
 
                 <div class="flex space-x-3">
+                    <a href="{{ route('loginSystem') }}" class="{{ $width ?? 'w-full' }} h-60 bg-red-300 py-8 rounded-md hover:bg-red-200 transition-colors flex justify-center items-center">
+                        <img src="{{ asset('assets/images/red_arrow.png') }}" alt="">
+                    </a>
 
                     <x-layout.greenArrow />
-                </div>
 
+
+                </div>
 
             </form>
         </div>
