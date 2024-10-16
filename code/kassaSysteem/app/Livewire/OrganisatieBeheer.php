@@ -38,13 +38,17 @@ class OrganisatieBeheer extends Component
                 'organisatieNaam' => 'required|string|max:255',
             ]);
 
-            Organisatie::create([
+            $existingOrganisatie = Organisatie::where('naam', $this->organisatieNaam)->first();
+
+            if ($existingOrganisatie) {
+                session()->flash('error', 'Deze organisatie bestaat al.');
+                return redirect()->to('organisatie-beheer');
+            }
+
+            $organisatie = Organisatie::create([
                 'naam' => $this->organisatieNaam,
             ]);
 
-
-
-            $organisatie = Organisatie::where('naam', $this->organisatieNaam)->first();
             $hoeveelheid = 99;
 
             foreach (range(1, 10) as $muntstukId) {
@@ -61,45 +65,43 @@ class OrganisatieBeheer extends Component
                 'organisatie_id' => $organisatie->organisatie_id
             ]);
 
-
             $this->organisatieNaam = '';
-
             $this->organisaties = Organisatie::all();
-
 
             return redirect()->to('organisatie-beheer');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->to('organisatie-beheer');
+            return redirect()->to('organisatie-beheer')->withErrors($e->validator);
         }
     }
 
+
     public function addMember() {
         try {
-        $this->validate([
-            'organisatieKeuze' => 'required|string|max:255',
-            'memberWachtwoord' => 'required|string|max:255',
-            'memberNaam' => 'required|string|max:255',
-        ]);
+            $this->validate([
+                'organisatieKeuze' => 'required|string|max:255',
+                'memberWachtwoord' => 'required|string|max:255',
+                'memberNaam' => 'required|string|max:255',
+            ]);
 
-        if ($this->organisatieKeuze == 1) {
+            $existingMember = User::where('naam', $this->memberNaam)
+                ->where('organisatie_id', $this->organisatieKeuze)
+                ->first();
+
+            if ($existingMember) {
+                session()->flash('error', 'Deze lid bestaat al in de geselecteerde organisatie.');
+                return redirect()->to('organisatie-beheer');
+            }
+
+            $rolId = ($this->organisatieKeuze == 1) ? 1 : 2;
+
             User::create([
                 'naam' => $this->memberNaam,
                 'wachtwoord' => Hash::make($this->memberWachtwoord),
-                'rol_id' => 1,
+                'rol_id' => $rolId,
                 'organisatie_id' => $this->organisatieKeuze,
                 'wachtwoordWijzigen' => 1
             ]);
-        }
-        else{
-            User::create([
-                'naam' => $this->memberNaam,
-                'wachtwoord' => Hash::make($this->memberWachtwoord),
-                'rol_id' => 2,
-                'organisatie_id' => $this->organisatieKeuze,
-                'wachtwoordWijzigen' => 1
-            ]);
-        }
 
             $this->memberNaam = '';
             $this->memberWachtwoord = '';
@@ -107,10 +109,12 @@ class OrganisatieBeheer extends Component
             $this->organisaties = Organisatie::all();
 
             return redirect()->to('organisatie-beheer');
+
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->to('organisatie-beheer');
+            return redirect()->to('organisatie-beheer')->withErrors($e->validator);
         }
     }
+
     public function render()
     {
         $organisaties = Organisatie::all();
