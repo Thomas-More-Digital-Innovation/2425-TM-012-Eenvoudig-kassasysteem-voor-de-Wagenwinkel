@@ -30,7 +30,6 @@
                 </form>
             </div>
             <p id="totalGeldWeergave" class="w-full text-center text-4xl font-bold">Gekregen: € 0.00 </p>
-
             <div>
                 <?php
                 $price = \App\Helpers\Shopping_cart::getPrice();
@@ -38,6 +37,7 @@
                 <form id="changeForm" action="{{ route('calculate-change') }}" method="GET" onsubmit="return sendTotalGeld();" class="hidden">
                     @csrf
                     <input type="hidden" name="totalGeld" id="totalGeldInput" value="0">
+                    <input type="hidden" name="selectedMoneyArray" id="selectedMoneyArrayInput">
                     <x-layout.greenArrow width="w-[250px] md:w-[391px]"></x-layout.greenArrow>
                 </form>
                 <div id="placeholderDiv" class="w-[250px] md:w-[391px]"></div>
@@ -133,6 +133,7 @@
 
         function sendTotalGeld() {
             document.getElementById('totalGeldInput').value = totalGeld.toFixed(2);
+            document.getElementById('selectedMoneyArrayInput').value = JSON.stringify(selectedMoneyArray);
             return true;
         }
     </script>

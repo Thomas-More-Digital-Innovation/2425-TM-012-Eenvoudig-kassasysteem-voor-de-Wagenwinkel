@@ -8,7 +8,7 @@ class Login
      * Create a new class instance.
      */
     private static array $userInfo = [
-            "user_id" => 2,
+            "user_id" => 1,
             "organisatie_id" => 1
     ];
 
@@ -16,7 +16,7 @@ class Login
     {
         self::$userInfo = session()->get("userInfo") ?? self::$userInfo;
     }
-    public static function getCart(): array
+    public static function getUser(): array
     {
         return self::$userInfo;
     }

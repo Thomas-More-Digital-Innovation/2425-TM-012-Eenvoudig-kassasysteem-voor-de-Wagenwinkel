@@ -6,13 +6,18 @@ use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
+use App\Livewire\WisselgeldBeheer;
+use App\Livewire\Verkooplijst;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
+use App\Http\Controllers\Auth\LoginController;
 
 // VIEW
 Route::view('/', 'loginSystem')->name('loginSystem');
 
 Route::view('/category', 'category')->name('category');
+
+Route::view('/begeleiderSettings', 'begeleiderSettings')->name('begeleiderSettings');
 
 Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
 
@@ -27,8 +32,10 @@ Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->nam
 
 // Route for organization management (Organisatie Beheer)
 Route::get('/organisatie-beheer', \App\Livewire\OrganisatieBeheer::class)->name('organisatie-beheer');
+// GET
+Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
 
-
+Route::get('/wisselgeld-beheer', wisselgeldBeheer::class)->name('wisselgeld-beheer');
 
 Route::get('success', function() {
     return view('success');
@@ -52,66 +59,6 @@ Route::get('cash', function() {
 Route::get('winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
 
 
-Route::get('wisselgeldBeheer', function() {
-    $money = [
-        [
-            'id' => 1,
-            'name' => '50euro',
-            'amount' => 50,
-        ],
-        [
-            'id' => 2,
-            'name' => '20euro',
-            'amount' => 20,
-        ],
-
-        [
-            'id' => 3,
-            'name' => '10euro',
-            'amount' => 10,
-        ],
-        [
-            'id' => 4,
-            'name' => '5euro',
-            'amount' => 5,
-        ],
-        [
-            'id' => 5,
-            'name' => '2euro',
-            'amount' => 2,
-        ],
-        [
-            'id' => 6,
-            'name' => '1euro',
-            'amount' => 1,
-        ],
-        [
-            'id' => 7,
-            'name' => '50cent',
-            'amount' => 50,
-        ],
-        [
-            'id' => 8,
-            'name' => '20cent',
-            'amount' => 20,
-        ],
-        [
-            'id' => 9,
-            'name' => '10cent',
-            'amount' => 10,
-        ],
-        [
-            'id' => 10,
-            'name' => '5cent',
-            'amount' => 5,
-        ],
-
-    ];
-    return view('wisselgeldBeheer', [
-        'money' => $money,
-    ]);
-});
-
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
 
 Route::get('item-select/product/{id?}', Product::class)->name('product');
@@ -132,10 +79,19 @@ Route::get('betaalmethode', function () {
     return view('betaalmethode');
 })->name('soortBetalen');
 
+Route::get('products', DatabaseTesting::class)->name('producten');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::get('betaalmethode', function () {
+    return view('betaalmethode');
+});
+
+Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
+
 Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 
 Route::post('item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
-Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
 
 Route::post('begeleiderLogin', function () {
 
@@ -163,17 +119,12 @@ Route::post('begeleiderLogin', function () {
     }
 })->name('begeleiderLogin');
 
-Route::get('betaalmethode', function () {
-    return view('betaalmethode');
-});
-
-
-
-Route::get('products', DatabaseTesting::class)->name('producten');
-
-use App\Http\Controllers\Auth\LoginController;
-
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+
 Route::post('/loginSystem', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('wisselgeldBeheer', [wisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
+
+Route::post('/update-database', [calculateChangeController::class, 'updateDatabase'])->name('updateDatabase');
+
 
