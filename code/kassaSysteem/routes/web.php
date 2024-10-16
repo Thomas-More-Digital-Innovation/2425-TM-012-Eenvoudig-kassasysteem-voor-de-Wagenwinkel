@@ -27,12 +27,13 @@ Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
 Route::view('loginSystem', 'loginSystem')->name('loginSystem');
 
 
+// Member management route (listing all members of an organization)
+Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->name('members-beheer');
+
+// Route for organization management (Organisatie Beheer)
+Route::get('/organisatie-beheer', \App\Livewire\OrganisatieBeheer::class)->name('organisatie-beheer');
 // GET
 Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
-
-Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
-
-Route::get('/organisatie-beheer', OrganisatieBeheer::class)->name('organisatie-beheer');
 
 Route::get('/wisselgeld-beheer', wisselgeldBeheer::class)->name('wisselgeld-beheer');
 

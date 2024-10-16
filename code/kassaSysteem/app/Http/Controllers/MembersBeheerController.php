@@ -11,6 +11,17 @@ class MembersBeheerController extends Controller
     {
         $users = User::all()->where('organisatie_id', $organisatie_id);
 
-        return view('membersBeheer', compact('users'));
+        return view('livewire.members-beheer', compact('users'));
+    }
+
+    public function destroy($user_Id)
+    {
+        $user = User::find($user_Id);
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'Lid verwijderd!');
+        } else {
+            return redirect()->back()->with('error', 'Lid niet gevonden!');
+        }
     }
 }

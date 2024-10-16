@@ -1,19 +1,20 @@
 <x-header header="Organisatie Beheer">
     <div class="bg-white p-5 rounded-lg shadow-lg">
         <div class="flex justify-end mb-1">
-            <span class="font-bold text-3xl text-gray-400 pe-[212px] ">Naam</span>
+            <span class="font-bold text-3xl text-gray-400 pe-[212px]">Naam</span>
             <span class="font-bold text-3xl text-gray-400 pe-3">Instellingen</span>
         </div>
+
         <div class="flex space-x-3 mb-3">
             <div class="bg-gray-200 w-[560px] p-3 rounded-lg space-y-20">
                 <div class="flex items-end">
                     <div>
-                        <label for="Organisatie" class="pl-1 block text-3xl text-black font-bold">Organisatie</label>
+                        <label for="organisatie" class="pl-1 block text-3xl text-black font-bold">Organisatie</label>
                         <div class="relative flex items-center">
                             <input type="text" wire:model="organisatieNaam" class="w-full h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Organisatie" required />
                         </div>
                     </div>
-                    <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-12 w-[112px] ms-2" type="button" wire:click="addOrganisatie">
+                    <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-12 w-[112px]" type="button" wire:click="addOrganisatie">
                         <img src="{{ asset('assets/images/plusMark.svg') }}" alt="Toevoegen" class="h-6">
                     </button>
                 </div>
@@ -57,7 +58,6 @@
                     </div>
                 @endforeach
             </div>
-
         </div>
         <div class="">
             <a href="{{ route('begeleiderSettings') }}">
@@ -65,7 +65,6 @@
                     width="w-[560px]"
                 />
             </a>
-
         </div>
     </div>
 </x-header>

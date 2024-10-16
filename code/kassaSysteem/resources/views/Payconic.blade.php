@@ -10,7 +10,7 @@
                     <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
-            <p class=" w-full text-center text-5xl   inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice()}} €</p>
+            <p class=" w-full text-center text-5xl inter-text">Totaal: € {{ number_format(\App\Helpers\Shopping_cart::getPrice(),2, ',', '.')}} </p>
             <div class="">
                 <form action="{{ route('success') }}" method="get">
                     @csrf
