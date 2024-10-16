@@ -31,7 +31,7 @@
                     <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
-            <p class="w-full text-center total-font-size inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice() }} €</p>
+            <p class="w-full text-center text-5xl inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice() }} €</p>
             <div>
                 @if ($products != [])
                     <form action="{{ route('soortBetalen') }}" method="GET">

@@ -37,6 +37,7 @@ class CartController extends Controller
 
     public function showCart()
     {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $items = Shopping_cart::getRecords();
         return view('winkelmand', compact('items'));
     }
