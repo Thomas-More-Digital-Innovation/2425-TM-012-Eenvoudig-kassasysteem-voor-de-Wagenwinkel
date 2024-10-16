@@ -4,6 +4,7 @@ use App\Http\Controllers\calculateChangeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
+use App\Livewire\InstellingenBeheer;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use App\Livewire\WisselgeldBeheer;
@@ -36,6 +37,8 @@ Route::get('/organisatie-beheer', \App\Livewire\OrganisatieBeheer::class)->name(
 Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
 
 Route::get('/wisselgeld-beheer', wisselgeldBeheer::class)->name('wisselgeld-beheer');
+
+Route::get('/instellingen-beheer', InstellingenBeheer::class)->name('instellingen-beheer');
 
 Route::get('success', function() {
     return view('success');

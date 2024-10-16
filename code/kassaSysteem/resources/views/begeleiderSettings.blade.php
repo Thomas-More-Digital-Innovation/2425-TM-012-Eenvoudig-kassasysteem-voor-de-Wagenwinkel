@@ -3,7 +3,7 @@
     routeLeft=""
     imageLeft="assets/images/sellHistory.svg"
     altLeft="eten"
-    routeRight=""
+    routeRight="{{ route('instellingen-beheer') }}"
     imageRight="assets/images/gear.svg"
     altRight="nietEten"
 >
@@ -12,7 +12,7 @@
         <x-layout.redArrow/>
     </a>
     <?php
-    $loginUser = \App\Helpers\Login::getCart();
+    $loginUser = \App\Helpers\Login::getUser();
 
     $user = \App\Models\User::where('user_Id', $loginUser['user_id'])
         ->where('rol_id', 1)
