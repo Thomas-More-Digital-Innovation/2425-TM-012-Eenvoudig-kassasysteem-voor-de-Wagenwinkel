@@ -35,9 +35,14 @@
                     €{{ number_format($amount_given - $total_cost, 2) }}
                 </p>
 
-                <a href="{{ route('success') }}">
-                    <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
-                </a>
+                <form action="{{ route('updateDatabase') }}" method="POST" id="updateForm">
+                    @csrf <!-- Include this for CSRF protection -->
+                    <input type="hidden" name="selectedMoneyArray" id="selectedMoneyArray" value="{{ json_encode($selectedMoneyArray) }}">
+                    <input type="hidden" name="totalGeld" id="totalGeldInput" value="{{ $totalGeld }}">
+                    <button type="submit">
+                        <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
+                    </button>
+                </form>
             </div>
 
         @endisset
@@ -45,17 +50,13 @@
 </x-header>
 
 <script>
-    // JavaScript to toggle the 'vinkje' overlay
     document.querySelectorAll('.cash-item').forEach(item => {
         item.addEventListener('click', function () {
-            // Check if an overlay image already exists
             let vinkjeOverlay = this.querySelector('.vinkje-overlay');
 
             if (vinkjeOverlay) {
-                // If the overlay exists, remove it
                 vinkjeOverlay.remove();
             } else {
-                // If the overlay doesn't exist, create it
                 vinkjeOverlay = document.createElement('img');
                 vinkjeOverlay.src = "{{ asset('assets/images/money/vinkje.png') }}";
                 vinkjeOverlay.classList.add('vinkje-overlay');
