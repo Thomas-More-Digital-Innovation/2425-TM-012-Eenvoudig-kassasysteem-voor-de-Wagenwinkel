@@ -9,7 +9,8 @@ use Livewire\Component;
 class DatabaseTesting extends Component
 {
     public function render()
-    {    $organisation = \App\Helpers\Login::getCart()['organisatie_id'];
+    {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $products = Verkoop::where('organisatie_id', 1)
             ->orderBy('datetime', 'desc')
             ->pluck('verkoop_id')

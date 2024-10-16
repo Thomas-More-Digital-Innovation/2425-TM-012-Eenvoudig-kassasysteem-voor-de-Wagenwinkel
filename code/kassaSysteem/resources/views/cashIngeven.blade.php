@@ -29,7 +29,7 @@
                     <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
-            <p id="totalGeldWeergave" class="w-full text-center text-xl font-bold">Gekregen: 0 €</p>
+            <p id="totalGeldWeergave" class="w-full text-center text-5xl font-bold">Gekregen: 0 €</p>
 
             <div>
                 <?php
