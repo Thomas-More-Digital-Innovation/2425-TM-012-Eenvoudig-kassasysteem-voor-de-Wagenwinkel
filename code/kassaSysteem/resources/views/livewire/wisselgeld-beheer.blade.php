@@ -5,9 +5,9 @@
         </div>
     @endif
     <x-header header="Wisselgeld Beheer">
-        <div class="bg-white p-4 rounded-lg shadow-lg">
-            <div class="bg-gray-200 p-4 rounded-lg mb-3">
-                <div class="flex flex-col gap-5">
+        <div class="bg-white p-5 rounded-lg shadow-lg">
+            <div class="bg-gray-200 w-[1133px] h-[560px] p-4 rounded-lg mb-3">
+                <div class="flex flex-col gap-10">
                     <div class="flex justify-between gap-20">
                         <img class="w-[225px]" src="{{ asset('assets/images/money/50.png') }}" alt="50 euro">
                         <img class="w-[225px]" src="{{ asset('assets/images/money/20.png') }}" alt="20 euro">
@@ -47,10 +47,13 @@
                         </div>
                 </div>
             </div>
-            <div class="flex justify-between">
-                <x-layout.redArrow width="w-[320px]"></x-layout.redArrow>
-                <button wire:click="updateWisselgeld">
-                    <div  class="w-[320px] h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
+            <div class="flex justify-between w-full gap-3">
+                <a href="{{ route('instellingen-beheer') }}" class="w-full">
+                    <x-layout.redArrow width="w-full"></x-layout.redArrow>
+                </a>
+
+                <button wire:click="updateWisselgeld" class="w-full">
+                    <div  class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
                         <img src="{{ asset('assets/images/update.svg') }}" alt="Winkel Wagen" class="w-[30%]">
                     </div>
                 </button>

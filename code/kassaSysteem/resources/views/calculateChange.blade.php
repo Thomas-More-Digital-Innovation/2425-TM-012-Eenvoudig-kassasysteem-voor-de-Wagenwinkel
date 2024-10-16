@@ -1,7 +1,7 @@
 <x-header header="Geld terug geven">
-    <div class="bg-white p-4 rounded-lg shadow-lg">
+    <div class="bg-white p-4 rounded-lg shadow-lg h-[818px]">
         @isset($result)
-            <div class="bg-gray-200 p-3 rounded-lg mb-3">
+            <div class="bg-gray-200 w-[1504px] h-[530px] p-3 rounded-lg mb-3">
                 <div class="grid grid-cols-5 gap-4">
                     @php
                         $totalItems = 0;
@@ -28,20 +28,18 @@
 
             <div class="flex justify-between items-center space-x-8">
                 <a href="{{ route('cashIngeven') }}">
-                    <x-layout.redArrow width="w-80"></x-layout.redArrow>
+                    <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </a>
 
                 <p class="text-center mb-4 text-5xl font-bold">
                     €{{ number_format($amount_given - $total_cost, 2) }}
                 </p>
 
-                <form action="{{ route('updateDatabase') }}" method="POST" id="updateForm">
+                <form action="{{ route('updateDatabase') }}" method="POST" id="updateForm" class="h-[240px]">
                     @csrf <!-- Include this for CSRF protection -->
                     <input type="hidden" name="selectedMoneyArray" id="selectedMoneyArray" value="{{ json_encode($selectedMoneyArray) }}">
                     <input type="hidden" name="totalGeld" id="totalGeldInput" value="{{ $totalGeld }}">
-                    <button type="submit">
-                        <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
-                    </button>
+                    <x-layout.greenArrow width="w-[250px] md:w-[391px]"></x-layout.greenArrow>
                 </form>
             </div>
 

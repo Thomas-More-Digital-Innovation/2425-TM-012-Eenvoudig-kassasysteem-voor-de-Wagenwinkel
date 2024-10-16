@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('voorraadAangeven')->default(false);
             $table->boolean('wisselgeldAangeven')->default(false);
             $table->boolean('trillenBijActies')->default(false);
+            $table->boolean('printerGebruiken')->default(false);
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         });

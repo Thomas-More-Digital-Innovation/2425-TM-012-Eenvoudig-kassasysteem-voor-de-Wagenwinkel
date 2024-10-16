@@ -128,7 +128,7 @@
 </head>
 <body>
 <div id="total-amount" style="display: none;">
-    {{ \App\Helpers\Shopping_cart::getPrice() }} <!-- Het totaalbedrag wordt hier opgehaald -->
+    {{ \App\Helpers\Shopping_cart::getPrice() }}
 </div>
 <!-- Formulier om het winkelwagentje leeg te maken -->
 <form id="empty-cart-form" action="{{ route('empty.cart') }}" method="POST">
