@@ -32,7 +32,7 @@
                 </a>
 
                 <p class="text-center mb-4 text-4xl font-bold">
-                    €{{ number_format($amount_given - $total_cost, 2) }}
+                    Wisselgeld: € {{ number_format($amount_given - $total_cost, 2) }}
                 </p>
 
                 <a href="{{ route('success') }}">

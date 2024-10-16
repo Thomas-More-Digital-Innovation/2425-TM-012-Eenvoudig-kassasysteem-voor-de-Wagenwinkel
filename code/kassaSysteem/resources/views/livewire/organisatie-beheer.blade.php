@@ -1,45 +1,41 @@
 <x-header header="Organisatie Beheer">
     <div class="bg-white p-4 rounded-lg shadow-lg">
         <div class="flex justify-end mb-1">
-            <span class="font-bold text-3xl text-gray-400 pe-[212px] ">Naam</span>
+            <span class="font-bold text-3xl text-gray-400 pe-[212px]">Naam</span>
             <span class="font-bold text-3xl text-gray-400 pe-3">Instellingen</span>
         </div>
+
         <div class="flex space-x-3 mb-3">
-            <div class="bg-gray-200 p-3 rounded-lg space-y-20">
+            <div class="bg-gray-200 p-3 rounded-lg space-y-8"> <!-- Reduced space-y from 20 to 8 for better layout -->
+                <!-- Organisatie Aanmaken -->
                 <div class="flex items-end">
                     <div>
-                        <label for="Organisatie" class="pl-1 block text-3xl text-black font-bold">Organisatie</label>
+                        <label for="organisatie" class="pl-1 block text-3xl text-black font-bold">Organisatie</label>
                         <div class="relative flex items-center">
                             <input type="text" wire:model="organisatieNaam" class="w-[350px] h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Organisatie" required />
                         </div>
                     </div>
-                    <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-12 w-[112px] ms-2" type="button" wire:click="addOrganisatie">
+                    <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-12 w-[112px]" type="button" wire:click="addOrganisatie">
                         <img src="{{ asset('assets/images/plusMark.svg') }}" alt="Toevoegen" class="h-6">
                     </button>
                 </div>
-                <div>
-                    <div>
-                        <label for="Members aanmaken" class="pl-1 block text-3xl text-black font-bold">Members aanmaken</label>
-                        <div class="relative flex items-center">
-                            <input type="text" wire:model="memberNaam" name="Members aanmaken" class="w-[472px] h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Naam" required />
-                        </div>
+
+                <!-- Member Aanmaken -->
+                <div class="pt-5">
+                    <label for="members" class="pl-1 block text-3xl text-black font-bold">Members aanmaken</label>
+                    <div class="relative flex items-center mb-2">
+                        <input type="text" wire:model="memberNaam" class="w-[472px] h-12 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Naam" required />
                     </div>
-                    <div>
-                        <label for="Wachtwoord" class="pl-1 block text-3xl text-black font-bold"></label>
-                        <div class="relative flex items-center">
-                            <input type="text" wire:model="memberWachtwoord" name="Wachtwoord" class="w-[472px] h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Wachtwoord" required />
-                        </div>
+                    <div class="relative flex items-center mb-2">
+                        <input type="password" wire:model="memberWachtwoord" class="w-[472px] h-12 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Wachtwoord" required />
                     </div>
                     <div class="flex items-start">
-                        <label for="organization" class="block text-3xl text-black font-bold"></label>
-                        <div class="relative">
-                            <select name="Organisatie" wire:model="organisatieKeuze" class="w-[350px] text-gray-500 appearance-none mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
-                                <option value="none" selected="selected" hidden >Kies Organisatie</option> <!-- Optional placeholder -->
-                                @foreach ($organisaties as $organisatie)
-                                    <option value="{{ $organisatie['organisatie_id'] }}">{{ $organisatie['naam'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <select name="organisatie" wire:model="organisatieKeuze" class="w-[350px] text-gray-500 appearance-none mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                            <option value="none" selected hidden>Kies Organisatie</option>
+                            @foreach ($organisaties as $organisatie)
+                                <option value="{{ $organisatie->organisatie_id }}">{{ $organisatie->naam }}</option>
+                            @endforeach
+                        </select>
                         <button class="bg-green-300 rounded-lg ml-3 flex items-center justify-center h-[52px] w-[112px] mt-1 ms-2" type="button" wire:click="addMember">
                             <img src="{{ asset('assets/images/plusMark.svg') }}" alt="Toevoegen" class="h-6">
                         </button>
@@ -47,6 +43,7 @@
                 </div>
             </div>
 
+            <!-- Organisaties List -->
             <div class="bg-gray-200 p-3 rounded-lg w-[500px] h-[500px] overflow-y-auto">
                 @foreach ($organisaties as $organisatie)
                     <div class="bg-white p-4 rounded-lg flex items-center justify-between mb-3">
@@ -57,12 +54,11 @@
                     </div>
                 @endforeach
             </div>
-
         </div>
-        <div class="">
-            <x-layout.redArrow
-                width="w-[496px]"
-            />
+
+        <!-- Red Arrow -->
+        <div>
+            <x-layout.redArrow width="w-[496px]" />
         </div>
     </div>
 </x-header>
