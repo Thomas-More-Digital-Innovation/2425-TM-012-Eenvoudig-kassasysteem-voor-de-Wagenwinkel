@@ -3,7 +3,7 @@
     routeLeft=""
     imageLeft="assets/images/sellHistory.svg"
     altLeft="eten"
-    routeRight=""
+    routeRight="{{ route('instellingen-beheer') }}"
     imageRight="assets/images/gear.svg"
     altRight="nietEten"
 >

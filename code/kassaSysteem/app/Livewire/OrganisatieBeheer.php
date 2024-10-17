@@ -13,7 +13,7 @@ class OrganisatieBeheer extends Component
 {
     public function goMemberPage($organisatie_id)
     {
-        return redirect()->route('membersBeheer', ['organisatie_id' => $organisatie_id]);
+        return redirect()->route('members-beheer', ['organisatie_id' => $organisatie_id]);
     }
 
     public $organisatieNaam;
@@ -120,4 +120,19 @@ class OrganisatieBeheer extends Component
         $organisaties = Organisatie::all();
         return view('livewire.organisatie-beheer', compact('organisaties'));
     }
+    public function toggleResetPassword($user_Id)
+    {
+        $user = User::find($user_Id);
+        $user->reset_password = !$user->reset_password;
+        $user->save();
+    }
+
+    public function destroy($user_Id)
+    {
+        $user = User::find($user_Id);
+        $user->delete();
+        return redirect()->route('livewire.members-beheer');
+    }
 }
+
+
