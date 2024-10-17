@@ -22,22 +22,27 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // Validate the incoming request
-        $this->validate($request, [
+        $validated = $request->validate([
             'naam' => 'required|string',
             'wachtwoord' => 'required|string',
         ]);
 
-        // Attempt to find the user by the 'naam'
-        $user = User::where('naam', $request->naam)->first();
+        // Attempt to find the user by 'naam'
+        $user = User::where('naam', $validated['naam'])->first();
 
-        if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
-            Auth::login($user);
-            return redirect()->intended('/category');
+        // Check if the user exists and the password is correct
+        if ($user && Hash::check($validated['wachtwoord'], $user->wachtwoord)) {
+            Auth::login($user); // Log in the user
+
+            // Store the user's name in the session
+            session(['naam' => $user->naam]);
+
+            return redirect()->intended('/category'); // Redirect to intended or fallback route
         }
 
-
+        // If authentication fails, throw a validation exception with an error message
         throw ValidationException::withMessages([
-            'wachtwoord' => 'The provided credentials are incorrect.',
+            'wachtwoord' => __('The provided credentials are incorrect.'),
         ]);
     }
 

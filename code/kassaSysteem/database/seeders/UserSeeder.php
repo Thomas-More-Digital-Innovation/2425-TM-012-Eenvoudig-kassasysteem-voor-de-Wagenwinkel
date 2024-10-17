@@ -22,7 +22,17 @@ class UserSeeder extends Seeder
                     'rol_id' => 1,
                     'organisatie_id' => 1,
                     'wachtwoordWijzigen' => 0
-                ]
+                ],
+                [
+                'naam' => 'Maxim',
+                'wachtwoord' => Hash::make('Maxim'),
+                'rol_id' => 2,
+                'organisatie_id' => 2,
+                'wachtwoordWijzigen' => 0
+            ]
+
+
+
             ]);
     }
 }

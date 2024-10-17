@@ -21,6 +21,7 @@ class OrganisatieSeeder extends Seeder
                     'voorraadAangeven' => false,
                     'wisselgeldAangeven' => false,
                     'trillenBijActies' => false,
+                    'printerGebruiken' => false,
                     'created_at' => now(),
                     'updated_at' => now()
                 ],
@@ -31,6 +32,7 @@ class OrganisatieSeeder extends Seeder
                     'voorraadAangeven' => false,
                     'wisselgeldAangeven' => false,
                     'trillenBijActies' => false,
+                    'printerGebruiken' => false,
                     'created_at' => now(),
                     'updated_at' => now()
                 ]

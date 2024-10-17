@@ -3,7 +3,7 @@
     routeLeft="{{ route('Verkooplijst') }}"
     imageLeft="assets/images/sellHistory.svg"
     altLeft="eten"
-    routeRight=""
+    routeRight="{{ route('instellingen-beheer') }}"
     imageRight="assets/images/gear.svg"
     altRight="nietEten"
 >
@@ -19,11 +19,10 @@
         ->first();
     ?>
 
-    @if($user)
+
     <a href="{{ route('organisatie-beheer') }}" class="w-full h-60 bg-purple-300 py-8 rounded-md flex justify-evenly items-center">
         <img src="{{ asset('assets/images/admin.svg') }}" alt="Winkel Wagen" class="w-[30%]">
     </a>
-    @else
-    @endif
+
 
 </x-layout.exampleLayout>

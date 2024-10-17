@@ -96,7 +96,7 @@
                 <x-layout.redArrow width="w-80"></x-layout.redArrow>
             </a>
 
-            <p id="total">Totaal: €0.00</p>
+            <p id="total">Totaal: € 0.00</p>
             <a href="{{ route('calculateChange') }}">
                 <x-layout.greenArrow width="w-80"></x-layout.greenArrow>
             </a>

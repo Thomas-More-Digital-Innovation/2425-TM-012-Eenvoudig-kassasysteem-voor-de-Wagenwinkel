@@ -19,7 +19,7 @@
                 </div>
             @else
                 <div class="flex items-center justify-center w-full h-full">
-                    <span class="text-center text-xl font-bold">Winkelmand is leeg!</span>
+                    <span class="text-center text-4xl font-bold">Winkelmand is leeg!</span>
                 </div>
             @endif
         </div>
@@ -31,7 +31,7 @@
                     <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
-            <p class="w-full text-center text-5xl inter-text">Totaal: {{ \App\Helpers\Shopping_cart::getPrice() }} €</p>
+            <p class="w-full text-center text-4xl inter-text">Totaal: € {{ number_format(\App\Helpers\Shopping_cart::getPrice(),2, ',', '.') }}</p>
             <div>
                 @if ($products != [])
                     <form action="{{ route('soortBetalen') }}" method="GET">
