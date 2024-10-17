@@ -78,10 +78,6 @@ Route::get('begeleiderLogin', function () {
     return view('begeleiderLogin');
 })->name('begeleiderLoginForm');
 
-Route::get('betaalmethode', function () {
-    return view('betaalmethode');
-})->name('soortBetalen');
-
 Route::get('products', DatabaseTesting::class)->name('producten');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -89,9 +85,6 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('passwordChangeForm', function () {
     return view('passwordChangeForm');
 })->name('passwordChangeForm');
-
-Route::post('/change-password', [YourController::class, 'changePassword'])->name('password.change');
-
 
 Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
 
