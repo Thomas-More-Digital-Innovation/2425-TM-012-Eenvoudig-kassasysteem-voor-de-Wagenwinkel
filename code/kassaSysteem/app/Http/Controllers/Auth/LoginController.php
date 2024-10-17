@@ -31,6 +31,7 @@ class LoginController extends Controller
                 session(['force_password_change' => $user->user_Id]); // Store the user's ID in session
                 return redirect()->route('passwordChangeForm')->with('user_name', $user->naam); // Send username to the view
             } else {
+                Auth::login($user);
                 return redirect()->intended('category'); // Redirect to category page
             }
         }
