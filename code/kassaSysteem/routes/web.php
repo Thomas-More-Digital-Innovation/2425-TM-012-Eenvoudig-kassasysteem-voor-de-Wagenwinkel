@@ -1,133 +1,67 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\calculateChangeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
-use App\Livewire\InstellingenBeheer;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use App\Livewire\WisselgeldBeheer;
 use App\Livewire\Verkooplijst;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DatabaseTesting;
-use App\Http\Controllers\Auth\LoginController;
 
-// VIEW
+// VIEW Routes
 Route::view('/', 'loginSystem')->name('loginSystem');
-
 Route::view('/category', 'category')->name('category');
-
 Route::view('/begeleiderSettings', 'begeleiderSettings')->name('begeleiderSettings');
-
 Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
+Route::view('/soortBetalen', 'soortBetalen')->name('soortBetalen');
+Route::view('/loginAdminBegeleider', 'loginSystemAdminBegeleider')->name('loginAdminBegeleider');
+Route::view('/loginSettingsAdminBegeleider', 'loginSettingsAdminBegeleider')->name('loginSettingsAdminBegeleider');
+Route::view('/settings', 'settings')->name('settings');
+Route::view('/success', 'success')->name('success');
+Route::view('/payconic', 'Payconic')->name('payconic');
+Route::view('/cash', 'cash')->name('cash');
 
-
-Route::view('soortBetalen', 'soortBetalen')->name('soortBetalen');
-
-Route::view('loginSystem', 'loginSystem')->name('loginSystem');
-
-
-// Member management route (listing all members of an organization)
-Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->name('members-beheer');
-
-// Route for organization management (Organisatie Beheer)
-Route::get('/organisatie-beheer', \App\Livewire\OrganisatieBeheer::class)->name('organisatie-beheer');
-// GET
-Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
-
-Route::get('/wisselgeld-beheer', wisselgeldBeheer::class)->name('wisselgeld-beheer');
-
-Route::get('/instellingen-beheer', InstellingenBeheer::class)->name('instellingen-beheer');
-
-Route::get('success', function() {
-    return view('success');
-})->name('success');
-
-Route::get('product/{id}', [ProductController::class, 'show']);
-
-Route::get('winkelwagen', \App\Livewire\Winkelkar::class)->name('winkelkar');
-
-/*moet nog weg*/
-Route::get('userSession', \App\Livewire\UserSession::class)->name('userSession');
-
-Route::get('payconic', function() {
-    return view('Payconic');
-})->name('payconic');
-
-Route::get('cash', function() {
-    return view('cash');
-})->name('cash');
-
-Route::get('winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
-
-
+// GET routes for Livewire and Controllers
+Route::get('/verkooplijst', Verkooplijst::class)->name('verkooplijst');
+Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
+Route::get('/organisatie-beheer', OrganisatieBeheer::class)->name('organisatie-beheer');
+Route::get('/wisselgeld-beheer', WisselgeldBeheer::class)->name('wisselgeld-beheer');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show'); // Added name for product show route
+Route::get('/winkelwagen', \App\Livewire\Winkelkar::class)->name('winkelkar');
+Route::get('/userSession', \App\Livewire\UserSession::class)->name('userSession');
+Route::get('/winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
+Route::get('/item-select/product/{id?}', Product::class)->name('product');
 
-Route::get('item-select/product/{id?}', Product::class)->name('product');
+// Login routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // General user login
+Route::post('/login', [LoginController::class, 'login'])->name('login.post'); // Handle general user login
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Logout
 
-Route::get('/settings', function () {
-    return view('settings');
-})->name('settings');
+// Admin/Begeleider login routes
+Route::get('/login-admin-begeleider', [AuthController::class, 'showLoginForm'])->name('loginAdminBegeleiderForm'); // Show admin/begeleider login form
+Route::post('/login-admin-begeleider', [AuthController::class, 'login'])->name('loginAdminBegeleider'); // Handle admin/begeleider login
 
+// Settings login routes
+Route::get('/login-settings-admin-begeleider', [SettingsController::class, 'showLoginForm'])->name('loginSettingsAdminBegeleiderForm'); // Show settings login form
+Route::post('/login-settings-admin-begeleider', [SettingsController::class, 'login'])->name('loginSettingsAdminBegeleider'); // Handle settings login
 
+// Calculate change route
 Route::get('/calculate-change', [calculateChangeController::class, 'calculateChange'])->name('calculate-change');
 
+// Cart routes
+Route::get('/removeProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
+Route::post('/empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
+Route::post('/item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
 
-Route::get('begeleiderLogin', function () {
-    return view('begeleiderLogin');
-})->name('begeleiderLoginForm');
+// Wisselgeld update
+Route::post('/wisselgeldBeheer', [WisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
 
-Route::get('betaalmethode', function () {
-    return view('betaalmethode');
-})->name('soortBetalen');
-
-Route::get('products', DatabaseTesting::class)->name('producten');
-
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-
-Route::get('betaalmethode', function () {
-    return view('betaalmethode');
-});
-
-Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
-
-Route::post('empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
-
-Route::post('item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
-
-Route::post('begeleiderLogin', function () {
-
-    $logins = [
-        ['naam' => 'maxim', 'wachtwoord' => '123']
-    ];
-
-    $naam = request('name');
-    $wachtwoord = request('password');
-
-
-    $is_valid = false;
-    foreach ($logins as $login) {
-        if ($login['naam'] === $naam && $login['wachtwoord'] === $wachtwoord) {
-            $is_valid = true;
-            break;
-        }
-    }
-
-
-    if ($is_valid) {
-        return view('settings', ['naam' => $naam]);
-    } else {
-        return back()->withErrors(['error' => 'Ongeldige naam of wachtwoord.']);
-    }
-})->name('begeleiderLogin');
-
-Route::post('/login', [LoginController::class, 'login']);
-
-Route::post('/loginSystem', [LoginController::class, 'logout'])->name('logout');
-
-Route::post('wisselgeldBeheer', [wisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
-
+// Database update route for change calculation
 Route::post('/update-database', [calculateChangeController::class, 'updateDatabase'])->name('updateDatabase');
-
-
