@@ -1,6 +1,6 @@
 <x-layout.exampleLayout
     header="Settings"
-    routeLeft=""
+    routeLeft="{{ route('Verkooplijst') }}"
     imageLeft="assets/images/sellHistory.svg"
     altLeft="eten"
     routeRight=""
@@ -12,10 +12,10 @@
         <x-layout.redArrow/>
     </a>
     <?php
-    $loginUser = \App\Helpers\Login::getCart();
+    $loginUser = \App\Helpers\Login::getUser();
 
-    $user = \App\Models\User::where('user_Id', $loginUser['user_id'])
-        ->where('rol_id', 1)
+    $user = \App\Models\User::where('organisatie_id', $loginUser['organisatie_id'])
+        ->where('organisatie_id', 1)
         ->first();
     ?>
 

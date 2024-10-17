@@ -28,7 +28,7 @@ Route::view('loginSystem', 'loginSystem')->name('loginSystem');
 
 
 // GET
-Route::get('Verkooplijst', Verkooplijst::class)->name('verkooplijst');
+Route::get('Verkooplijst', Verkooplijst::class)->name('Verkooplijst');
 
 Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
 

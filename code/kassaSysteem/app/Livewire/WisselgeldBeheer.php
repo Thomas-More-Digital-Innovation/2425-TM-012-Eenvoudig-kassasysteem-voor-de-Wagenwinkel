@@ -22,7 +22,7 @@ class WisselgeldBeheer extends Component
 
     public function loadWisselgeld()
     {
-        $organisationId = Login::getCart()['organisatie_id'];
+        $organisationId = Login::getUser()['organisatie_id'];
         $this->wisselgeldRecords = Wisselgeld::where('organisatie_id', $organisationId)
             ->orderBy('muntstuk_id')
             ->get()
@@ -37,7 +37,7 @@ class WisselgeldBeheer extends Component
             })->toArray()
         );
 
-        $organisationId = Login::getCart()['organisatie_id'];
+        $organisationId = Login::getUser()['organisatie_id'];
 
         $index = 1;
         foreach ($this->wisselgeldRecords as $record) {
