@@ -1,6 +1,6 @@
 <x-layout.exampleLayout
     header="Settings"
-    routeLeft=""
+    routeLeft="{{ route('Verkooplijst') }}"
     imageLeft="assets/images/sellHistory.svg"
     altLeft="eten"
     routeRight="{{ route('instellingen-beheer') }}"
@@ -11,7 +11,13 @@
     <a href="{{route('settings')}}" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
         <x-layout.redArrow/>
     </a>
+    <?php
+    $loginUser = \App\Helpers\Login::getUser();
 
+    $user = \App\Models\User::where('organisatie_id', $loginUser['organisatie_id'])
+        ->where('organisatie_id', 1)
+        ->first();
+    ?>
 
 
     <a href="{{ route('organisatie-beheer') }}" class="w-full h-60 bg-purple-300 py-8 rounded-md flex justify-evenly items-center">

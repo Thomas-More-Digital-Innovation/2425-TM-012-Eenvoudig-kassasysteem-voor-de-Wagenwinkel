@@ -19,6 +19,7 @@ Route::view('/', 'loginSystem')->name('loginSystem');
 Route::view('/category', 'category')->name('category');
 Route::view('/begeleiderSettings', 'begeleiderSettings')->name('begeleiderSettings');
 Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
+
 Route::view('/soortBetalen', 'soortBetalen')->name('soortBetalen');
 Route::view('/loginAdminBegeleider', 'loginSystemAdminBegeleider')->name('loginAdminBegeleider');
 Route::view('/loginSettingsAdminBegeleider', 'loginSettingsAdminBegeleider')->name('loginSettingsAdminBegeleider');
