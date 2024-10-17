@@ -5,21 +5,20 @@ namespace App\Livewire;
 use App\Models\Organisatie;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
 
 class MembersBeheer extends Component
 {
     public $organisatie_id;
     public $users;
     public $organisaties;
-    public $checked;
-
 
     public function mount($organisatie_id)
     {
         $this->organisatie_id = $organisatie_id;
-        $this->users = User::where('organisatie_id', $organisatie_id)->get();
-        $this->organisaties = Organisatie::where('organisatie_id', $organisatie_id)->get();
+        $this->users = User::where('organisatie_id', $this->organisatie_id)->get();
     }
+
 
     public function deleteMember($user_Id)
     {
@@ -38,42 +37,43 @@ class MembersBeheer extends Component
 
     public function isAdmin()
     {
-        // Assuming you have a way to get the current user's organization
-        return $this->organisatie_id === '1'; // Replace 'ADMIN' with the actual ID or logic to check
+        // Check if the user is an admin
+        return $this->organisatie_id === '1'; // Adjust based on your logic
     }
-    // In your controller method for updating the password
-    public function updatePassword(Request $request)
+
+    public function updatePassword($user_Id)
     {
-        $request->validate([
-            'password' => 'required|min:6|confirmed',
-        ]);
+        // Zoek de gebruiker in de database
+        $user = User::where('user_Id', $user_Id)->first();
 
-        $username = $request->username;
-        $newPassword = $request->password;
-
-        // Use the Login helper to reset the password
-        if (Login::resetPassword($username, $newPassword)) {
-            return redirect()->route('login')->with('status', 'Password updated successfully. You can now log in.');
+        // Controleer of de gebruiker bestaat
+        if ($user) {
+            // Stel het wachtwoord in op '1234'
+            $user->wachtwoord = '1234'; // Vergeet niet bcrypt te gebruiken om het wachtwoord te hashen
+            $user->wachtwoordWijzigen = 1; // Stel de reset-password indicator in
+            $user->save(); // Sla de wijzigingen op
         }
 
-        return back()->withErrors(['username' => 'User not found.']);
+        // Vernieuw de ledenlijst voor de huidige organisatie
+        $this->users = User::where('organisatie_id', $this->organisatie_id)->get();
+        return redirect()->route('members-beheer', ['organisatie_id' => $this->organisatie_id]);
     }
+
 
 
     public function render()
     {
-        return view('livewire.members-beheer', [
-            'members' => $this->users,
-        ]);
+        // No need to redefine users here since they are set in mount
+        return view('livewire.members-beheer', ['users' => $this->users]);
     }
+
     public function deleteOrganizationAndMembers($organisatie_id)
     {
-        // Delete the organization itself
+        // Delete the organization and its members
         Organisatie::where('organisatie_id', $organisatie_id)->delete();
+        User::where('organisatie_id', $organisatie_id)->delete();
 
-        // Optionally: Add logic to refresh the page or redirect
         session()->flash('message', 'Organization and its members have been successfully deleted.');
         return redirect()->route('organisatie-beheer');
     }
-
 }

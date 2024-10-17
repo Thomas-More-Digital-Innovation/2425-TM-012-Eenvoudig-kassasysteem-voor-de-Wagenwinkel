@@ -86,9 +86,16 @@ Route::get('products', DatabaseTesting::class)->name('producten');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::get('betaalmethode', function () {
-    return view('betaalmethode');
-});
+Route::get('passwordChangeForm', function () {
+    return view('passwordChangeForm');
+})->name('passwordChangeForm');
+
+Route::post('/change-password', [YourController::class, 'changePassword'])->name('password.change');
+
+
+Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
+
+Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])->name('password.reset');
 
 Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
 

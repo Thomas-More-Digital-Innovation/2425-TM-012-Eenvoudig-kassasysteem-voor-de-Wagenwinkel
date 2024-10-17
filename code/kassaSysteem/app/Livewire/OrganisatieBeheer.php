@@ -80,7 +80,6 @@ class OrganisatieBeheer extends Component
         try {
             $this->validate([
                 'organisatieKeuze' => 'required|string|max:255',
-                'memberWachtwoord' => 'required|string|max:255',
                 'memberNaam' => 'required|string|max:255',
             ]);
 
@@ -93,18 +92,19 @@ class OrganisatieBeheer extends Component
                 return redirect()->to('organisatie-beheer');
             }
 
+            // The default password is set to '1234'
+            $defaultPassword = '1234';
             $rolId = ($this->organisatieKeuze == 1) ? 1 : 2;
 
             User::create([
                 'naam' => $this->memberNaam,
-                'wachtwoord' => Hash::make($this->memberWachtwoord),
+                'wachtwoord' => Hash::make($defaultPassword), // Always set to '1234'
                 'rol_id' => $rolId,
                 'organisatie_id' => $this->organisatieKeuze,
                 'wachtwoordWijzigen' => 1
             ]);
 
-            $this->memberNaam = '';
-            $this->memberWachtwoord = '';
+            $this->memberNaam = ''; // Clear the input field
 
             $this->organisaties = Organisatie::all();
 
@@ -114,6 +114,7 @@ class OrganisatieBeheer extends Component
             return redirect()->to('organisatie-beheer')->withErrors($e->validator);
         }
     }
+
 
     public function render()
     {
