@@ -7,6 +7,7 @@ use App\Http\Controllers\calculateChangeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
+use App\Livewire\InstellingenBeheer;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use App\Livewire\WisselgeldBeheer;
@@ -39,6 +40,7 @@ Route::get('/userSession', \App\Livewire\UserSession::class)->name('userSession'
 Route::get('/winkelmand', [CartController::class, 'showCart'])->name('winkelmand');
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
 Route::get('/item-select/product/{id?}', Product::class)->name('product');
+Route::get('/instellingen-beheer', InstellingenBeheer::class)->name('instellingen-beheer');
 
 // Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // General user login

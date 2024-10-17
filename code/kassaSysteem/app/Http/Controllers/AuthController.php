@@ -46,7 +46,7 @@ class AuthController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'wachtwoord' => 'The provided credentials are incorrect.',
+            'wachtwoord' => 'Opgegeven gegevens kloppen niet',
         ]);
     }
 

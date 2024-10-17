@@ -10,7 +10,7 @@
                     id="date"
                     name="date"
                     x-model="selectedDate"
-                    x-on:change="window.location.href = '{{ route('Verkooplijst', ['date' => '']) }}' + selectedDate"
+                    x-on:change="window.location.href = '{{ route('verkooplijst', ['date' => '']) }}' + selectedDate"
                 />
             </div>
             <div class="flex flex-col justify-between items-center">

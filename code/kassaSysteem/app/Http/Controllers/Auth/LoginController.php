@@ -36,19 +36,27 @@ class LoginController extends Controller
 
             // Store the user's name in the session
             session(['naam' => $user->naam]);
+            session(['userInfo' => [
+                'user_id' => $user->user_Id,  // Assuming 'id' is the user_id
+                'organisatie_id' => $user->organisatie_id,    // You can modify this as needed
+            ]]);
 
             return redirect()->intended('/category'); // Redirect to intended or fallback route
         }
 
         // If authentication fails, throw a validation exception with an error message
         throw ValidationException::withMessages([
-            'wachtwoord' => __('The provided credentials are incorrect.'),
+            'wachtwoord' => __('Opgegeven gegevens kloppen niet'),
         ]);
     }
 
     public function logout()
     {
         Auth::logout();
+        session(['userInfo' => [
+            'user_id' => null,  // Assuming 'id' is the user_id
+            'organisatie_id' => null,    // You can modify this as needed
+        ]]);
         return redirect('/');
     }
 }

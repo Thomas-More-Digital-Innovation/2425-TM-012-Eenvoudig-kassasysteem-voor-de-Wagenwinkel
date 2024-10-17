@@ -1,4 +1,11 @@
 <x-header header="Organisatie Beheer">
+    @php
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+        if (is_null($organisation)) {
+            header("Location: /"); // Redirect to the home page
+            exit; // Terminate the script
+        }
+    @endphp
     <div class="bg-white p-5 rounded-lg shadow-lg">
         <div class="flex justify-end mb-1">
             <span class="font-bold text-3xl text-gray-400 pe-[212px]">Naam</span>
