@@ -14,38 +14,41 @@ class LoginController extends Controller
 {
     use ValidatesRequests;
 
-    // Show the login form
     public function showLoginForm()
     {
-        return view('auth.loginSystem'); // Adjust to your actual login view name
+        return view('auth.loginSystem');
     }
 
-    // Handle the login request
     public function login(Request $request)
     {
         // Validate the incoming request
-        $this->validate($request, [
+        $validated = $request->validate([
             'naam' => 'required|string',
             'wachtwoord' => 'required|string',
         ]);
 
         // Attempt to find the user by 'naam'
-        $user = User::where('naam', $request->naam)->first();
+        $user = User::where('naam', $validated['naam'])->first();
 
-        if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
+        // Check if the user exists and the password is correct
+        if ($user && Hash::check($validated['wachtwoord'], $user->wachtwoord)) {
             Auth::login($user); // Log in the user
-            return redirect()->intended('/category'); // Redirect to intended page after login
+
+            // Store the user's name in the session
+            session(['naam' => $user->naam]);
+
+            return redirect()->intended('/category'); // Redirect to intended or fallback route
         }
 
+        // If authentication fails, throw a validation exception with an error message
         throw ValidationException::withMessages([
-            'wachtwoord' => 'The provided credentials are incorrect.',
+            'wachtwoord' => __('The provided credentials are incorrect.'),
         ]);
     }
 
-    // Handle logout
     public function logout()
     {
-        Auth::logout(); // Log out the user
-        return redirect('/'); // Redirect to home or login page
+        Auth::logout();
+        return redirect('/');
     }
 }

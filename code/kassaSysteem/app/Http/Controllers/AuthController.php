@@ -34,6 +34,9 @@ class AuthController extends Controller
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
             Auth::login($user); // Log in the user
 
+            // Store the user's name in the session
+            session(['naam' => $user->naam]);
+
             // Check the rol_id to determine the redirect
             if ($user->rol_id == 1) {
                 return redirect()->intended('/begeleiderSettings'); // Adjust this route for Admins
@@ -46,6 +49,7 @@ class AuthController extends Controller
             'wachtwoord' => 'The provided credentials are incorrect.',
         ]);
     }
+
 
     // Handle logout
     public function logout()

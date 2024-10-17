@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; // Ensure this model points to your User model
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -16,7 +16,7 @@ class SettingsController extends Controller
     // Show the login form with the pre-filled name
     public function showLoginForm()
     {
-        $name = session('user_name'); // Retrieve the logged-in user's name from session
+        $name = session('naam', ''); // Retrieve the logged-in user's name from session, fallback to empty if not set
         return view('loginSettingsAdminBegeleider', compact('name')); // Pass the name to the view
     }
 
@@ -34,6 +34,9 @@ class SettingsController extends Controller
 
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
             Auth::login($user); // Log in the user
+
+            // Set the user's name in the session
+            session(['user_name' => $user->naam]);
 
             // Check the rol_id to determine the redirect
             if ($user->rol_id == 1) {
