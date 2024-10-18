@@ -32,6 +32,7 @@ Route::view('/cash', 'cash')->name('cash');
 // GET routes for Livewire and Controllers
 Route::get('/verkooplijst', Verkooplijst::class)->name('verkooplijst');
 Route::get('/members/{organisatie_id}', [MembersBeheerController::class, 'index'])->name('membersBeheer');
+Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->name('members-beheer');
 Route::get('/organisatie-beheer', OrganisatieBeheer::class)->name('organisatie-beheer');
 Route::get('/wisselgeld-beheer', WisselgeldBeheer::class)->name('wisselgeld-beheer');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show'); // Added name for product show route
@@ -60,20 +61,17 @@ Route::get('/calculate-change', [calculateChangeController::class, 'calculateCha
 
 // Cart routes
 Route::get('/removeProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
+Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
 Route::post('/empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 Route::post('/item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
 
+// Change password
 Route::get('passwordChangeForm', function () {
     return view('passwordChangeForm');
 })->name('passwordChangeForm');
 
-Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->name('members-beheer');
-
 Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
-
 Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])->name('password.reset');
-
-Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
 
 // Wisselgeld update
 Route::post('/wisselgeldBeheer', [WisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');

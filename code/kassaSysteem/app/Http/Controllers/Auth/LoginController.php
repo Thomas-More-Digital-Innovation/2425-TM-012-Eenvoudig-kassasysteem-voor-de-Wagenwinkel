@@ -19,7 +19,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-
             'naam' => 'required|string',
             'wachtwoord' => 'required|string',
         ]);
@@ -37,6 +36,13 @@ class LoginController extends Controller
                 return redirect()->route('passwordChangeForm')->with('user_name', $user->naam); // Send username to the view
             } else {
                 Auth::login($user);
+
+                session(['naam' => $user->naam]);
+                session(['userInfo' => [
+                    'user_id' => $user->id,
+                    'organisatie_id' => $user->organisatie_id,
+                ]]);
+
                 return redirect()->intended('category'); // Redirect to category page
             }
         }
