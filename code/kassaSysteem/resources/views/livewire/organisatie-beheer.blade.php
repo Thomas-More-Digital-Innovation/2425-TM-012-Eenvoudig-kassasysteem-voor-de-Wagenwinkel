@@ -32,12 +32,7 @@
                             <input type="text" wire:model="memberNaam" name="Members aanmaken" class="w-full h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Naam" required />
                         </div>
                     </div>
-                    <div>
-                        <label for="Wachtwoord" class="pl-1 block text-3xl text-black font-bold"></label>
-                        <div class="relative flex items-center">
-                            <input type="text" wire:model="memberWachtwoord" name="Wachtwoord" class="w-full h-12 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" placeholder="Wachtwoord" required />
-                        </div>
-                    </div>
+                    {{--Wachtwoord standaard: '1234'--}}
                     <div class="flex items-start">
                         <label for="organization" class="block text-3xl text-black font-bold"></label>
                         <div class="relative">
@@ -69,7 +64,7 @@
         <div class="">
             <a href="{{ route('begeleiderSettings') }}">
                 <x-layout.redArrow
-                    width="w-[560px]"
+                    width="w-full"
                 />
             </a>
         </div>

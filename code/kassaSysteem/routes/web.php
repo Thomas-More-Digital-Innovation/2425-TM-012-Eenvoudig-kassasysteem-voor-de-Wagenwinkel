@@ -63,6 +63,16 @@ Route::get('/removeProduct/{id?}', [CartController::class, 'delete'])->name('car
 Route::post('/empty-cart', [CartController::class, 'emptyCart'])->name('empty.cart');
 Route::post('/item-select/product/{id?}', [CartController::class, 'addProduct'])->name('cart.product-add');
 
+Route::get('passwordChangeForm', function () {
+    return view('passwordChangeForm');
+})->name('passwordChangeForm');
+
+Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
+
+Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])->name('password.reset');
+
+Route::get('RemoveProduct/{id?}', [CartController::class, 'delete'])->name('cart.remove-product');
+
 // Wisselgeld update
 Route::post('/wisselgeldBeheer', [WisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
 

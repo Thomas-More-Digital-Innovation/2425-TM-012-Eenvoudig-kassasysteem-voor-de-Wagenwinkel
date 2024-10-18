@@ -20,6 +20,7 @@ class Login
     {
         return self::$userInfo;
     }
+
 }
 
 Login::init();
