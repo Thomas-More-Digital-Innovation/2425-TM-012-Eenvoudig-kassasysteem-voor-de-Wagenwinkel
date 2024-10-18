@@ -19,6 +19,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
+
             'naam' => 'required|string',
             'wachtwoord' => 'required|string',
         ]);
@@ -35,9 +36,8 @@ class LoginController extends Controller
                 return redirect()->intended('category'); // Redirect to category page
             }
         }
-
         throw ValidationException::withMessages([
-            'wachtwoord' => 'The provided credentials are incorrect.',
+            'wachtwoord' => __('Opgegeven gegevens kloppen niet'),
         ]);
     }
 
@@ -103,6 +103,10 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+        session(['userInfo' => [
+            'user_id' => null,  // Assuming 'id' is the user_id
+            'organisatie_id' => null,    // You can modify this as needed
+        ]]);
         return redirect('/');
     }
 }

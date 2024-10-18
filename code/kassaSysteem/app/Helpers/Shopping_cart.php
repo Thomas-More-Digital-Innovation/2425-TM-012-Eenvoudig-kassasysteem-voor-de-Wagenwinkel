@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Organisatie;
 use App\Models\Verkoop;
+use App\Models\Verkooplijn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -69,7 +70,6 @@ class Shopping_cart
         $totalPrice = 0;
 
         foreach (self::$cart['products'] as $product) {
-            // Debugging: Output the product details
             Log::info('Calculating price for product', [
                 'naam' => $product['naam'],
                 'prijs' => $product['actuele_prijs'],
@@ -81,34 +81,34 @@ class Shopping_cart
 
         self::$cart['totalPrice'] = $totalPrice;
 
-        // Store the updated cart in the session with the organization-specific key
         session()->put("cart{$organisation}", self::$cart);
     }
 
     public static function emptySession(): void
     {
         $products = self::$cart['products'];
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
 
-        // Insert products into the verkooplijnen table
+        Verkoop::create([
+            'datum_tijd' => now(),
+            'organisatie_id' => $organisation
+        ]);
         foreach ($products as $product) {
             $verkoop_id = Verkoop::where('organisatie_id', $product['organisatie'])
-                ->orderBy('datetime', 'desc')
+                ->orderBy('datum_tijd', 'desc')
                 ->pluck('verkoop_id')
                 ->first();
 
-            DB::insert('insert into verkooplijnen (hoeveelheid, verkoopprijs, verkoop_id, product_id) values (?, ?, ?, ?)', [
-                $product['aantal'],
-                $product['actuele_prijs'],
-                $verkoop_id,
-                $product['id']
+            Verkooplijn::create([
+                'hoeveelheid' => $product['aantal'],
+                'verkoopprijs' => $product['actuele_prijs'],
+                'verkoop_id' => $verkoop_id,
+                'product_id' => $product['id']
             ]);
         }
 
-        // Forget the cart for the organization
-        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         session()->forget("cart{$organisation}");
 
-        // Reset the cart
         self::$cart = [
             'products' => [],
             'totalPrice' => 0
