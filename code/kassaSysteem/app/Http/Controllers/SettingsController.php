@@ -38,12 +38,7 @@ class SettingsController extends Controller
             // Set the user's name in the session
             session(['user_name' => $user->naam]);
 
-            // Check the rol_id to determine the redirect
-            if ($user->rol_id == 1) {
-                return redirect()->intended('/begeleiderSettings'); // Adjust this route for Admins
-            } elseif ($user->rol_id == 2) {
-                return redirect()->intended('/settings'); // Adjust this route for Begeleiders
-            }
+                return redirect()->intended('/settings');
         }
 
         throw ValidationException::withMessages([
