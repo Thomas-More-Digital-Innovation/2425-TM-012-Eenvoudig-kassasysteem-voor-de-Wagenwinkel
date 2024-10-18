@@ -36,10 +36,14 @@ class AuthController extends Controller
 
             // Store the user's name in the session
             session(['naam' => $user->naam]);
+            session(['userInfo' => [
+                'user_id' => $user->id,
+                'organisatie_id' => $user->organisatie_id,
+            ]]);
 
             // Check the rol_id to determine the redirect
             if ($user->rol_id == 1) {
-                return redirect()->intended('/begeleiderSettings'); // Adjust this route for Admins
+                return redirect()->intended('/organisatie-beheer'); // Adjust this route for Admins
             } elseif ($user->rol_id == 2) {
                 return redirect()->intended('/settings'); // Adjust this route for Begeleiders
             }
