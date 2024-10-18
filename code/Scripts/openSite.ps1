@@ -1,25 +1,24 @@
-# URL to open
+# URL website
 $URL = "https://www.dewagenwinkel.be"
 
-# Path to Firefox (adjust if installed in a different location)
+#Default path to Firefox
 $firefoxPath = "C:\Program Files\Mozilla Firefox\firefox.exe"
 $firefoxPathX86 = "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
 
-# URL of the Firefox installer (choose the correct language and version as needed)
+#Download URL firefox
 $firefoxInstallerUrl = "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US"
 $firefoxInstallerPath = "$env:TEMP\FirefoxInstaller.exe"
 
-# Function to download and install Firefox
+
 function Install-Firefox {
     Write-Host "Firefox is not installed. Downloading and installing..."
 
-    # Download the installer
+    # Download installer
     Invoke-WebRequest -Uri $firefoxInstallerUrl -OutFile $firefoxInstallerPath
 
-    # Run the installer silently
+    # Run the installer
     Start-Process -FilePath $firefoxInstallerPath -ArgumentList "/S" -Wait
 
-    # Check if installation succeeded
     if (Test-Path $firefoxPath -or Test-Path $firefoxPathX86) {
         Write-Host "Firefox has been successfully installed."
     } else {
@@ -28,7 +27,7 @@ function Install-Firefox {
     }
 }
 
-# Check if Firefox is installed, if not, install it
+#Check if firefox on system
 if (!(Test-Path $firefoxPath) -and !(Test-Path $firefoxPathX86)) {
     Install-Firefox
 }
