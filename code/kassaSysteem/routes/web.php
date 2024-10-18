@@ -67,6 +67,8 @@ Route::get('passwordChangeForm', function () {
     return view('passwordChangeForm');
 })->name('passwordChangeForm');
 
+Route::get('/members/{organisatie_id}', \App\Livewire\MembersBeheer::class)->name('members-beheer');
+
 Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
 
 Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])->name('password.reset');

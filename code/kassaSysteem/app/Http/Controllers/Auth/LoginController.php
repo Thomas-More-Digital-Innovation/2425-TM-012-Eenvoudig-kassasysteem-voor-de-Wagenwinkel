@@ -27,7 +27,11 @@ class LoginController extends Controller
         $user = User::where('naam', $request->naam)->first();
 
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
-            // Check if the user needs to change their password
+            session(['naam' => $user->naam]);
+            session(['userInfo' => [
+                'user_id' => $user->user_Id,  // Assuming 'id' is the user_id
+                'organisatie_id' => $user->organisatie_id,    // You can modify this as needed
+            ]]);
             if ($user->wachtwoordWijzigen === 1) {
                 session(['force_password_change' => $user->user_Id]); // Store the user's ID in session
                 return redirect()->route('passwordChangeForm')->with('user_name', $user->naam); // Send username to the view
