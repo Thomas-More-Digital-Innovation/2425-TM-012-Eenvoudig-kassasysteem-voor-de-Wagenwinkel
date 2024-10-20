@@ -69,6 +69,7 @@ Route::post('/item-select/product/{id?}', [CartController::class, 'addProduct'])
 Route::get('passwordChangeForm', function () {
     return view('passwordChangeForm');
 })->name('passwordChangeForm');
+
 Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.change');
 Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])->name('password.reset');
 

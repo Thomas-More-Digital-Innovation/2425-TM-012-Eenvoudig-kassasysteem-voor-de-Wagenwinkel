@@ -11,6 +11,7 @@ class CartController extends Controller
 {
     public function emptyCart(Request $request)
     {
+        sleep(3);
         Shopping_cart::emptySession();
         return redirect()->route('category');
     }

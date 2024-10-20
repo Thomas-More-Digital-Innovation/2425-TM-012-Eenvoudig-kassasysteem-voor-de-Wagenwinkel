@@ -10,6 +10,17 @@
             </div>
         </div>
 
+        @if (session()->has('message'))
+            <div id="flash-message" class="bg-green-300 p-3 rounded-lg text-white text-center mb-3">
+                {{ session('message') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('flash-message').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
+
         <div class="bg-gray-200 p-3 rounded-lg w-[1132px] h-[520px] overflow-y-auto">
             @foreach ($users as $user)
                 <div class="bg-white p-4 rounded-lg flex justify-between items-center mb-3" style="min-height: 60px;">
@@ -58,7 +69,6 @@
     <script>
         function confirmDeleteOrganization(organisatieId) {
             if (confirm("Weet je zeker dat je deze organisatie en alle leden wilt verwijderen?")) {
-                // If the user confirms, call the Livewire method to delete the organization
                 @this.call('deleteOrganizationAndMembers', organisatieId);
             }
         }

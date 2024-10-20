@@ -4,7 +4,7 @@
 
         <!-- Password Change Form -->
         <div class="bg-white p-5 shadow-lg rounded-lg relative">
-            <form id="changePasswordForm" action="{{ route('password.change') }}" method="POST">
+            <form id="changePasswordForm" action="{{ route('password.change') }}" method="POST" onsubmit="return validatePasswords(event)">
                 @csrf
                 <div class="flex space-x-3 pb-3">
                     <div class="bg-gray-300 rounded-lg p-5 flex-col items-center justify-center">
@@ -34,4 +34,35 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // Functie om wachtwoorden te valideren
+        function validatePasswords(event) {
+            const newPassword = document.getElementById('new_password');
+            const confirmPassword = document.getElementById('new_password_confirmation');
+
+            // Reset de styles
+            newPassword.classList.remove('border-red-500');
+            confirmPassword.classList.remove('border-red-500');
+
+            // Valideer of de wachtwoorden overeenkomen
+            if (newPassword.value !== confirmPassword.value) {
+                // Voorkom het verzenden van het formulier
+                event.preventDefault();
+
+                // Maak de velden leeg
+                newPassword.value = '';
+                confirmPassword.value = '';
+
+                // Voeg een rode rand toe aan de invoervelden
+                newPassword.classList.add('border-red-500');
+                confirmPassword.classList.add('border-red-500');
+
+                return false;  // Blijf op dezelfde pagina
+            }
+
+            // Als wachtwoorden overeenkomen, wordt het formulier ingediend en doorgestuurd
+            return true;
+        }
+    </script>
 </x-header>
