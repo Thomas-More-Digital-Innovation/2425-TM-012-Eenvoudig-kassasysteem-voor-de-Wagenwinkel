@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -8,8 +10,7 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-        if (!$id)
-        {
+        if (!$id) {
             $id = 1;
         }
         $producten = Product::where('product_id', $id)->get();
@@ -25,14 +26,14 @@ class ProductController extends Controller
         } else {
             $producten = Product::all();
         }
-
         return view('itemsOverzicht', compact('producten'));
     }
 
-
     public function index()
     {
-        $producten = Product::all();
+        $organisatie_id = $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+
+        $producten = Product::where('organisatie_id', $organisatie_id)->get();
         return view('manageProducts', compact('producten'));
     }
 
@@ -58,7 +59,6 @@ class ProductController extends Controller
         $product->positie = $validatedData['positie'] ?? null;
         $product->voorraad = $validatedData['voorraad'];
         $product->voorraadAanvullen = $validatedData['voorraadAanvullen'] ?? false;
-
         $product->save();
 
         return redirect()->route('manageProducts');
@@ -67,14 +67,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::where('product_id', $id)->firstOrFail();
-
         return view('updateProduct', compact('product'));
     }
 
     public function update(Request $request, $id)
     {
         $product = Product::where('product_id', $id)->firstOrFail();
-
 
         $naam = $request->input('naam');
         $actuele_prijs = $request->input('actuele_prijs');
@@ -86,53 +84,24 @@ class ProductController extends Controller
         $voorraadAanvullen = $request->input('voorraadAanvullen');
 
         Product::where('organisatie_id', $id)
-            ->update(['naam', 'actuele_prijs', 'afbeeldingen', 'organisatie_id', 'categorie_id', 'positie', 'voorraad', 'voorraadAanvullen' => $naam,
-                $actuele_prijs, $afbeeldingen, $organisatie_id, $categorie_id, $positie, $voorraad, $voorraadAanvullen]
-    );
+            ->update([
+                'naam' => $naam,
+                'actuele_prijs' => $actuele_prijs,
+                'afbeeldingen' => $afbeeldingen,
+                'organisatie_id' => $organisatie_id,
+                'categorie_id' => $categorie_id,
+                'positie' => $positie,
+                'voorraad' => $voorraad,
+                'voorraadAanvullen' => $voorraadAanvullen
+            ]);
 
         $product->save();
         return redirect()->route('manageProducts');
     }
-    /*public function update(Request $request, $id)
-    {
-        // Haal het product op basis van de product_id
-        $product = Product::where('product_id', $id)->firstOrFail();
-
-        // Valideer de inkomende request
-        $request->validate([
-            'naam' => 'required|string|max:255',
-            'actuele_prijs' => 'required|numeric',
-            'afbeeldingen' => 'nullable|string',
-            'organisatie_id' => 'required|integer',
-            'categorie_id' => 'required|integer',
-            'positie' => 'nullable|integer',
-            'voorraad' => 'required|integer',
-            'voorraadAanvullen' => 'boolean',
-        ]);
-
-        // Update de velden
-        $product->naam = $request->input('naam');
-        $product->actuele_prijs = $request->input('actuele_prijs');
-        $product->afbeeldingen = $request->input('afbeeldingen') ?? null;
-        $product->organisatie_id = $request->input('organisatie_id');
-        $product->categorie_id = $request->input('categorie_id');
-        $product->positie = $request->input('positie') ?? null;
-        $product->voorraad = $request->input('voorraad');
-        $product->voorraadAanvullen = $request->input('voorraadAanvullen') ?? false;
-
-        // Sla de wijzigingen op
-        $product->save();
-
-        // Redirect naar de beheerpagina met een succesbericht
-        return redirect()->route('manageProducts')->with('success', 'Product succesvol geüpdatet.');
-    }*/
-
 
     public function destroy($product_id)
     {
-        $product = Product::where('product_id', $product_id)->firstOrFail();
-        $product->delete();
+        $product = Product::where('product_id', $product_id)->delete();
         return redirect()->route('manageProducts');
     }
 }
-
