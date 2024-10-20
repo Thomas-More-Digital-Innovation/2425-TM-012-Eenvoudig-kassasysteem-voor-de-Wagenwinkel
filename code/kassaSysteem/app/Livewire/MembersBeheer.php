@@ -30,7 +30,7 @@ class MembersBeheer extends Component
             $user->delete();
         }
 
-        // Refresh the members list for the current organization
+        session()->flash('message', 'Gebruiker succesvol verwijdert');
         $this->users = User::where('organisatie_id', $this->organisatie_id)->get();
         return redirect()->route('members-beheer', ['organisatie_id' => $this->organisatie_id]);
     }
@@ -73,7 +73,6 @@ class MembersBeheer extends Component
         Organisatie::where('organisatie_id', $organisatie_id)->delete();
         User::where('organisatie_id', $organisatie_id)->delete();
 
-        session()->flash('message', 'Organization and its members have been successfully deleted.');
         return redirect()->route('organisatie-beheer');
     }
 }
