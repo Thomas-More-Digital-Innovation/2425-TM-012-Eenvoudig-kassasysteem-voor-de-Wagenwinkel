@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class Product extends Component
 {
+
     public $product = null;
     public function mount($id = null)
     {
@@ -47,4 +48,7 @@ class Product extends Component
         }*/
         return view('Product', compact('product'));
     }
+
+
 }
+

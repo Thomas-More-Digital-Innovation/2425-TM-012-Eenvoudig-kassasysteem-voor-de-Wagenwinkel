@@ -176,3 +176,21 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+
+
+Route::get('/manageProducts', [ProductController::class, 'index'])->name('manageProducts');
+
+Route::get('/addProduct', function () {
+    return view('addProduct');
+})->name('addProduct');
+
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('producten/{id}/edit', [ProductController::class, 'edit'])->name('producten.edit');
+
+Route::put('producten/{id}', [ProductController::class, 'update'])->name('producten.update');
+
+Route::delete('producten/{id}', [ProductController::class, 'destroy'])->name('producten.destroy');
+
