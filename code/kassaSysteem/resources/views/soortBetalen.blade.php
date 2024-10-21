@@ -1,7 +1,7 @@
 <x-layout.exampleLayout
     header="Kies betaling"
     routeLeft="{{ route('payconic') }}"
-    imageLeft="assets/images/payconiq.svg"
+    imageLeft="assets/images/GSM.svg"
     altLeft="payconiq"
     routeRight="{{ route('cashIngeven') }}"
     imageRight="assets/images/cash.svg"
