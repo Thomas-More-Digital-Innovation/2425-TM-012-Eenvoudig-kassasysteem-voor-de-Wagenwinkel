@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,15 +18,10 @@ class ProductController extends Controller
 
     public function ProductAll($categoryId = null)
     {
-        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         if ($categoryId == 1) {
-            $producten = Product::where('categorie_id', '1')
-                                ->where('organisatie_id', $organisation)
-                                ->get();
+            $producten = Product::where('categorie_id', '1')->get();
         } elseif ($categoryId == 2) {
-            $producten = Product::where('categorie_id', '2')
-                                ->where('organisatie_id', $organisation)
-                                ->get();
+            $producten = Product::where('categorie_id', '2')->get();
         } else {
             $producten = Product::all();
         }
@@ -37,7 +31,6 @@ class ProductController extends Controller
     public function index()
     {
         $organisatie_id = $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
-
         $producten = Product::where('organisatie_id', $organisatie_id)->get();
         return view('manageProducts', compact('producten'));
     }
@@ -69,15 +62,15 @@ class ProductController extends Controller
         return redirect()->route('manageProducts');
     }
 
-    public function edit($id)
+    public function edit($product_id)
     {
-        $product = Product::where('product_id', $id)->firstOrFail();
+        $product = Product::where('product_id', $product_id)->firstOrFail();
         return view('updateProduct', compact('product'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_id)
     {
-        $product = Product::where('product_id', $id)->firstOrFail();
+        $product = Product::where('product_id', $product_id)->firstOrFail();
 
         $naam = $request->input('naam');
         $actuele_prijs = $request->input('actuele_prijs');
@@ -88,7 +81,7 @@ class ProductController extends Controller
         $voorraad = $request->input('voorraad');
         $voorraadAanvullen = $request->input('voorraadAanvullen');
 
-        Product::where('organisatie_id', $id)
+        Product::where('organisatie_id', $organisatie_id)
             ->update([
                 'naam' => $naam,
                 'actuele_prijs' => $actuele_prijs,
