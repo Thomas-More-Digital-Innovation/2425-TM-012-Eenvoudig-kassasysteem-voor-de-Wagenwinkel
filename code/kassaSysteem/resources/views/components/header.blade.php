@@ -38,10 +38,11 @@
     }
 
     const isCalculateChangePage = window.location.pathname.includes('cashIngeven'); // Adjust this based on the actual path
+    const isVerkoopLijnPage = window.location.pathname.includes('verkooplijst');
 
     console.log(isCalculateChangePage);
     document.addEventListener('click', function(event) {
-        if(!isCalculateChangePage){
+        if(!isCalculateChangePage && !isVerkoopLijnPage){
             const anchor = event.target.closest('a');
             const button = event.target.closest('button');
 
