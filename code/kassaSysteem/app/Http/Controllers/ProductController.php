@@ -12,25 +12,36 @@ class ProductController extends Controller
         if (!$id) {
             $id = 1;
         }
-        $product = Product::where('product_id', $id)->firstOrFail(); // Use firstOrFail to get a single product
-        return view('Product', compact('product'));
+        $producten = Product::where('product_id', $id)->get();
+        return view('Product', compact('producten'));
     }
 
     public function ProductAll($categoryId = null)
     {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+        $setting = \App\Http\Controllers\Controller::getSetting($organisation);
+
+
         if ($categoryId == 1) {
-            $producten = Product::where('categorie_id', '1')->get();
+            $producten = Product::where('categorie_id', '1')->where('organisatie_id', $organisation)->get();
         } elseif ($categoryId == 2) {
-            $producten = Product::where('categorie_id', '2')->get();
+            $producten = Product::where('categorie_id', '2')->where('organisatie_id', $organisation)->get();
         } else {
             $producten = Product::all();
+        }
+
+        if ($setting->voorraadAangeven) {
+            $producten = $producten->filter(function ($product) {
+                return $product->voorraad > 0;
+            });
+
         }
         return view('itemsOverzicht', compact('producten'));
     }
 
     public function index()
     {
-        $organisatie_id = \App\Helpers\Login::getUser()['organisatie_id'];
+        $organisatie_id = $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $producten = Product::where('organisatie_id', $organisatie_id)->get();
         return view('manageProducts', compact('producten'));
     }
@@ -38,7 +49,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'naam' => 'required|string|max:255', // Fixed field name from 'name' to 'naam'
+            'name' => 'required|string|max:255',
             'actuele_prijs' => 'required|numeric',
             'afbeeldingen' => 'nullable|string',
             'organisatie_id' => 'required|integer',
@@ -49,7 +60,7 @@ class ProductController extends Controller
         ]);
 
         $product = new Product();
-        $product->naam = $validatedData['naam']; // Ensure it matches the validated name
+        $product->naam = $validatedData['name'];
         $product->actuele_prijs = $validatedData['actuele_prijs'];
         $product->afbeeldingen = $validatedData['afbeeldingen'] ?? null;
         $product->organisatie_id = $validatedData['organisatie_id'];
@@ -111,5 +122,12 @@ class ProductController extends Controller
 
         // Redirect of geef een succesbericht terug
         return redirect()->route('manage-products')->with('success', 'Product succesvol bijgewerkt.');
+    }
+
+
+    public function destroy($product_id)
+    {
+        $product = Product::where('product_id', $product_id)->delete();
+        return redirect()->route('manageProducts');
     }
 }
