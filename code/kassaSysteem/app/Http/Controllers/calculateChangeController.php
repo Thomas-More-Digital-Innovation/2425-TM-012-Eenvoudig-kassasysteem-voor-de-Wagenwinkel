@@ -10,7 +10,7 @@ class calculateChangeController extends Controller
     public function calculateChange(Request $request)
     {
         $totalGeld = $request->input('totalGeld');
-        $selectedMoneyArray = json_decode($request->input('selectedMoneyArray'), true); // Decode the selectedMoneyArray
+        $selectedMoneyArray = json_decode($request->input('selectedMoneyArray'), true);
 
         $totalCost = \App\Helpers\Shopping_cart::getPrice();
         $amountGiven = $totalGeld;

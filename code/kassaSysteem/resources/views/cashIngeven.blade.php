@@ -46,15 +46,28 @@
     </div>
 
     <script>
+        <?php
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+        $setting = \App\Http\Controllers\Controller::getSetting($organisation);
+
+        $canPlayAudio = $setting && $setting->actiesMetSpraak == 1;
+        ?>
+        var organisation = <?php echo json_encode($organisation); ?>;
+        var canPlayAudio = <?php echo json_encode($canPlayAudio); ?>;
+
         let selectedMoneyArray = [];
         let totalGeld = 0;
         const price = {{ $price }};
+        var audio = (organisation && canPlayAudio) ? new Audio("{{ asset('assets/audio/clickSound.wav') }}") : null;
 
         document.querySelectorAll('.geldImage').forEach(img => {
             img.addEventListener('click', function () {
                 const geldValue = parseFloat(this.getAttribute('data-value'));
                 addMoneyToTop(this.src, geldValue);
+                audio.play()
             });
+
+
         });
 
         function addMoneyToTop(imageSrc, geldValue) {
@@ -133,6 +146,7 @@
 
         function sendTotalGeld() {
             document.getElementById('totalGeldInput').value = totalGeld.toFixed(2);
+            console.log(selectedMoneyArray)
             document.getElementById('selectedMoneyArrayInput').value = JSON.stringify(selectedMoneyArray);
             return true;
         }

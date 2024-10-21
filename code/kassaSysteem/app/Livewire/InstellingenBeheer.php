@@ -57,6 +57,7 @@ class InstellingenBeheer extends Component
         return redirect()->to('instellingen-beheer');
     }
 
+
     public function render()
     {
         return view('livewire.instellingen-beheer');

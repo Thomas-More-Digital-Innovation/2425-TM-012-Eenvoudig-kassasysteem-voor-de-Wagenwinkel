@@ -11,6 +11,8 @@ class Product extends Model
     protected $table = 'producten';
     protected $guarded = ['product_id'];
 
+    public $timestamps = false;
+
     public function organisatie()
     {
         return $this->belongsTo(Organisatie::class, 'organisatie_id', 'organisatie_id')->withDefault();

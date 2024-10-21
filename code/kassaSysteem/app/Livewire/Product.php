@@ -2,18 +2,22 @@
 
 namespace App\Livewire;
 
+use AllowDynamicProperties;
 use App\Helpers\Shopping_cart;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
 
-class Product extends Component
+#[AllowDynamicProperties] class Product extends Component
 {
     public $product = null;
     public function mount($id = null)
     {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         if ($id) {
             $this->product = \App\Models\Product::where('product_id', $id)->firstOrFail();
+            $this->setting = \App\Http\Controllers\Controller::getSetting($organisation);;
         }
+
     }
 
     public function addToBasket(Product $product): void
@@ -36,15 +40,13 @@ class Product extends Component
 
     public function render($id = null)
     {
-       /* if ($id) {*/
-            $product = \App\Models\Product::where('product_id', $id)
-                ->get();
-       /* } else {
-            // If no ID is provided, get all records
-            $products = \App\Models\Product::withCount('records')
-                ->orderBy($this->sortColumn, $this->sortOrder)
-                ->get();
-        }*/
-        return view('Product', compact('product'));
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+        $setting = \App\Http\Controllers\Controller::getSetting($organisation);;
+
+        $product = \App\Models\Product::where('product_id', $id)
+            ->get();
+
+
+        return view('Product', compact('product', 'setting'));
     }
 }
