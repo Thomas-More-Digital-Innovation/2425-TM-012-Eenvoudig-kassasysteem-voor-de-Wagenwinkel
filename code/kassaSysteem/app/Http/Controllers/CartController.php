@@ -27,6 +27,7 @@ class CartController extends Controller
 
         $amountUpdate = $product->voorraad - $amount;
 
+
         if($setting->voorraadAangeven && $product->voorraadAanvullen)
         {
             Product::where('product_id', $productid)
