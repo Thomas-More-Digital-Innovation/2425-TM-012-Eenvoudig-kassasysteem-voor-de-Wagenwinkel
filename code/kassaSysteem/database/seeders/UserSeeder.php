@@ -17,22 +17,12 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(
             [
                 [
-                    'naam' => 'Isabelle',
-                    'wachtwoord' => Hash::make('Isabelle'),
+                    'naam' => 'Isabel',
+                    'wachtwoord' => Hash::make('Isabel'),
                     'rol_id' => 1,
                     'organisatie_id' => 1,
                     'wachtwoordWijzigen' => 0
-                ],
-                [
-                'naam' => 'Maxim',
-                'wachtwoord' => Hash::make('Maxim'),
-                'rol_id' => 2,
-                'organisatie_id' => 2,
-                'wachtwoordWijzigen' => 0
-            ]
-
-
-
+                ]
             ]);
     }
 }

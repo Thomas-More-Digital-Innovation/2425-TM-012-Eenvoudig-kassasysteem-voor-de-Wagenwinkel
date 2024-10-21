@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 {
 
     public $product = null;
+    public $setting = null;
     public function mount($id = null)
     {
         $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
