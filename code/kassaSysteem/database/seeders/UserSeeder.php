@@ -17,26 +17,22 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(
             [
                 [
-                    'naam' => 'Jef',
-                    'wachtwoord' => Hash::make('Jef'),
-                    'rol_id' => 2,
-                    'organisatie_id' => 2,
-                    'wachtwoordWijzigen' => 0
-                ],
-                [
-                    'naam' => 'Jan',
-                    'wachtwoord' => Hash::make('Jan'),
-                    'rol_id' => 2,
-                    'organisatie_id' => 1,
-                    'wachtwoordWijzigen' => 1
-                ],
-                [
-                    'naam' => 'Peter',
-                    'wachtwoord' => Hash::make('Peter'),
+                    'naam' => 'Isabelle',
+                    'wachtwoord' => Hash::make('Isabelle'),
                     'rol_id' => 1,
-                    'organisatie_id' => 2,
+                    'organisatie_id' => 1,
                     'wachtwoordWijzigen' => 0
-                ]
+                ],
+                [
+                'naam' => 'Maxim',
+                'wachtwoord' => Hash::make('Maxim'),
+                'rol_id' => 2,
+                'organisatie_id' => 2,
+                'wachtwoordWijzigen' => 0
+            ]
+
+
+
             ]);
     }
 }

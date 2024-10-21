@@ -8,8 +8,8 @@ class Login
      * Create a new class instance.
      */
     private static array $userInfo = [
-            "user_id" => 2,
-            "organisatie_id" => 1
+            "user_id" => null,
+            "organisatie_id" => null,
     ];
 
     public static function init(): void
@@ -20,6 +20,7 @@ class Login
     {
         return self::$userInfo;
     }
+
 }
 
 Login::init();

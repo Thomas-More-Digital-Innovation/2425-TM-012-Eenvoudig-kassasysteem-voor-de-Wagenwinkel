@@ -13,53 +13,50 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
-    // Specify the table name explicitly
-    protected $table = 'users'; // Add this line
+    // Explicitly define the table name
+    protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    // Specify the primary key as 'user_Id'
+    protected $primaryKey = 'user_Id';
+
+    // If 'user_Id' is not auto-incrementing, add this line:
+    public $incrementing = false;
+
+    // Define the key type (only necessary if it's not an integer)
+    protected $keyType = 'int';  // Change to 'string' if it's a string
+
+    public $timestamps = false;
+
     protected $fillable = [
         'naam',
-        'wachtwoord', // Ensure this matches your column name in the database
+        'wachtwoord',
         'rol_id',
         'organisatie_id',
-        'wachtwoordWijzigen'
+        'wachtwoordWijzigen',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
-        'wachtwoord', // Change 'password' to 'wachtwoord'
+        'wachtwoord',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
     protected $appends = [
         'profile_photo_url',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    // Find method to locate a user by user_Id
+    public static function find($user_Id)
+    {
+        return static::where('user_Id', $user_Id)->first();
+    }
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
-            'wachtwoord' => 'hashed', // Change 'password' to 'wachtwoord'
+            'wachtwoord' => 'hashed',
         ];
     }
 
@@ -73,3 +70,4 @@ class User extends Authenticatable
         return $this->belongsTo(Organisatie::class, 'organisatie_id', 'organisatie_id')->withDefault();
     }
 }
+

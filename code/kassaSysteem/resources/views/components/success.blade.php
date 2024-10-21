@@ -108,7 +108,6 @@
                     setTimeout(() => {
                         iframe.parentNode.removeChild(iframe);
                         resolve();
-                        document.getElementById('empty-cart-form').submit(); // Leeg het winkelwagentje
                     }, 4000);
                 };
             });
@@ -116,19 +115,29 @@
 
         // Start print bij het laden van de pagina
         window.onload = function() {
+            const printerGebruiken = {{ json_encode(DB::table('organisaties')->where('organisatie_id', auth()->user()->organisatie_id)->value('printerGebruiken')) }};  // Waarde van printerGebruiken ophalen en omzetten naar JSON
             const cartItems = @json(\App\Helpers\Shopping_cart::getRecords());
-            console.log(cartItems);
-
             const itemsArray = Array.isArray(cartItems) ? cartItems : Object.values(cartItems);
 
-            printTotal(itemsArray).then(() => {
-            });
+            if (printerGebruiken === 1) {
+                printTotal(itemsArray).then(() => {
+                    document.getElementById('empty-cart-form').submit();
+                    setTimeout(() => {
+                        window.location.href = "{{ route('category') }}";
+                    }, 5000);
+                });
+            } else {
+                document.getElementById('empty-cart-form').submit();
+                setTimeout(() => {
+                    window.location.href = "{{ route('category') }}";
+                }, 5000);
+            }
         };
     </script>
 </head>
 <body>
 <div id="total-amount" style="display: none;">
-    {{ \App\Helpers\Shopping_cart::getPrice() }} <!-- Het totaalbedrag wordt hier opgehaald -->
+    {{ \App\Helpers\Shopping_cart::getPrice() }}
 </div>
 <!-- Formulier om het winkelwagentje leeg te maken -->
 <form id="empty-cart-form" action="{{ route('empty.cart') }}" method="POST">

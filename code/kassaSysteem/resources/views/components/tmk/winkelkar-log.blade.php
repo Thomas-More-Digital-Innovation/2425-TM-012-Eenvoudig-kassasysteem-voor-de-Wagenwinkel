@@ -12,15 +12,16 @@
         <p class="font-bold">What's inside my basket?</p>
         <div x-show="show" x-cloak>
             @php
-                $detailedCartData = [
-                    'Cart::getCart()' => Shopping_cart::getCart(),
-                    'Cart::getRecords()' => Shopping_cart::getRecords(),
-                ];
-            /*    $inlineCartData = [
-                    'Cart::getKeys()' => Cart::getKeys(),
-                    'Cart::getTotalPrice()' => Cart::getTotalPrice(),
-                    'Cart::getTotalQty()' => Cart::getTotalQty(),
-                ];*/
+                $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+                    $detailedCartData = [
+                        'Cart::getCart()' => Shopping_cart::getCart(),
+                        'Cart::getRecords()' => Shopping_cart::getRecords(),
+                    ];
+                /*    $inlineCartData = [
+                        'Cart::getKeys()' => Cart::getKeys(),
+                        'Cart::getTotalPrice()' => Cart::getTotalPrice(),
+                        'Cart::getTotalQty()' => Cart::getTotalQty(),
+                    ];*/
             @endphp
 
             @foreach ($detailedCartData as $label => $data)

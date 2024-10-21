@@ -3,7 +3,6 @@
         <div id="selectedMoney" class="flex flex-row bg-gray-200 w-full h-40 rounded-lg mb-4 items-center p-4 gap-4 overflow-x-auto">
         </div>
 
-        <!-- Money Images for selection -->
         <div class="bg-gray-200 w-full rounded-lg mb-4">
             <div class="flex flex-col gap-5 m-4">
                 <div class="flex justify-between">
@@ -23,7 +22,6 @@
             </div>
         </div>
 
-        <!-- Footer with buttons and total price -->
         <div class="flex flex-row justify-between items-center w-full">
             <div>
                 <form action="{{ route('soortBetalen') }}" method="GET">
@@ -31,15 +29,18 @@
                     <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
                 </form>
             </div>
-            <p id="totalGeldWeergave" class="w-full text-center text-xl font-bold">Gekregen: 0 €</p>
-
-            <!-- Form to calculate change -->
+            <p id="totalGeldWeergave" class="w-full text-center text-4xl font-bold">Gekregen: € 0.00 </p>
             <div>
-                <form action="{{ route('calculate-change') }}" method="GET" onsubmit="return sendTotalGeld();">
+                <?php
+                $price = \App\Helpers\Shopping_cart::getPrice();
+                ?>
+                <form id="changeForm" action="{{ route('calculate-change') }}" method="GET" onsubmit="return sendTotalGeld();" class="hidden">
                     @csrf
-                    <input type="hidden" name="totalGeld" id="totalGeldInput" value="0"> <!-- Hidden input for totalGeld -->
+                    <input type="hidden" name="totalGeld" id="totalGeldInput" value="0">
+                    <input type="hidden" name="selectedMoneyArray" id="selectedMoneyArrayInput">
                     <x-layout.greenArrow width="w-[250px] md:w-[391px]"></x-layout.greenArrow>
                 </form>
+                <div id="placeholderDiv" class="w-[250px] md:w-[391px]"></div>
             </div>
         </div>
     </div>
@@ -47,6 +48,7 @@
     <script>
         let selectedMoneyArray = [];
         let totalGeld = 0;
+        const price = {{ $price }};
 
         document.querySelectorAll('.geldImage').forEach(img => {
             img.addEventListener('click', function () {
@@ -58,11 +60,9 @@
         function addMoneyToTop(imageSrc, geldValue) {
             const selectedMoneyContainer = document.getElementById('selectedMoney');
 
-            // Create a container for the selected money image
             const moneyElement = document.createElement('div');
             moneyElement.classList.add('relative', 'inline-block', 'geldInTop', 'cursor-pointer');
 
-            // Create the money image
             const imgElement = document.createElement('img');
             imgElement.src = imageSrc;
             imgElement.classList.add('h-[100px]');
@@ -70,7 +70,6 @@
 
             moneyElement.appendChild(imgElement);
 
-            // Create a click event for moneyElement
             let clickCount = 0;
             moneyElement.addEventListener('click', function () {
                 clickCount++;
@@ -79,7 +78,7 @@
                     toggleOverlay(this, geldValue);
                 } else if (clickCount === 2) {
                     removeMoney(this);
-                    clickCount = 0; // Reset click count
+                    clickCount = 0;
                 }
             });
 
@@ -93,13 +92,12 @@
         function toggleOverlay(moneyElement, geldValue) {
             const overlayImg = document.createElement('img');
             overlayImg.classList.add('h-[70%]', 'absolute', 'top-1/2', 'left-1/2', 'transform', '-translate-x-1/2', '-translate-y-1/2');
-            overlayImg.style.pointerEvents = 'none'; // Disable events for overlay
+            overlayImg.style.pointerEvents = 'none';
 
-            // Choose the appropriate overlay image based on the value
             if (geldValue > 2) {
-                overlayImg.src = "{{ asset('assets/images/money/remove_bill.png') }}"; // Bill overlay
+                overlayImg.src = "{{ asset('assets/images/money/remove_bill.png') }}";
             } else {
-                overlayImg.src = "{{ asset('assets/images/money/remove_coin.png') }}"; // Coin overlay
+                overlayImg.src = "{{ asset('assets/images/money/remove_coin.png') }}";
             }
 
             moneyElement.appendChild(overlayImg);
@@ -110,7 +108,6 @@
             const geldValue = parseFloat(moneyElement.firstChild.getAttribute('data-value'));
 
             totalGeld -= geldValue;
-
             updateTotalDisplay();
 
             const index = selectedMoneyArray.indexOf(geldValue);
@@ -121,17 +118,23 @@
             moneyElement.remove();
         }
 
-        // Update total money display
         function updateTotalDisplay() {
-            document.getElementById('totalGeldWeergave').textContent = `Gekregen: ${totalGeld.toFixed(2)} €`;
-            document.getElementById('totalGeldInput').value = totalGeld.toFixed(2); // Update hidden input with totalGeld
+            document.getElementById('totalGeldWeergave').textContent = `Gekregen: € ${totalGeld.toFixed(2)}`;
+            document.getElementById('totalGeldInput').value = totalGeld.toFixed(2);
+
+            if (totalGeld >= price) {
+                document.getElementById('changeForm').classList.remove('hidden');
+                document.getElementById('placeholderDiv').classList.add('hidden');
+            } else {
+                document.getElementById('changeForm').classList.add('hidden');
+                document.getElementById('placeholderDiv').classList.remove('hidden');
+            }
         }
 
-        // Function to send totalGeld on form submission
         function sendTotalGeld() {
-            // This will ensure the totalGeld is updated in the hidden input before submission
             document.getElementById('totalGeldInput').value = totalGeld.toFixed(2);
-            return true; // Allow the form to submit
+            document.getElementById('selectedMoneyArrayInput').value = JSON.stringify(selectedMoneyArray);
+            return true;
         }
     </script>
 </x-header>

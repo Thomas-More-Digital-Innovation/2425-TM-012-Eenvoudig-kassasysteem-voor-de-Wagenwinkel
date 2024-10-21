@@ -12,6 +12,7 @@ class Organisatie extends Model
     protected $primaryKey = 'organisatie_id';
     protected $fillable = ['naam'];
 
+
     public function wisselgelden()
     {
         return $this->hasMany(Wisselgeld::class);
