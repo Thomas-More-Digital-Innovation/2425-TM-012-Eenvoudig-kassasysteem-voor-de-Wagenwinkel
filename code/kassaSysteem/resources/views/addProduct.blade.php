@@ -8,8 +8,8 @@
             <label for="price">Actuele Prijs:</label>
             <input type="number" step="0.01" id="price" name="actuele_prijs" required>
 
-            <label for="image">Afbeelding URL:</label>
-            <input type="text" id="image" name="afbeeldingen">
+            <label for="afbeeldingen">Afbeelding:</label>
+            <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png">
 
             <label for="organization">Organisatie ID:</label>
             <input type="number" id="organization" name="organisatie_id" required>
@@ -29,7 +29,7 @@
             <button type="submit">Toevoegen</button>
         </form>
         <div class="pt-2">
-            <a href="{{ route('manageProducts') }}">
+            <a href="{{ route('manage-products') }}">
                 <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
             </a>
         </div>

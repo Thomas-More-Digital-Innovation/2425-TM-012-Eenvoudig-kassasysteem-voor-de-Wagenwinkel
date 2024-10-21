@@ -9,7 +9,16 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'producten';
-    protected $guarded = ['product_id'];
+    protected $primaryKey = 'product_id';
+
+    protected $fillable = [
+        'naam',
+        'actuele_prijs',
+        'afbeeldingen',
+        'categorie_id',
+        'positie',
+        'voorraad',
+    ];
 
     public $timestamps = false;
 
