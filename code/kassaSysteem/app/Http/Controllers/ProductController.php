@@ -20,10 +20,12 @@ class ProductController extends Controller
     {
         $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $setting = \App\Http\Controllers\Controller::getSetting($organisation);
+
+
         if ($categoryId == 1) {
-            $producten = Product::where('categorie_id', '1')->get();
+            $producten = Product::where('categorie_id', '1')->where('organisatie_id', $organisation)->get();
         } elseif ($categoryId == 2) {
-            $producten = Product::where('categorie_id', '2')->get();
+            $producten = Product::where('categorie_id', '2')->where('organisatie_id', $organisation)->get();
         } else {
             $producten = Product::all();
         }
@@ -79,32 +81,49 @@ class ProductController extends Controller
 
     public function update(Request $request, $product_id)
     {
-        $product = Product::where('product_id', $product_id)->firstOrFail();
+        $request->validate([
+            'naam' => 'required|string|max:255',
+            'actuele_prijs' => 'required|numeric',
+            'afbeeldingen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB max
+            'categorie_id' => 'required|integer',
+            'positie' => 'required|integer',
+            'voorraad' => 'required|integer',
+        ]);
 
+        // Zoek het product op
+        $product = Product::findOrFail($product_id);
+
+        // Haal de waarde op uit de request
         $naam = $request->input('naam');
         $actuele_prijs = $request->input('actuele_prijs');
-        $afbeeldingen = $request->input('afbeeldingen');
-        $organisatie_id = $request->input('organisatie_id');
         $categorie_id = $request->input('categorie_id');
         $positie = $request->input('positie');
         $voorraad = $request->input('voorraad');
-        $voorraadAanvullen = $request->input('voorraadAanvullen');
 
-        Product::where('organisatie_id', $organisatie_id)
-            ->update([
-                'naam' => $naam,
-                'actuele_prijs' => $actuele_prijs,
-                'afbeeldingen' => $afbeeldingen,
-                'organisatie_id' => $organisatie_id,
-                'categorie_id' => $categorie_id,
-                'positie' => $positie,
-                'voorraad' => $voorraad,
-                'voorraadAanvullen' => $voorraadAanvullen
-            ]);
+        // Upload de afbeelding indien gekozen
+        if ($request->hasFile('afbeeldingen')) {
+            $file = $request->file('afbeeldingen');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('images', $filename, 'public'); // Opslaan in de public/images map
+            $afbeeldingen = 'storage/images/' . $filename; // Sla de pad op in de database
+        } else {
+            $afbeeldingen = $product->afbeeldingen; // Gebruik de bestaande afbeelding als er geen nieuwe is
+        }
 
-        $product->save();
-        return redirect()->route('manageProducts');
+        // Update de productgegevens in de database
+        $product->update([
+            'naam' => $naam,
+            'actuele_prijs' => $actuele_prijs,
+            'afbeeldingen' => $afbeeldingen,
+            'categorie_id' => $categorie_id,
+            'positie' => $positie,
+            'voorraad' => $voorraad,
+        ]);
+
+        // Redirect of geef een succesbericht terug
+        return redirect()->route('manage-products')->with('success', 'Product succesvol bijgewerkt.');
     }
+
 
     public function destroy($product_id)
     {

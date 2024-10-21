@@ -48,7 +48,6 @@ use Illuminate\Support\Facades\Log;
         $product = \App\Models\Product::where('product_id', $id)
             ->get();
 
-
         return view('Product', compact('product', 'setting'));
     }
 

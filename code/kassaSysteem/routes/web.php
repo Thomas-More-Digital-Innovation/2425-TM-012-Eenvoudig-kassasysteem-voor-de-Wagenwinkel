@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\MembersBeheerController;
 use App\Http\Controllers\ProductController;
 use App\Livewire\InstellingenBeheer;
+use App\Livewire\ManageProducts;
 use App\Livewire\OrganisatieBeheer;
 use App\Livewire\Product;
 use App\Livewire\WisselgeldBeheer;
@@ -76,22 +77,25 @@ Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])
 // Wisselgeld update
 Route::post('/wisselgeldBeheer', [WisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
 
-
-
-Route::get('/manageProducts', [ProductController::class, 'index'])->name('manageProducts');
-
 Route::get('/addProduct', function () {
     return view('addProduct');
 })->name('addProduct');
 
+// Route for managing products (no product_id needed here)
+Route::get('/manage-products', ManageProducts::class)->name('manage-products');
 
-Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+// Route for editing a product (this route will pass the product_id)
+Route::get('/producten/{product_id}/edit', [ProductController::class, 'edit'])->name('producten.edit');
 
-Route::get('producten/{id}/edit', [ProductController::class, 'edit'])->name('producten.edit');
 
-Route::put('producten/{id}', [ProductController::class, 'update'])->name('producten.update');
+// Store and Edit routes
+Route::post('/products', [ManageProducts::class, 'store'])->name('products.store');
 
-Route::delete('producten/{id}', [ProductController::class, 'destroy'])->name('producten.destroy');
+// Route voor het updaten van een product
+Route::put('/producten/{product_id}', [ProductController::class, 'update'])->name('producten.update');
+
+// Route voor het verwijderen van een product
+Route::delete('/producten/{product_id}', [ManageProducts::class, 'destroy'])->name('producten.destroy');
 
 // Database update route for change calculation
 Route::post('/update-database', [calculateChangeController::class, 'updateDatabase'])->name('updateDatabase');
