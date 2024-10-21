@@ -20,10 +20,12 @@ class ProductController extends Controller
     {
         $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $setting = \App\Http\Controllers\Controller::getSetting($organisation);
+
+
         if ($categoryId == 1) {
-            $producten = Product::where('categorie_id', '1')->get();
+            $producten = Product::where('categorie_id', '1')->where('organisatie_id', $organisation)->get();
         } elseif ($categoryId == 2) {
-            $producten = Product::where('categorie_id', '2')->get();
+            $producten = Product::where('categorie_id', '2')->where('organisatie_id', $organisation)->get();
         } else {
             $producten = Product::all();
         }
