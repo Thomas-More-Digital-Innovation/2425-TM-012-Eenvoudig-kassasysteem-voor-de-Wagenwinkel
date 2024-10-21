@@ -3,16 +3,16 @@
         <div id="selectedMoney" class="flex flex-row bg-gray-200 w-full h-40 rounded-lg mb-4 items-center p-4 gap-4 overflow-x-auto">
         </div>
 
-        <div class="bg-gray-200 w-full rounded-lg mb-4">
+        <div class="bg-gray-200 w-full h-[500px] rounded-lg mb-4">
             <div class="flex flex-col gap-5 m-4">
-                <div class="flex justify-between">
+                <div class="flex justify-between mt-10">
                     <img class="geldImage w-[20%] h-[20%]" data-value="50" src="{{ asset('assets/images/money/50.png') }}" alt="50 euro">
                     <img class="geldImage w-[20%] h-[20%]" data-value="20" src="{{ asset('assets/images/money/20.png') }}" alt="20 euro">
                     <img class="geldImage w-[10%] h-[10%]" data-value="2" src="{{ asset('assets/images/money/2.png') }}" alt="2 euro">
                     <img class="geldImage w-[10%] h-[10%]" data-value="1" src="{{ asset('assets/images/money/1.png') }}" alt="1 euro">
                     <img class="geldImage w-[10%] h-[10%]" data-value="0.5" src="{{ asset('assets/images/money/_50.png') }}" alt="50 cent">
                 </div>
-                <div class="flex justify-between">
+                <div class="flex justify-between mt-10">
                     <img class="geldImage w-[20%] h-[20%]" data-value="10" src="{{ asset('assets/images/money/10.png') }}" alt="10 euro">
                     <img class="geldImage w-[20%] h-[20%]" data-value="5" src="{{ asset('assets/images/money/5.png') }}" alt="5 euro">
                     <img class="geldImage w-[10%] h-[10%]" data-value="0.2" src="{{ asset('assets/images/money/_20.png') }}" alt="20 cent">
