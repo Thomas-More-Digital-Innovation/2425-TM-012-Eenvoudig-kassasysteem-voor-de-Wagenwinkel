@@ -76,5 +76,22 @@ Route::post('/password/reset/{user}', [LoginController::class, 'resetPassword'])
 // Wisselgeld update
 Route::post('/wisselgeldBeheer', [WisselgeldBeheer::class, 'updateWisselgeld'])->name('updateWisselgeld');
 
+
+
+Route::get('/manageProducts', [ProductController::class, 'index'])->name('manageProducts');
+
+Route::get('/addProduct', function () {
+    return view('addProduct');
+})->name('addProduct');
+
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('producten/{id}/edit', [ProductController::class, 'edit'])->name('producten.edit');
+
+Route::put('producten/{id}', [ProductController::class, 'update'])->name('producten.update');
+
+Route::delete('producten/{id}', [ProductController::class, 'destroy'])->name('producten.destroy');
+
 // Database update route for change calculation
 Route::post('/update-database', [calculateChangeController::class, 'updateDatabase'])->name('updateDatabase');

@@ -30,4 +30,6 @@ class Product extends Model
     {
         return $this->belongsTo(StandaardProduct::class, 'standaard_id', 'standaard_id')->withDefault();
     }
+
+    public $timestamps = false;  // Schakel timestamps uit
 }
