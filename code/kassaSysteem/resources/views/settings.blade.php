@@ -1,6 +1,6 @@
 <x-layout.exampleLayout
     header="Settings"
-    routeLeft="{{route('manageProducts')}}"
+    routeLeft="{{route('manage-products')}}"
     imageLeft="assets/images/menu.svg"
     altLeft="menu"
     routeRight="{{route('begeleiderSettings')}}"
