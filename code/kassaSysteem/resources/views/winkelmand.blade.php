@@ -1,5 +1,5 @@
 <x-header header="Winkelmand">
-    <div class="bg-white w-11/12 md:w-4/5 px-4 h-auto min-h-[85vh] rounded-lg flex flex-col justify-between items-center">
+    <div class="bg-white w-11/12 px-4 h-auto min-h-[85vh] rounded-lg flex flex-col justify-between items-center">
         <div class="bg-gray-200 w-full h-[400px] md:h-[600px] rounded-lg m-4 p-4 overflow-y-auto">
             @php
                 $products = \App\Helpers\Shopping_cart::getRecords();
