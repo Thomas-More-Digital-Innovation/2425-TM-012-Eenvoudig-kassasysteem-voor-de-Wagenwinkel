@@ -3,7 +3,7 @@
         <div class="bg-gray-200 w-[1133px] h-[560px] p-4 rounded-lg mb-3">
             <div class="grid grid-cols-2 h-full py-5 px-3">
                 <div class="flex flex-col">
-                    <span class="text-3xl font-semibold ml-2 mb-2">Acties met spraak</span>
+                    <span class="text-3xl font-semibold ml-2 mb-2">Acties met geluid</span>
                     <label class="switch">
                         <input type="checkbox" wire:model="settings.acties_met_spraak" wire:change="updateSettings('acties_met_spraak')">
                         <span class="slider round"></span>
@@ -27,13 +27,6 @@
                     <span class="text-3xl font-semibold ml-2 mb-2">Wisselgeld Aangeven</span>
                     <label class="switch">
                         <input type="checkbox" wire:model="settings.wisselgeld_aangeven" wire:change="updateSettings('wisselgeld_aangeven')">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-3xl font-semibold ml-2 mb-2">Trillen bij acties</span>
-                    <label class="switch">
-                        <input type="checkbox" wire:model="settings.trillen_bij_acties" wire:change="updateSettings('trillen_bij_acties')">
                         <span class="slider round"></span>
                     </label>
                 </div>

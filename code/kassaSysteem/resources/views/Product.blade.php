@@ -8,29 +8,40 @@
                 </div>
             </button>
             <button onclick="showSquare()">
-                <div class="bg-purple-800 rounded-lg text-center p-5 flex items-center justify-center ">
-                    <img src="{{ asset($product->afbeeldingen)}}" alt="{{ $product->naam }}" class="h-400 w-400 object-contain aspect-square">
+                <div class="bg-purple-800 rounded-lg text-center p-5 flex items-center justify-center">
+                    <img src="{{ asset($product->afbeeldingen) }}" alt="{{ $product->naam }}" class="h-400 w-400 object-contain aspect-square">
                 </div>
             </button>
         </div>
         <div class="flex space-x-3">
-            <form action="{{ route('products', ['categoryId' => $product->categorie_id] ) }}" method="GET" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
+            <form action="{{ route('products', ['categoryId' => $product->categorie_id]) }}" method="GET" class="w-full h-60 bg-orange-200 py-8 rounded-md flex justify-evenly items-center">
                 @csrf
                 <x-layout.redArrow/>
             </form>
-            <form action="{{ route('cart.product-add', ['id' => $product->product_id]) }}" method="POST" class="w-full h-60 bg-orange-200 py-8 rounded-md  flex justify-evenly items-center">
-                <input type="number" id="amount" name="amount" value="0" min="0" hidden>
+            <form action="{{ route('cart.product-add', ['id' => $product->product_id]) }}" method="POST" class="w-full h-60 bg-orange-200 py-8 rounded-md flex justify-evenly items-center">
                 @csrf
+                <input type="number" id="amount" name="amount" value="0" min="0" hidden>
                 <x-layout.greenArrow/>
             </form>
         </div>
     </div>
     <script>
-        let counter = 0; // This keeps track of the total count
+        let counter = 0;
+        const maxStock = {{ $product->voorraad }};
+        let voorAangevenOrg = {{ $setting->voorraadAangeven }};
+        let voorAangevenPro = {{ $product->voorraadAanvullen }};
 
         function showSquare() {
-            // Increment the counter
-            counter++;
+            if (voorAangevenOrg && voorAangevenPro)
+            {
+                if (counter < maxStock) {
+                    counter++;
+                }
+            }
+            else{
+                counter++;
+            }
+
 
             // Create content based on the counter
             let content = '';
@@ -64,8 +75,4 @@
             document.getElementById('count').innerHTML = content;
         }
     </script>
-
 </x-header>
-
-
-
