@@ -54,7 +54,7 @@
     document.getElementById('exportBtn').addEventListener('click', function() {
         setTimeout(function() {
             location.reload();
-        }, 250);
+        }, 500);
     });
 </script>
 

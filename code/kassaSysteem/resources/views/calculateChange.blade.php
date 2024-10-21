@@ -1,7 +1,7 @@
 <x-header header="Geld terug geven">
-    <div class="bg-white p-4 rounded-lg shadow-lg h-[818px]">
+    <div class="bg-white p-4 rounded-lg shadow-lg w-11/12 h-[818px]">
         @isset($result)
-            <div class="bg-gray-200 w-[1504px] h-[530px] p-3 rounded-lg mb-3">
+            <div class="bg-gray-200 w-full h-[530px] p-3 rounded-lg mb-3">
                 <div class="grid grid-cols-5 gap-4">
                     @php
                         $totalItems = 0;
