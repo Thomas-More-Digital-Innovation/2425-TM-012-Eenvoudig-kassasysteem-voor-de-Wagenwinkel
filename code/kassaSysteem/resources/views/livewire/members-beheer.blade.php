@@ -49,18 +49,17 @@
             @endforeach
         </div>
 
-        <div class="pt-3 flex justify-between w-full">
-            <div class="flex">
-                <a href="{{ route('organisatie-beheer') }}">
-                    <x-layout.redArrow width="w-[560px]" />
+        <div class="pt-3 flex justify-between w-full gap-3">
+            <div class="flex w-full">
+                <a href="{{ route('organisatie-beheer') }}" class="w-full">
+                    <x-layout.redArrow/>
                 </a>
             </div>
 
-            <!-- Conditional check for non-ADMIN organizations -->
             @if (!$this->isAdmin())
-                <div class="flex justify-center w-1/2">
+                <div class="flex justify-center w-full">
                     <button onclick="confirmDeleteOrganization({{ $organisatie_id }})" class="{{ $width ?? 'w-full' }} h-60 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors flex justify-center items-center px-4 py-2">
-                        <img src="{{ asset('assets/images/bin.svg') }}" alt="vuilbak" width="200px">
+                        <img src="{{ asset('assets/images/bin.svg') }}" alt="vuilbak" class="w-[100px]">
                     </button>
                 </div>
             @endif

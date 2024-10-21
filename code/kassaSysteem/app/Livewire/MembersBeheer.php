@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Organisatie;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,6 +25,7 @@ class MembersBeheer extends Component
     {
         // Find the member in the users table by user_Id
         $user = User::where('user_Id', $user_Id)->first();
+        $userId = \App\Helpers\Login::getUser()['user_id'];
 
         // Check if user exists and delete
         if ($user) {
@@ -32,7 +34,19 @@ class MembersBeheer extends Component
 
         session()->flash('message', 'Gebruiker succesvol verwijdert');
         $this->users = User::where('organisatie_id', $this->organisatie_id)->get();
-        return redirect()->route('members-beheer', ['organisatie_id' => $this->organisatie_id]);
+        if( $userId == $user_Id)
+        {
+            Auth::logout();
+            session(['userInfo' => [
+                'user_id' => null,  // Assuming 'id' is the user_id
+                'organisatie_id' => null,    // You can modify this as needed
+            ]]);
+            return redirect('/');
+        }
+        else{
+            return redirect()->route('members-beheer', ['organisatie_id' => $this->organisatie_id]);
+        }
+
     }
 
     public function isAdmin()
