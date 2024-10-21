@@ -68,6 +68,7 @@ class OrganisatieBeheer extends Component
             $this->organisatieNaam = '';
             $this->organisaties = Organisatie::all();
 
+            session()->flash('message', 'Organisatie succesvol aangemaakt');
             return redirect()->to('organisatie-beheer');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -108,6 +109,7 @@ class OrganisatieBeheer extends Component
 
             $this->organisaties = Organisatie::all();
 
+            session()->flash('message', 'Gebruiker succesvol aangemaakt');
             return redirect()->to('organisatie-beheer');
 
         } catch (\Illuminate\Validation\ValidationException $e) {

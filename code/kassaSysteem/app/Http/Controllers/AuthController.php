@@ -32,20 +32,28 @@ class AuthController extends Controller
         $user = User::where('naam', $request->naam)->first();
 
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
-            Auth::login($user); // Log in the user
-
-            // Store the user's name in the session
             session(['naam' => $user->naam]);
             session(['userInfo' => [
-                'user_id' => $user->id,
+                'user_id' => $user->user_Id,
                 'organisatie_id' => $user->organisatie_id,
             ]]);
+            if ($user->wachtwoordWijzigen === 1) {
+                session(['force_password_change' => $user->user_Id]); // Store the user's ID in session
+                return redirect()->route('passwordChangeForm')->with('user_name', $user->naam); // Send username to the view
+            } else {
+                Auth::login($user);
 
-            // Check the rol_id to determine the redirect
-            if ($user->rol_id == 1) {
-                return redirect()->intended('/organisatie-beheer'); // Adjust this route for Admins
-            } elseif ($user->rol_id == 2) {
-                return redirect()->intended('/settings'); // Adjust this route for Begeleiders
+                session(['naam' => $user->naam]);
+                session(['userInfo' => [
+                    'user_id' => $user->user_Id,
+                    'organisatie_id' => $user->organisatie_id,
+                ]]);
+
+                if ($user->rol_id == 1) {
+                    return redirect()->intended('/organisatie-beheer'); // Adjust this route for Admins
+                } elseif ($user->rol_id == 2) {
+                    return redirect()->intended('/settings'); // Adjust this route for Begeleiders
+                }
             }
         }
 
@@ -53,6 +61,8 @@ class AuthController extends Controller
             'wachtwoord' => 'Opgegeven gegevens kloppen niet',
         ]);
     }
+
+
 
 
     // Handle logout

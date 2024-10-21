@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 #[AllowDynamicProperties] class Product extends Component
 {
+
     public $product = null;
     public function mount($id = null)
     {
@@ -49,4 +50,7 @@ use Illuminate\Support\Facades\Log;
 
         return view('Product', compact('product', 'setting'));
     }
+
+
 }
+

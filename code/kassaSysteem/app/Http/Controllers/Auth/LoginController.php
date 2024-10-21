@@ -26,7 +26,11 @@ class LoginController extends Controller
         $user = User::where('naam', $request->naam)->first();
 
         if ($user && Hash::check($request->wachtwoord, $user->wachtwoord)) {
-            // Check if the user needs to change their password
+            session(['naam' => $user->naam]);
+            session(['userInfo' => [
+                'user_id' => $user->user_Id,  // Assuming 'id' is the user_id
+                'organisatie_id' => $user->organisatie_id,    // You can modify this as needed
+            ]]);
             if ($user->wachtwoordWijzigen === 1) {
                 session(['force_password_change' => $user->user_Id]); // Store the user's ID in session
                 return redirect()->route('passwordChangeForm')->with('user_name', $user->naam); // Send username to the view
@@ -35,7 +39,7 @@ class LoginController extends Controller
 
                 session(['naam' => $user->naam]);
                 session(['userInfo' => [
-                    'user_id' => $user->id,
+                    'user_id' => $user->user_Id,
                     'organisatie_id' => $user->organisatie_id,
                 ]]);
 
@@ -46,8 +50,6 @@ class LoginController extends Controller
             'wachtwoord' => __('Opgegeven gegevens kloppen niet'),
         ]);
     }
-
-
 
     public function changePassword(Request $request)
     {
@@ -65,13 +67,15 @@ class LoginController extends Controller
             $user->wachtwoordWijzigen = 0; // Reset the toggle
             $user->save();
 
-            // Remove the session variable
             session()->forget('force_password_change');
 
-            // Log the user in after password change
             Auth::login($user);
 
-            return redirect()->route('category');
+            if ($user->rol_id == 1) {
+                return redirect()->intended('/organisatie-beheer');
+            } elseif ($user->rol_id == 2) {
+                return redirect()->intended('/category');
+            }
         }
 
         return response()->json(['success' => false, 'message' => 'User not found.']);
