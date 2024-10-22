@@ -38,8 +38,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => storage_path('/home/u191402p326203/domains/dewagenwinkel.be/public_html/'),
+            'url' => env('APP_URL').'/assets',
             'visibility' => 'public',
             'throw' => false,
         ],
