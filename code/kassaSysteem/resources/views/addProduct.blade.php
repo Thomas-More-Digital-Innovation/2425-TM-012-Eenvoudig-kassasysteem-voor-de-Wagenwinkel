@@ -55,7 +55,7 @@
                         <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)">
                         <label for="afbeeldingen" class="cursor-pointer">
                             <div class="w-[400px] h-[400px]">
-                                <div class="bg-white rounded-lg [400px] h-[400px]y">
+                                <div class="bg-white rounded-lg [400px] h-[400px]">
                                     <img id="imagePreview" src="{{ asset('assets/images/addPhoto.svg') }}" alt="Foto Toevoegen" class="object-cover w-full h-full rounded-lg">
                                 </div>
                             </div>
