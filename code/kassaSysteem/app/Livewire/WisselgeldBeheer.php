@@ -33,7 +33,7 @@ class WisselgeldBeheer extends Component
     {
         $this->validate(
             collect(range(1, 10))->mapWithKeys(function ($index) {
-                return ["stockChange.$index" => 'required|integer|max:255'];
+                return ["stockChange.$index" => 'required|integer'];
             })->toArray()
         );
 
