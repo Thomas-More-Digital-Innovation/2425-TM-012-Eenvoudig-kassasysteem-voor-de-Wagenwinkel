@@ -52,7 +52,7 @@
                         </div>
 
                         <label for="afbeeldingen" class="pl-1 block text-3xl text-black font-bold"></label>
-                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)" required>
+                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png, .jpg, .jpeg" class="hidden" onchange="previewImage(event)" required>
                         <label for="afbeeldingen" class="cursor-pointer">
                             <div class="w-[400px] h-auto">
                                 <div class="bg-white rounded-lg">
