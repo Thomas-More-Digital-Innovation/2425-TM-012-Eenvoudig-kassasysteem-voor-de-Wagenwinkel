@@ -70,12 +70,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'naam' => 'required|string|max:255',
+            'naam' => 'required|string',
             'categorie_id' => 'required|integer',
             'voorraad' => 'nullable|integer',
             'actuele_prijs' => 'required|numeric',
-            'afbeeldingen' => 'nullable|image|mimes:png|max:2048',
+            'afbeeldingen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'voorraadAanvullen' => 'required|integer',
         ]);
 

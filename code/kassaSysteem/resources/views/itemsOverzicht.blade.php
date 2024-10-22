@@ -1,5 +1,5 @@
 <x-header header="Items">
-    <div class="w-[1390px] h-[85vh] bg-white p-5  rounded-lg shadow-lg relative flex flex-col justify-around">
+    <div class=" bg-white p-5  rounded-lg shadow-lg relative flex flex-col justify-around">
         <div class="grid grid-cols-8 grid-rows-3 gap-2">
             <?php
             $totalItems = 24;
@@ -24,10 +24,15 @@
             <?php endif; ?>
             <?php endforeach; ?>
         </div>
-        <div class="pt-2 ">
-            <a href="{{ route('category') }}">
-                <x-layout.redArrow width="w-[391px]"></x-layout.redArrow>
-            </a>
+        <div class="flex">
+            <div class="w-full h-full">
+                <a href="{{ route('category') }}">
+                    <x-layout.redArrow width="w-full"></x-layout.redArrow>
+                </a>
+            </div>
+            <div class="w-full h-full">
+                <div class="w-full "></div>
+            </div>
         </div>
     </div>
 </x-header>

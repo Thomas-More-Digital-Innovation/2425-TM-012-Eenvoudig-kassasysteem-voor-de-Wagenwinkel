@@ -27,7 +27,7 @@ class Verkooplijst extends Component
                 ->pluck('verkoop_id');
         }
         $verkochteProducten = Verkooplijn::whereIn('verkoop_id', $verkoopIds)->with(['product', 'verkoop'])->get();
-        #Verkooplijn::whereIn('verkoop_id', $verkoopIds)->orderBy('verkoop_id')->downloadExcel('query-download.xlsx');
+        //Verkooplijn::whereIn('verkoop_id', $verkoopIds)->orderBy('verkoop_id')->downloadExcel('query-download.xlsx');
         return view('livewire.verkooplijst', compact('verkochteProducten'));
     }
 

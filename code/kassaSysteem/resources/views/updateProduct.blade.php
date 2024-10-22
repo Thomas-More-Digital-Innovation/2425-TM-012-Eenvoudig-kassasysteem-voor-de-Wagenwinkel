@@ -1,5 +1,5 @@
 <x-header header="Product bewerken">
-    <div class="bg-white p-5 rounded-lg shadow-lg">
+    <div class="bg-white w-[1172px] p-5 rounded-lg shadow-lg">
         <!-- Product Update Form -->
         <form method="POST" action="{{ route('producten.update', $product->product_id) }}" enctype="multipart/form-data">
             <?php
@@ -56,7 +56,7 @@
                         <div class="flex gap-3">
                             <div class="">
                                 <label for="voorraad" class="pl-1 block text-3xl text-black font-bold">Voorraad</label>
-                                <input type="number" id="voorraad" name="voorraad" value="{{ old('voorraad', $product->voorraad) }}" class="w-[735px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                                <input type="number" id="voorraad" name="voorraad" value="{{ old('voorraad', $product->voorraad) }}" class="w-[510px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
                             </div>
 
                             <div class="flex flex-col">
@@ -90,9 +90,9 @@
                         </div>
 
                         <label for="afbeeldingen" class="pl-1 block text-3xl text-black font-bold"></label>
-                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)">
+                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png, .jpg, .jpeg" class="hidden" onchange="previewImage(event)" required>
                         <label for="afbeeldingen" class="cursor-pointer">
-                            <div class="w-[325px] h-auto">
+                            <div class="w-[325px] h-[325px]">
                                 <img id="imagePreview" src="{{ asset($product['afbeeldingen']) }}" alt="Image {{ $product['naam'] }}" class="object-cover w-full h-full rounded-lg">
                             </div>
                         </label>
@@ -224,3 +224,14 @@
         border-radius: 30%;
     }
 </style>
+<script>
+    document.querySelectorAll('input[required], select[required]').forEach(function (input) {
+        input.addEventListener('blur', function () {
+            if (!input.value) {
+                input.classList.add('border-red-500');
+            } else {
+                input.classList.remove('border-red-500');
+            }
+        });
+    });
+</script>
