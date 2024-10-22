@@ -1,5 +1,5 @@
 <x-header header="producten beheren">
-    <div class="bg-white w-[1390px] p-5 rounded-lg shadow-lg">
+    <div class="bg-white p-5 w-[1172px] rounded-lg shadow-lg">
         <!-- Column Headers -->
         <div class="flex justify-between items-center mb-1">
             <div class="flex justify-between w-full">
@@ -8,7 +8,7 @@
                     <span class="font-bold text-3xl text-gray-400 flex-1">Foto</span>
                     <span class="font-bold text-3xl text-gray-400 flex-1 ml-4">Naam</span>
                 </div>
-                <div class="flex items-center gap-40">
+                <div class="flex items-center gap-16">
                     <span class="justify-self-start font-bold text-3xl text-gray-400 flex-1">Categorie</span>
                     <span class="font-bold text-3xl text-gray-400 flex-1">Voorraad</span>
                     <span class="font-bold text-3xl text-gray-400 flex-1 me-6">Bewerken</span>
@@ -28,7 +28,7 @@
                         <img src="{{ $product->afbeeldingen }}" alt="product picture" class="w-24 h-24 object-cover rounded-lg">
                         <span class="text-3xl font-bold">{{ $product->naam }}</span>
                     </div>
-                    <div class="grid grid-cols-3 w-[720px] items-center">
+                    <div class="grid grid-cols-3 w-[520px] items-center">
                         <span class="justify-self-start text-3xl font-bold">{{ $product->categorie->naam }}</span>
                         <span class="justify-self-center ml-2 text-3xl font-bold">{{ $product->voorraad }}</span>
                         <a href="{{ route('producten.edit', $product->product_id) }}" class="justify-self-end">

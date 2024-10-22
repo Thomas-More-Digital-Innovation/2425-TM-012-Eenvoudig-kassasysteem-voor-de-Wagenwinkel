@@ -9,7 +9,7 @@
             </button>
             <button onclick="showSquare()">
                 <div class="bg-purple-800 rounded-lg text-center p-5 flex items-center justify-center">
-                    <img src="{{ asset($product->afbeeldingen) }}" alt="{{ $product->naam }}" class="h-400 w-400 object-contain aspect-square">
+                    <img src="{{ asset($product->afbeeldingen) }}" alt="{{ $product->naam }}" class="h-400 w-400 object-cover rounded-lg aspect-square">
                 </div>
             </button>
         </div>
