@@ -1,6 +1,6 @@
 <x-header header="Winkelmand">
     <div class="bg-white w-11/12 md:w-4/5 px-4 h-auto min-h-[85vh] rounded-lg flex flex-col justify-between items-center">
-        <div class="bg-gray-200 w-full h-[700px] md:h-[600px] rounded-lg m-4 p-4 overflow-y-auto">
+        <div class="bg-gray-200 w-full  h-[34vw] rounded-lg m-4 p-4 overflow-y-auto">
             @php
                 $products = \App\Helpers\Shopping_cart::getRecords();
             @endphp
@@ -24,22 +24,22 @@
             @endif
         </div>
 
-        <div class="flex flex-row justify-between items-center mb-4 w-full">
-            <div>
+        <div class="flex flex-row justify-between items-center mb-4 h-fit w-full">
+            <div class="w-full h-fit">
                 <form action="{{ route('category') }}" method="GET">
                     @csrf
-                    <x-layout.redArrow width="w-[250px] md:w-[391px]"></x-layout.redArrow>
+                    <x-layout.redArrow></x-layout.redArrow>
                 </form>
             </div>
-            <p class="w-full text-center text-4xl inter-text">Totaal: € {{ number_format(\App\Helpers\Shopping_cart::getPrice(),2, ',', '.') }}</p>
-            <div>
+            <p class="w-full h-fit text-center text-4xl inter-text">Totaal: € {{ number_format(\App\Helpers\Shopping_cart::getPrice(),2, ',', '.') }}</p>
+            <div class="w-full h-fit ">
                 @if ($products != [])
-                    <form action="{{ route('soortBetalen') }}" method="GET">
+                    <form action="{{ route('soortBetalen') }}" method="GET" class="h-auto">
                         @csrf
-                        <x-layout.greenArrow width="w-[250px] md:w-[391px]"></x-layout.greenArrow>
+                        <x-layout.greenArrow></x-layout.greenArrow>
                     </form>
                 @else
-                    <div class="w-[250px] md:w-[391px]"></div>
+                    <div class="w-full h-auto"></div>
                 @endif
             </div>
         </div>

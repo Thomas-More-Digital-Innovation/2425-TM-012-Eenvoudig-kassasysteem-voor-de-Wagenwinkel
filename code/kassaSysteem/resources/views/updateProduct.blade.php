@@ -92,7 +92,7 @@
                         <label for="afbeeldingen" class="pl-1 block text-3xl text-black font-bold"></label>
                         <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)">
                         <label for="afbeeldingen" class="cursor-pointer">
-                            <div class="w-[325px] h-auto">
+                            <div class="w-[325px] h-[325px]">
                                 <img id="imagePreview" src="{{ asset($product['afbeeldingen']) }}" alt="Image {{ $product['naam'] }}" class="object-cover w-full h-full rounded-lg">
                             </div>
                         </label>

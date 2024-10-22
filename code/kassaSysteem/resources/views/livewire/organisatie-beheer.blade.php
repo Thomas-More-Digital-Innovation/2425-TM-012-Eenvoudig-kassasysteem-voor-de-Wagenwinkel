@@ -46,7 +46,7 @@
                     <div class="flex items-start">
                         <label for="organization" class="block text-3xl text-black font-bold"></label>
                         <div class="relative">
-                            <select name="Organisatie" wire:model="organisatieKeuze" class="w-[350px] text-gray-500 appearance-none mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                            <select name="Organisatie" wire:model="organisatieKeuze" class="w-[420px] text-gray-500 appearance-none mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
                                 <option value="none" selected="selected" hidden>Kies Organisatie</option>
                                 @foreach ($organisaties as $organisatie)
                                     <option value="{{ $organisatie['organisatie_id'] }}">{{ $organisatie['naam'] }}</option>

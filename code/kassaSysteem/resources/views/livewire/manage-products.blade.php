@@ -20,12 +20,12 @@
         <div class="bg-gray-200 p-3  rounded-lg w-full h-[520px] overflow-y-auto">
             @foreach($producten as $product)
                 <div class="bg-white p-4 rounded-lg flex justify-between items-center mb-3">
-                    <div class="flex items-center gap-12">
+                    <div class="flex items-center gap-12 ">
                         <img src="{{ $product->visible ? asset('assets/images/eye.svg') : asset('assets/images/eye-off.svg') }}"
                              alt="Zichtbaar"
-                             class="w-20 h-20 cursor-pointer"
+                             class="w-20 h-20 cursor-pointer object-cover"
                              wire:click="toggleVisibility({{ $product->product_id }})">
-                        <img src="{{ $product->afbeeldingen }}" alt="product picture" class="w-auto h-24 object-contain rounded-lg">
+                        <img src="{{ $product->afbeeldingen }}" alt="product picture" class="w-24 h-24 object-cover rounded-lg">
                         <span class="text-3xl font-bold">{{ $product->naam }}</span>
                     </div>
                     <div class="grid grid-cols-3 w-[720px] items-center">
