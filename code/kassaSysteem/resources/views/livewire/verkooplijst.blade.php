@@ -16,25 +16,25 @@
             <div class="flex flex-col justify-between items-center">
                 <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 w-full">
                     <span></span>
-                    <span class="col-start-2 ms-5 font-bold text-3xl text-gray-400 pe-[212px]">Naam</span>
-                    <span class="col-start-3 ms-5 font-bold text-3xl text-gray-400 pe-[212px]">Datum</span>
-                    <span class="col-start-5 ms-5 font-bold text-3xl text-gray-400 pe-[212px]">Tijd</span>
-                    <span class="col-start-10 font-bold text-3xl text-gray-400 pe-3">Aantal</span>
-                    <span class="col-start-11 font-bold text-3xl text-gray-400 pe-3">Prijs</span>
-                    <span class="col-start-12 font-bold text-3xl text-gray-400 pe-3">Totaal</span>
+                    <span class="col-start-2 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Naam</span>
+                    <span class="col-start-3 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Datum</span>
+                    <span class="col-start-5 col-end-9 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Tijd</span>
+                    <span class="col-start-9 font-bold text-2xl text-gray-400 pe-3">Aantal</span>
+                    <span class="col-start-10 font-bold text-2xl text-gray-400 pe-3">Prijs</span>
+                    <span class="col-start-11 font-bold text-2xl text-gray-400 pe-3">Totaal</span>
                 </div>
-                <div class="bg-gray-200 w-full h-[500px] md:h-[500px] rounded-lg m-4 p-4 overflow-y-auto">
+                <div class="bg-gray-200 w-full h-[500px] md:h-[500px] rounded-lg m-4 p-4 overflow-y-auto overflow-x-hidden">
                     @foreach($verkochteProducten as $product)
                         <div class="bg-white h-[115px] mb-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2 w-full items-center rounded-lg">
                             <div class="rounded-lg">
                                 <img src="{{ $product->product->afbeeldingen }}" alt="{{ $product->product->naam }}" class="h-[90%] rounded-lg">
                             </div>
-                            <p class="ml-4 col-start-2 font-bold text-3xl">{{ $product->product->naam }}</p>
-                            <p class="ml-4 col-start-3 col-end-5 font-bold text-3xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('Y-m-d') }}</p>
-                            <p class="ml-4 col-start-5 font-bold text-3xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('H:i') }}</p>
-                            <p class="ml-4 col-start-10 font-bold text-3xl">{{ $product->hoeveelheid }}</p>
-                            <p class="ml-4 col-start-11 font-bold text-3xl">{{ number_format($product->verkoopprijs, 2) }}€</p>
-                            <p class="ml-4 col-start-12 font-bold text-3xl">{{ number_format($product->verkoopprijs * $product->hoeveelheid, 2) }}€</p>
+                            <p class="ml-4 col-start-2 font-bold text-2xl">{{ $product->product->naam }}</p>
+                            <p class="ml-4 col-start-3 col-end-5 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('Y-m-d') }}</p>
+                            <p class="ml-4 col-start-5 col-end-9 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('H:i') }}</p>
+                            <p class="ml-4 col-start-9 font-bold text-2xl">{{ $product->hoeveelheid }}</p>
+                            <p class="ml-4 col-start-10 font-bold text-2xl">{{ number_format($product->verkoopprijs, 2) }}€</p>
+                            <p class="ml-4 col-start-11 font-bold text-2xl">{{ number_format($product->verkoopprijs * $product->hoeveelheid, 2) }}€</p>
                         </div>
                     @endforeach
                 </div>
