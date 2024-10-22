@@ -13,12 +13,12 @@
                 </div>
             </button>
         </div>
-        <div class="flex space-x-3">
-            <form action="{{ route('products', ['categoryId' => $product->categorie_id]) }}" method="GET" class="w-full h-60 bg-orange-200 py-8 rounded-md flex justify-evenly items-center">
+        <div class="flex space-x-3 h-60">
+            <form action="{{ route('products', ['categoryId' => $product->categorie_id]) }}" method="GET" class="w-full h-auto rounded-md flex justify-evenly items-center">
                 @csrf
                 <x-layout.redArrow/>
             </form>
-            <form action="{{ route('cart.product-add', ['id' => $product->product_id]) }}" method="POST" class="w-full h-60 bg-orange-200 py-8 rounded-md flex justify-evenly items-center">
+            <form action="{{ route('cart.product-add', ['id' => $product->product_id]) }}" method="POST" class="w-full h-auto rounded-md flex justify-evenly items-center">
                 @csrf
                 <input type="number" id="amount" name="amount" value="0" min="0" hidden>
                 <x-layout.greenArrow/>
