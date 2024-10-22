@@ -1,5 +1,5 @@
 <x-header header="Product bewerken">
-    <div class="bg-white p-5 rounded-lg shadow-lg">
+    <div class="bg-white w-[1172px] p-5 rounded-lg shadow-lg">
         <!-- Product Update Form -->
         <form method="POST" action="{{ route('producten.update', $product->product_id) }}" enctype="multipart/form-data">
             <?php
@@ -56,7 +56,7 @@
                         <div class="flex gap-3">
                             <div class="">
                                 <label for="voorraad" class="pl-1 block text-3xl text-black font-bold">Voorraad</label>
-                                <input type="number" id="voorraad" name="voorraad" value="{{ old('voorraad', $product->voorraad) }}" class="w-[735px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                                <input type="number" id="voorraad" name="voorraad" value="{{ old('voorraad', $product->voorraad) }}" class="w-[510px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
                             </div>
 
                             <div class="flex flex-col">

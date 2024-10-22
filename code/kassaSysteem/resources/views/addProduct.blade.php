@@ -1,5 +1,5 @@
 <x-header header="Product bewerken">
-    <div class="bg-white p-5 rounded-lg shadow-lg">
+    <div class="bg-white w-[1172px] p-5 rounded-lg shadow-lg">
         <!-- Product Update Form -->
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             <?php
@@ -32,7 +32,7 @@
                         <div class="flex gap-3">
                             <div class="">
                                 <label for="voorraad" class="pl-1 block text-3xl text-black font-bold">Voorraad</label>
-                                <input type="number" id="voorraad" name="voorraad" class="w-[658px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
+                                <input type="number" id="voorraad" name="voorraad" class="w-[425px] h-12 mt-1 block border border-gray-300 bg-white font-bold rounded-lg text-3xl" required>
                             </div>
 
                             <div class="flex flex-col">
@@ -54,8 +54,8 @@
                         <label for="afbeeldingen" class="pl-1 block text-3xl text-black font-bold"></label>
                         <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)">
                         <label for="afbeeldingen" class="cursor-pointer">
-                            <div class="w-[400px] h-auto">
-                                <div class="bg-white rounded-lg">
+                            <div class="w-[400px] h-[400px]">
+                                <div class="bg-white rounded-lg [400px] h-[400px]y">
                                     <img id="imagePreview" src="{{ asset('assets/images/addPhoto.svg') }}" alt="Foto Toevoegen" class="object-cover w-full h-full rounded-lg">
                                 </div>
                             </div>
