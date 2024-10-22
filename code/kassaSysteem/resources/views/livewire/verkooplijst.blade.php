@@ -25,9 +25,9 @@
                 </div>
                 <div class="bg-gray-200 w-full h-[500px] md:h-[500px] rounded-lg m-4 p-4 overflow-y-auto overflow-x-hidden">
                     @foreach($verkochteProducten as $product)
-                        <div class="bg-white h-[115px] mb-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2 w-full items-center rounded-lg">
-                            <div class="rounded-lg">
-                                <img src="{{ $product->product->afbeeldingen }}" alt="{{ $product->product->naam }}" class="h-[90%] rounded-lg">
+                        <div class="bg-white p-2 mb-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2 w-full items-center rounded-lg">
+                            <div class="rounded-lg w-[115px] h-[115px]">
+                                <img src="{{ $product->product->afbeeldingen }}" alt="{{ $product->product->naam }}" class="object-cover w-full h-full rounded-lg">
                             </div>
                             <p class="ml-4 col-start-2 font-bold text-2xl">{{ $product->product->naam }}</p>
                             <p class="ml-4 col-start-3 col-end-5 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('Y-m-d') }}</p>
