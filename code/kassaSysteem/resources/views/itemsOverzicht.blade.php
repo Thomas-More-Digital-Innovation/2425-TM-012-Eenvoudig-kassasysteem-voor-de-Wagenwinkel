@@ -2,7 +2,7 @@
     <div class="w-[1390px] h-[85vh] bg-white p-5  rounded-lg shadow-lg relative flex flex-col justify-around">
         <div class="grid grid-cols-8 grid-rows-3 gap-2">
             <?php
-            $totalItems = 15;
+            $totalItems = 24;
             $itemCount = count($producten);
 
             $gridItems = array_fill(0, $totalItems, null);

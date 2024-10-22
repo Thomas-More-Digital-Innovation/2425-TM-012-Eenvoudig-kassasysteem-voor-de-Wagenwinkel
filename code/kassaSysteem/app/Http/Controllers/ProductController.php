@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class ProductController extends Controller
         return view('Product', compact('producten'));
     }
 
-    public function ProductAll($categoryId = null)
+    public static function ProductAll($categoryId = null)
     {
         $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
         $setting = \App\Http\Controllers\Controller::getSetting($organisation);
@@ -32,11 +33,32 @@ class ProductController extends Controller
 
         if ($setting->voorraadAangeven) {
             $producten = $producten->filter(function ($product) {
-                return $product->voorraad > 0;
+                return $product->voorraad > 0 && $product->visible;
             });
 
         }
+
+        $producten = $producten->filter(function ($product) {
+            return $product->visible;
+        });
+
+
         return view('itemsOverzicht', compact('producten'));
+    }
+
+    public static function getAllProducts($categoryId)
+    {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+
+        if ($categoryId == 1) {
+            $producten = Product::where('categorie_id', '1')->where('organisatie_id', $organisation)->get();
+        } elseif ($categoryId == 2) {
+            $producten = Product::where('categorie_id', '2')->where('organisatie_id', $organisation)->get();
+        } else {
+            $producten = Product::all();
+        }
+
+        return $producten;
     }
 
     public function index()
@@ -48,29 +70,57 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'actuele_prijs' => 'required|numeric',
-            'afbeeldingen' => 'nullable|string',
-            'organisatie_id' => 'required|integer',
+        $request->validate([
+            'naam' => 'required|string|max:255',
             'categorie_id' => 'required|integer',
-            'positie' => 'nullable|integer',
-            'voorraad' => 'required|integer',
-            'voorraadAanvullen' => 'boolean',
+            'voorraad' => 'nullable|integer',
+            'actuele_prijs' => 'required|numeric',
+            'afbeeldingen' => 'nullable|image|mimes:png|max:2048',
+            'voorraadAanvullen' => 'required|integer',
         ]);
 
-        $product = new Product();
-        $product->naam = $validatedData['name'];
-        $product->actuele_prijs = $validatedData['actuele_prijs'];
-        $product->afbeeldingen = $validatedData['afbeeldingen'] ?? null;
-        $product->organisatie_id = $validatedData['organisatie_id'];
-        $product->categorie_id = $validatedData['categorie_id'];
-        $product->positie = $validatedData['positie'] ?? null;
-        $product->voorraad = $validatedData['voorraad'];
-        $product->voorraadAanvullen = $validatedData['voorraadAanvullen'] ?? false;
-        $product->save();
+        $categorie_id = (int) $request->input('categorie_id');
+        $usedPositions = Product::where('categorie_id', $categorie_id)
+            ->pluck('positie')
+            ->toArray();
 
-        return redirect()->route('manageProducts');
+        $availablePosition = null;
+        for ($i = 1; $i <= 15; $i++) {
+            if (!in_array($i, $usedPositions)) {
+                $availablePosition = $i;
+                break;
+            }
+        }
+
+        if ($availablePosition === null) {
+            return redirect()->back()->withErrors(['positie' => 'No available positions in this category.']);
+        }
+
+        $afbeeldingen = null;
+        if ($request->hasFile('afbeeldingen')) {
+            $file = $request->file('afbeeldingen');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('images', $filename, 'public');
+            $afbeeldingen = 'storage/images/' . $filename;
+        }else {
+            $afbeeldingen = asset('assets/images/addPhoto.svg'); // Set the default image path
+        }
+
+        $voorraad = $request->input('voorraad') ?? 0;
+
+        Product::create([
+            'naam' => $request->input('naam'),
+            'organisatie_id' => \App\Helpers\Login::getUser()['organisatie_id'],
+            'positie' => $availablePosition,
+            'categorie_id' => $categorie_id,
+            'voorraad' => (int)$voorraad,
+            'voorraadAanvullen' => $request->input('voorraadAanvullen') ? 1 : 0,
+            'actuele_prijs' => $request->input('actuele_prijs'),
+            'afbeeldingen' => $afbeeldingen,
+            'visible' => 1,
+        ]);
+
+        return redirect()->route('manage-products')->with('success', 'Product successfully added');
     }
 
     public function edit($product_id)
@@ -81,36 +131,36 @@ class ProductController extends Controller
 
     public function update(Request $request, $product_id)
     {
+
         $request->validate([
             'naam' => 'required|string|max:255',
             'actuele_prijs' => 'required|numeric',
-            'afbeeldingen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB max
+            'afbeeldingen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categorie_id' => 'required|integer',
             'positie' => 'required|integer',
             'voorraad' => 'required|integer',
+            'voorraadAanvullen' => 'required|in:0,1',
         ]);
 
-        // Zoek het product op
         $product = Product::findOrFail($product_id);
 
-        // Haal de waarde op uit de request
         $naam = $request->input('naam');
         $actuele_prijs = $request->input('actuele_prijs');
         $categorie_id = $request->input('categorie_id');
         $positie = $request->input('positie');
         $voorraad = $request->input('voorraad');
+        $voorraadAanvullen = $request->input('voorraadAanvullen');
 
-        // Upload de afbeelding indien gekozen
+
         if ($request->hasFile('afbeeldingen')) {
             $file = $request->file('afbeeldingen');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('images', $filename, 'public'); // Opslaan in de public/images map
-            $afbeeldingen = 'storage/images/' . $filename; // Sla de pad op in de database
+            $file->storeAs('images', $filename, 'public');
+            $afbeeldingen = 'storage/images/' . $filename;
         } else {
-            $afbeeldingen = $product->afbeeldingen; // Gebruik de bestaande afbeelding als er geen nieuwe is
+            $afbeeldingen = $product->afbeeldingen;
         }
 
-        // Update de productgegevens in de database
         $product->update([
             'naam' => $naam,
             'actuele_prijs' => $actuele_prijs,
@@ -118,6 +168,7 @@ class ProductController extends Controller
             'categorie_id' => $categorie_id,
             'positie' => $positie,
             'voorraad' => $voorraad,
+            'voorraadAanvullen' => $voorraadAanvullen,
         ]);
 
         // Redirect of geef een succesbericht terug
@@ -128,6 +179,12 @@ class ProductController extends Controller
     public function destroy($product_id)
     {
         $product = Product::where('product_id', $product_id)->delete();
-        return redirect()->route('manageProducts');
+        return redirect()->route('manage-products');
+    }
+
+    public static function getCategory()
+    {
+        $categorie = Categorie::all()->toArray();
+        return $categorie;
     }
 }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('positie');
             $table->integer('voorraad')->nullable();
             $table->boolean('voorraadAanvullen');
+            $table->boolean('visible');
         });
     }
 
