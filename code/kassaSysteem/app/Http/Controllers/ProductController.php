@@ -159,10 +159,14 @@ class ProductController extends Controller
         if ($request->hasFile('afbeeldingen')) {
             $file = $request->file('afbeeldingen');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('images', $filename, 'public');
-            $afbeeldingen = 'storage/images/' . $filename;
-        } else {
-            $afbeeldingen = $product->afbeeldingen;
+
+            $destinationPath = '/home/u191402p326203/domains/dewagenwinkel.be/public_html/assets/images/items/';
+
+            $file->move($destinationPath, $filename);
+
+            $afbeeldingen = 'assets/images/items/' . $filename;
+        }else {
+            $afbeeldingen = asset('assets/images/addPhoto.svg');
         }
 
         $product->update([
