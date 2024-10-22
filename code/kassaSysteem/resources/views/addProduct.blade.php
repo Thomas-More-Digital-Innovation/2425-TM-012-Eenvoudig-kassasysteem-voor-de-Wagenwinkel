@@ -52,7 +52,7 @@
                         </div>
 
                         <label for="afbeeldingen" class="pl-1 block text-3xl text-black font-bold"></label>
-                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)">
+                        <input type="file" id="afbeeldingen" name="afbeeldingen" accept=".png" class="hidden" onchange="previewImage(event)" required>
                         <label for="afbeeldingen" class="cursor-pointer">
                             <div class="w-[400px] h-auto">
                                 <div class="bg-white rounded-lg">
@@ -176,3 +176,15 @@
         border-radius: 30%;
     }
 </style>
+
+<script>
+    document.querySelectorAll('input[required], select[required]').forEach(function (input) {
+        input.addEventListener('blur', function () {
+            if (!input.value) {
+                input.classList.add('border-red-500');
+            } else {
+                input.classList.remove('border-red-500');
+            }
+        });
+    });
+</script>
