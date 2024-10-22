@@ -23,7 +23,8 @@ class ProductSeeder extends Seeder
                     'standaard_id' => null,
                     'positie' => 1,
                     'voorraad' => 20,
-                    'voorraadAanvullen' => true
+                    'voorraadAanvullen' => true,
+                    'visible' => true
                 ],
                 [
                     'naam' => 'Appel',
@@ -34,7 +35,8 @@ class ProductSeeder extends Seeder
                     'standaard_id' => null,
                     'positie' => 1,
                     'voorraad' => 20,
-                    'voorraadAanvullen' => true
+                    'voorraadAanvullen' => true,
+                    'visible' => true
                 ],
                 [
                     'naam' => 'Kaartje',
@@ -45,7 +47,8 @@ class ProductSeeder extends Seeder
                     'standaard_id' => null,
                     'positie' => 1,
                     'voorraad' => 5,
-                    'voorraadAanvullen' => false
+                    'voorraadAanvullen' => false,
+                    'visible' => true
                 ],
                 [
                     'naam' => 'Koek',
@@ -56,7 +59,8 @@ class ProductSeeder extends Seeder
                     'standaard_id' => null,
                     'positie' => 2,
                     'voorraad' => 25,
-                    'voorraadAanvullen' => true
+                    'voorraadAanvullen' => true,
+                    'visible' => true
                 ]
             ]
         );

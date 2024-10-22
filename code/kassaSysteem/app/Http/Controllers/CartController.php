@@ -44,8 +44,16 @@ class CartController extends Controller
         $productid = $request->route('id');
         $product = Product::where('product_id', $productid)->first();
 
-        Shopping_cart::delete($product);
-        return redirect()->route('winkelmand');
+        if ($product) {
+            // Increase the stock of the deleted product
+            $product->voorraad += 1;
+            $product->save();
+
+            // Delete the product from the shopping cart
+            Shopping_cart::delete($product);
+        }
+
+        return redirect()->route('winkelmand')->with('success', 'Product successfully removed and stock updated.');
     }
 
     public function showCart()

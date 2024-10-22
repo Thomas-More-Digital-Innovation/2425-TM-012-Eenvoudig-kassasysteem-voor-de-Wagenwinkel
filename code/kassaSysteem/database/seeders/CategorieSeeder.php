@@ -16,10 +16,10 @@ class CategorieSeeder extends Seeder
         DB::table('categories')->insert(
         [
             [
-                'naam'=>"Food"
+                'naam'=>"Eten"
             ],
             [
-                'naam'=>"No food"
+                'naam'=>"Geen Eten"
             ]
         ]);
     }

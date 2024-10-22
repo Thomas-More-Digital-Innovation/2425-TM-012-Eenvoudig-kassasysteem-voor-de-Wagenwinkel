@@ -13,11 +13,14 @@ class Product extends Model
 
     protected $fillable = [
         'naam',
+        'organisatie_id',
         'actuele_prijs',
         'afbeeldingen',
         'categorie_id',
         'positie',
         'voorraad',
+        'voorraadAanvullen',
+        'visible',
     ];
 
     public $timestamps = false;

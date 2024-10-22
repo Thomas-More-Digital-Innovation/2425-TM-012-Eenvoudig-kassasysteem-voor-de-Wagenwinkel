@@ -89,7 +89,7 @@ Route::get('/producten/{product_id}/edit', [ProductController::class, 'edit'])->
 
 
 // Store and Edit routes
-Route::post('/products', [ManageProducts::class, 'store'])->name('products.store');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
 // Route voor het updaten van een product
 Route::put('/producten/{product_id}', [ProductController::class, 'update'])->name('producten.update');
