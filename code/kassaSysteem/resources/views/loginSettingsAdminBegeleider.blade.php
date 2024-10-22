@@ -13,7 +13,7 @@
                             <div class="relative flex items-center">
                                 <input type="text" name="naam" id="naam"
                                        class="w-[500px] h-16 mt-1 block py-2 pr-10 pl-3 border border-gray-300 bg-white font-bold rounded-lg text-3xl"
-                                       placeholder=Naam" value="{{ old('naam', $name) }}" required autofocus />
+                                       placeholder="Naam" value="{{ old('naam', $name) }}" required autofocus />
                             </div>
                             @error('naam')
                             <div class="text-red-500 text-sm">{{ $message }}</div>
