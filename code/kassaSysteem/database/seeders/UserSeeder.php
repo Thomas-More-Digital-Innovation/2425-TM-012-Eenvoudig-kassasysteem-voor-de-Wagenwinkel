@@ -22,6 +22,13 @@ class UserSeeder extends Seeder
                     'rol_id' => 1,
                     'organisatie_id' => 1,
                     'wachtwoordWijzigen' => 0
+                ],
+                [
+                    'naam' => 'DINO',
+                    'wachtwoord' => Hash::make('DINO1234'),
+                    'rol_id' => 1,
+                    'organisatie_id' => 1,
+                    'wachtwoordWijzigen' => 0
                 ]
             ]);
     }
