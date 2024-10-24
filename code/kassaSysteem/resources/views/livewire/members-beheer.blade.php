@@ -36,7 +36,7 @@
                             </div>
                         </label>
                         <div class="flex items-center" style="min-width: 50px;">
-                            @if ($user->user_Id !== 1)
+                            @if ($user->user_Id !== 1 && $user->naam !== "DINO")
                                 <button class="ml-40" wire:click="deleteMember({{ $user->user_Id }})">
                                     <img src="{{ asset('assets/images/bin.svg') }}" alt="vuilbak" class="w-13 h-13">
                                 </button>
