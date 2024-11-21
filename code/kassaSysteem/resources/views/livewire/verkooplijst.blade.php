@@ -18,7 +18,8 @@
                     <span></span>
                     <span class="col-start-2 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Naam</span>
                     <span class="col-start-3 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Datum</span>
-                    <span class="col-start-5 col-end-9 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Tijd</span>
+                    <span class="col-start-5 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Tijd</span>
+                    <span class="col-start-6 ms-5 font-bold text-2xl text-gray-400 pe-[212px]">Betaalwijze</span>
                     <span class="col-start-9 font-bold text-2xl text-gray-400 pe-3">Aantal</span>
                     <span class="col-start-10 font-bold text-2xl text-gray-400 pe-3">Prijs</span>
                     <span class="col-start-11 font-bold text-2xl text-gray-400 pe-3">Totaal</span>
@@ -31,7 +32,8 @@
                             </div>
                             <p class="ml-4 col-start-2 font-bold text-2xl">{{ $product->product->naam }}</p>
                             <p class="ml-4 col-start-3 col-end-5 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('Y-m-d') }}</p>
-                            <p class="ml-4 col-start-5 col-end-9 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('H:i') }}</p>
+                            <p class="ml-4 col-start-5 font-bold text-2xl">{{ \Carbon\Carbon::parse($product->verkoop->datum_tijd)->format('H:i') }}</p>
+                            <p class="ml-4 col-start-6 font-bold text-2xl flex justify-center items-center">{{ $product->verkoop->betaalMethode ?? '-' }}</p>
                             <p class="ml-4 col-start-9 font-bold text-2xl">{{ $product->hoeveelheid }}</p>
                             <p class="ml-4 col-start-10 font-bold text-2xl">{{ number_format($product->verkoopprijs, 2) }}€</p>
                             <p class="ml-4 col-start-11 font-bold text-2xl">{{ number_format($product->verkoopprijs * $product->hoeveelheid, 2) }}€</p>

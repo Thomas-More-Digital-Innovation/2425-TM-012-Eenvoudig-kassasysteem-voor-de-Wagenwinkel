@@ -16,6 +16,7 @@
         @endforeach
     </ul>
     <p>Total Price: {{ \App\Helpers\Shopping_cart::getCart()['totalPrice'] }}</p>
+    <p>Pay Method: {{ \App\Helpers\Shopping_cart::getCart()['payMethod'] }}</p>
 
 @else
     <p>Your cart is empty.</p>
