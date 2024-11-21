@@ -35,6 +35,7 @@ class VerkochteProductenExport implements FromCollection, WithHeadings, WithStyl
                     'Hoeveelheid' => $item->hoeveelheid,
                     'Datum' => \Carbon\Carbon::parse($item->verkoop->datum_tijd)->format('Y-m-d'),
                     'Tijd' => \Carbon\Carbon::parse($item->verkoop->datum_tijd)->format('H:i'),
+                    'Betaalwijze' => $item->verkoop->betaalMethode ?? 'Niet bijgehouden'
                 ];
             });
 
@@ -45,6 +46,7 @@ class VerkochteProductenExport implements FromCollection, WithHeadings, WithStyl
             'Hoeveelheid' => '',
             'Datum' => '',
             'Tijd' => '',
+            'Betaalwijze' => '',
         ]);
 
         return $data;
@@ -58,6 +60,7 @@ class VerkochteProductenExport implements FromCollection, WithHeadings, WithStyl
             'Hoeveelheid',
             'Datum',
             'Tijd',
+            'Betaalwijze',
         ];
     }
 

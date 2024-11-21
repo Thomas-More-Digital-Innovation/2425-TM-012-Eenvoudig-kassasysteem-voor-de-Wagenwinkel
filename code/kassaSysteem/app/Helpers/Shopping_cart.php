@@ -18,7 +18,8 @@ class Shopping_cart
      */
     private static array $cart = [
         'products' => [],
-        'totalPrice' => 0
+        'totalPrice' => 0,
+        'payMethod' => ''
     ];
 
     public static function init(): void
@@ -88,10 +89,11 @@ class Shopping_cart
     {
         $products = self::$cart['products'];
         $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
-
+        $payMethod = self::$cart['payMethod'];
         Verkoop::create([
             'datum_tijd' => now(),
-            'organisatie_id' => $organisation
+            'organisatie_id' => $organisation,
+            'betaalMethode' => $payMethod
         ]);
         foreach ($products as $product) {
             $verkoop_id = Verkoop::where('organisatie_id', $product['organisatie'])
@@ -111,8 +113,17 @@ class Shopping_cart
 
         self::$cart = [
             'products' => [],
-            'totalPrice' => 0
+            'totalPrice' => 0,
+            'payMethod' => ''
         ];
+    }
+
+    public static function addPayMethod(string $method = 'Payconic'): void
+    {
+        $organisation = \App\Helpers\Login::getUser()['organisatie_id'];
+
+        self::$cart['payMethod'] = $method;
+        session()->put("cart{$organisation}", self::$cart);
     }
 
     public static function getCart(): array

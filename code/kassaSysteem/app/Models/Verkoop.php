@@ -9,7 +9,7 @@ class Verkoop extends Model
 {
     use HasFactory;
     protected $table = 'verkopen';
-    protected $fillable = ['datum_tijd', 'organisatie_id'];
+    protected $fillable = ['datum_tijd', 'organisatie_id', 'betaalMethode'];
 
     public $timestamps = false;
 

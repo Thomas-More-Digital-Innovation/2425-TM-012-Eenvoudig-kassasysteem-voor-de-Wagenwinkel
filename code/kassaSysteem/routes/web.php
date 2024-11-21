@@ -1,7 +1,10 @@
 <?php
 
+use App\Helpers\Shopping_cart;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CashIngevenController;
+use App\Http\Controllers\PayconicController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\calculateChangeController;
 use App\Http\Controllers\CartController;
@@ -20,14 +23,13 @@ use App\Livewire\DatabaseTesting;
 Route::view('/', 'loginSystem')->name('loginSystem');
 Route::view('/category', 'category')->name('category');
 Route::view('/begeleiderSettings', 'begeleiderSettings')->name('begeleiderSettings');
-Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
+#Route::view('/cashIngeven', 'cashIngeven')->name('cashIngeven');
 
 Route::view('/soortBetalen', 'soortBetalen')->name('soortBetalen');
 Route::view('/loginAdminBegeleider', 'loginSystemAdminBegeleider')->name('loginAdminBegeleider');
 Route::view('/loginSettingsAdminBegeleider', 'loginSettingsAdminBegeleider')->name('loginSettingsAdminBegeleider');
 Route::view('/settings', 'settings')->name('settings');
 Route::view('/success', 'success')->name('success');
-Route::view('/payconic', 'Payconic')->name('payconic');
 Route::view('/cash', 'cash')->name('cash');
 
 // GET routes for Livewire and Controllers
@@ -43,6 +45,8 @@ Route::get('/winkelmand', [CartController::class, 'showCart'])->name('winkelmand
 Route::get('/item-select/{categoryId?}', [ProductController::class, 'ProductAll'])->name('products');
 Route::get('/item-select/product/{id?}', Product::class)->name('product');
 Route::get('/instellingen-beheer', InstellingenBeheer::class)->name('instellingen-beheer');
+Route::get('/cashIngeven', CashIngevenController::class)->name('cashIngeven');
+Route::get('/payconic', PayconicController::class)->name('payconic');
 
 // Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // General user login
