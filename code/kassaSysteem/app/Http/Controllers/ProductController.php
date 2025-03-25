@@ -82,6 +82,7 @@ class ProductController extends Controller
 
         $categorie_id = (int) $request->input('categorie_id');
         $usedPositions = Product::where('categorie_id', $categorie_id)
+            ->where('organisatie_id', \App\Helpers\Login::getUser()['organisatie_id'])
             ->pluck('positie')
             ->toArray();
 
